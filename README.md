@@ -61,7 +61,7 @@ SimpleAirdrop 送金・完全操作マニュアル
 
 ステップ 4：一括送金の実行（sendTokens）
 
-実際にAirdropコントラクトを使ってトークンを配布します。
+    実際にAirdropコントラクトを使ってトークンを配布します。
 
    1. 読み込んだ SIMPLEAIRDROP のパネルを開きます。
 
