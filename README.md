@@ -33,18 +33,23 @@ SimpleAirdrop 送金・完全操作マニュアル
       
       ▪ At Address ボタンの横の欄に 「トークンのコントラクトアドレス」 を貼り付けてボタンをクリックします。
       
-   3. SimpleAirdropの読み込み
+   2. SimpleAirdropの読み込み
+      
       ▪ CONTRACT 欄で SimpleAirdrop を選択します
+      
       ▪ At Address ボタンの横の欄に 「SimpleAirdropのコントラクトアドレス」 を貼り付けてボタンをクリックします
+      
       ▪ 注釈: もしSimpleAirdropをまだ作っていない場合は、ここで Deploy ボタンを押して新しく作成してください。
 
 ステップ 3：送金の許可（Approve）
+
 「送金用の道具（SimpleAirdrop）」に、あなたのトークンを動かす許可を与えます。
-    1. 読み込んだ MYTOKEN のパネルを開きます。
-    2. approve 関数の各欄に以下を入力します。
+
+   1. 読み込んだ MYTOKEN のパネルを開きます。
+   2. approve 関数の各欄に以下を入力します。
         ◦ spender: 「SimpleAirdropのコントラクトアドレス」 を貼り付けます。
         ◦ value: 「送付したい合計数量」の数字の後に「0」を18個 つけて入力します。（例：1枚なら 1000000000000000000）
-    3. transact を押し、メタマスクで「承認」します。
+   3. transact を押し、メタマスクで「承認」します。
             ▪ 注意事項: spender に自分の財布のアドレスを入れてしまうミスが多いです。必ず「SimpleAirdropのアドレス」を指定してください。
 
 ステップ 4：一括送金の実行（sendTokens）
