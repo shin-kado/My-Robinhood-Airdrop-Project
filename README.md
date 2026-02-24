@@ -4,16 +4,14 @@
 セキュリティ機能付きの一括送金（Airdrop）を成功させた開発実績です。
 
 ## 実績ドキュメント
-- **MyToken アドレス**: 0x5884aD2f920c162CFBbACc88C9C51AA75eC09E02 <img width="396" height="21" alt="image" src="https://github.com/user-attachments/assets/38e228cf-d85d-4685-99ba-67bbb6e3b4cc" />
-
-- **SimpleAirdrop アドレス**: 0x1926e8C311Ae38Bd2d20A2755852f8B5aF0F4258 <img width="396" height="21" alt="image" src="https://github.com/user-attachments/assets/4c838213-b6fc-45e8-a3aa-a49696674f32" />
-
-- **検証済みURL**: https://explorer.testnet.chain.robinhood.com/address/0x1926e8C311Ae38Bd2d20A2755852f8B5aF0F4258?tab=contract<img width="396" height="21" alt="image" src="https://github.com/user-attachments/assets/4bdf08a1-101c-4bc2-a742-71eee91ad619" />
+- **MyToken アドレス**: `0x5884aD2f920c162CFBbACc88C9C51AA75eC09E02`
+- **SimpleAirdrop アドレス**: `0x1926e8C311Ae38Bd2d20A2755852f8B5aF0F4258`
+- **検証済みURL**: [Explorer Link](https://explorer.testnet.chain.robinhood.com/address/0x1926e8C311Ae38Bd2d20A2755852f8B5aF0F4258?tab=contract)
 
 
 ## 操作マニュアル
-SimpleAirdrop 送金・完全操作マニュアル
-このマニュアルは、Remixのリロード後や、新しいネットワークで一括送金を行う際の標準手順です。
+SimpleAirdrop 送金・完全操作マニュアル　
+このマニュアルは、Remixのリロード後や、新しいネットワークで一括送金を行う際の標準手順です。　
 ステップ 1：ネットワークの同期確認
 Remixがあなたのメタマスク（Robinhood Chain）を正しく認識しているか確認します。
     1. MetaMaskを開き、ネットワークが「Robinhood Chain Testnet」であることを確認し	ます。
