@@ -20,7 +20,7 @@ SimpleAirdrop 送金・完全操作マニュアル
  
    1. MetaMaskを開き、ネットワークが「Robinhood Chain Testnet」であることを確認します。
    2. Remixの「Deploy & Run Transactions」タブで、ENVIRONMENT を一度別のものに切り替えてから、再度 Injected Provider - MetaMask を選択します。
-     3. 【重要チェック】: ENVIRONMENTのすぐ下の表示が Custom (46630) network になっていることを必ず確認してください。
+   3. 【重要チェック】: ENVIRONMENTのすぐ下の表示が Custom (46630) network になっていることを必ず確認してください。
             ▪ 注釈: ここが Main (1) のままだと、残高が正しく反映されず、送金も失敗します。
 
 ステップ 2：既存コントラクトの読み込み（At Address）
