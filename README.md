@@ -58,7 +58,6 @@ SimpleAirdrop 送金・完全操作マニュアル
       
       　▪ 注意事項: spender に自分の財布のアドレスを入れてしまうミスが多いです。必ず「SimpleAirdropのアドレス」を指定してください。
 
-  
  
 ステップ 4：一括送金の実行（sendTokens）
 
