@@ -6,7 +6,7 @@
 ## 実績ドキュメント
 - **MyToken アドレス**: `0x5884aD2f920c162CFBbACc88C9C51AA75eC09E02`
 - **SimpleAirdrop アドレス**: `0x1926e8C311Ae38Bd2d20A2755852f8B5aF0F4258`
-- **検証済みURL**: [Explorer Link](https://explorer.testnet.chain.robinhood.com/address/0x1926e8C311Ae38Bd2d20A2755852f8B5aF0F4258?tab=contract)
+- **検証済みURL**: [https://explorer.testnet.chain.robinhood.com/address/0x1926e8C311Ae38Bd2d20A2755852f8B5aF0F4258?tab=contract](https://explorer.testnet.chain.robinhood.com/address/0x1926e8C311Ae38Bd2d20A2755852f8B5aF0F4258?tab=contract)
 
 
 ## 操作マニュアル
