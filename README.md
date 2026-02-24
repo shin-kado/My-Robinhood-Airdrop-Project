@@ -11,12 +11,14 @@
 
 ## 操作マニュアル
 SimpleAirdrop 送金・完全操作マニュアル
-このマニュアルは、Remixのリロード後や、新しいネットワークで一括送金を行う際の標準手順です。　
+
+このマニュアルは、Remixのリロード後や、新しいネットワークで一括送金を行う際の標準手順です。
+
 ステップ 1：ネットワークの同期確認
-Remixがあなたのメタマスク（Robinhood Chain）を正しく認識しているか確認します。
-    1. MetaMaskを開き、ネットワークが「Robinhood Chain Testnet」であることを確認し	ます。
-    2. Remixの「Deploy & Run Transactions」タブで、ENVIRONMENT を一度別のものに切	り替えてから、再度 Injected Provider - MetaMask を選択します。
-    3. 【重要チェック】: ENVIRONMENTのすぐ下の表示が Custom (46630) network になって	いることを必ず確認してください。
+    Remixがあなたのメタマスク（Robinhood Chain）を正しく認識しているか確認します。
+        1. MetaMaskを開き、ネットワークが「Robinhood Chain Testnet」であることを確認し	ます。
+        2. Remixの「Deploy & Run Transactions」タブで、ENVIRONMENT を一度別のものに切	り替えてから、再度 Injected Provider - MetaMask を選択します。
+        3. 【重要チェック】: ENVIRONMENTのすぐ下の表示が Custom (46630) network になって	いることを必ず確認してください。
             ▪ 注釈: ここが Main (1) のままだと、残高が正しく反映されず、送金も失敗します。
 
 ステップ 2：既存コントラクトの読み込み（At Address）
