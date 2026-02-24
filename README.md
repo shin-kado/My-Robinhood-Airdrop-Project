@@ -14,7 +14,7 @@ SimpleAirdrop 送金・完全操作マニュアル
 
 このマニュアルは、Remixのリロード後や、新しいネットワークで一括送金を行う際の標準手順です。
 
-ステップ 1：ネットワークの同期確認
+ステップ 1：ネットワークの同期確認　
     Remixがあなたのメタマスク（Robinhood Chain）を正しく認識しているか確認します。
         1. MetaMaskを開き、ネットワークが「Robinhood Chain Testnet」であることを確認し	ます。
         2. Remixの「Deploy & Run Transactions」タブで、ENVIRONMENT を一度別のものに切	り替えてから、再度 Injected Provider - MetaMask を選択します。
