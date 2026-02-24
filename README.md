@@ -28,9 +28,12 @@ SimpleAirdrop 送金・完全操作マニュアル
 　すでにブロックチェーン上にある「トークン」と「送金道具」をRemixに呼び出します。
  
    1. MyTokenの読み込み
+      
       ▪ CONTRACT 欄で MyToken を選択します。
+      
       ▪ At Address ボタンの横の欄に 「トークンのコントラクトアドレス」 を貼り付けてボタンをクリックします。
-   2. SimpleAirdropの読み込み
+      
+   3. SimpleAirdropの読み込み
       ▪ CONTRACT 欄で SimpleAirdrop を選択します
       ▪ At Address ボタンの横の欄に 「SimpleAirdropのコントラクトアドレス」 を貼り付けてボタンをクリックします
       ▪ 注釈: もしSimpleAirdropをまだ作っていない場合は、ここで Deploy ボタンを押して新しく作成してください。
