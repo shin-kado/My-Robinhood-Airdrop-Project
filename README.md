@@ -4,7 +4,7 @@
 セキュリティ機能付きの一括送金（Airdrop）を成功させた開発実績です。
 
 ## 実績ドキュメント
-- **MyToken アドレス**: `0x5884aD2f920c162CFBbACc88C9C51AA75eC09E02`
+- **MyToken アドレス**: `0x196eCa072F41571233E4F6D215F89A3446DD569b`
 - **SimpleAirdrop アドレス**: `0x1926e8C311Ae38Bd2d20A2755852f8B5aF0F4258`
 - **検証済みURL**: [https://explorer.testnet.chain.robinhood.com/address/0x1926e8C311Ae38Bd2d20A2755852f8B5aF0F4258?tab=contract](https://explorer.testnet.chain.robinhood.com/address/0x1926e8C311Ae38Bd2d20A2755852f8B5aF0F4258?tab=contract)
 
