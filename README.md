@@ -6,7 +6,12 @@
 ## 実績ドキュメント
 - **MyToken アドレス**: `0x196eCa072F41571233E4F6D215F89A3446DD569b`
 - **SimpleAirdrop アドレス**: `0x1926e8C311Ae38Bd2d20A2755852f8B5aF0F4258`
+- **AdvancedAirdrop アドレス**: `0x86238ed61A026604a58D43C554Bde90281f05102`
+
 - **検証済みURL**: [https://explorer.testnet.chain.robinhood.com/address/0x1926e8C311Ae38Bd2d20A2755852f8B5aF0F4258?tab=contract](https://explorer.testnet.chain.robinhood.com/address/0x1926e8C311Ae38Bd2d20A2755852f8B5aF0F4258?tab=contract)
+
+[https://explorer.testnet.chain.robinhood.com/address/0x86238ed61A026604a58D43C554Bde90281f05102?tab=contract] (https://explorer.testnet.chain.robinhood.com/address/0x86238ed61A026604a58D43C554Bde90281f05102?tab=contract)
+
 
 
 ## 操作マニュアル
