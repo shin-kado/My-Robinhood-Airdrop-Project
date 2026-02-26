@@ -26,7 +26,7 @@ Robinhood Chain 一括送金 完全マスターガイド
 
 　　　　ネットワークが「Robinhood Chain Testnet」になっていることを確認します 。
   
-  　2. Remixの接続:
+　　2. Remixの接続:
 
 　　　　Deploy & Run Transactions タブの ENVIRONMENT で Injected Provider - MetaMask を選択します 。
    
