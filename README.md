@@ -21,7 +21,8 @@ Robinhood Chain 一括送金 完全マスターガイド
 この手順書は、Remixを使用して自作トークン（MRT）や株式トークン（TSLA/AMZN等）を複数アドレスへ効率的に配布するための標準マニュアルです。
 
 ステップ 1：環境とネットワークの同期
-    1. MetaMaskの確認: ネットワークが「Robinhood Chain Testnet」になっていることを確認します 。
+
+　1. MetaMaskの確認: ネットワークが「Robinhood Chain Testnet」になっていることを確認します 。
     2. Remixの接続: Deploy & Run Transactions タブの ENVIRONMENT で Injected Provider - MetaMask を選択します 。
     3. チェーンIDの確認: Custom (46630) network と表示されていることを必ず確認してください 。
 
