@@ -88,12 +88,17 @@ Robinhood Chain 一括送金 完全マスターガイド
        
 　　　　　　　◦ amount: 1人あたりの数量（18桁） 
        
-B. AdvancedAirdrop を使う場合（個別数量）
-    1. ADVANCEDAIRDROP パネルの sendAdvancedTokens を開きます 。
-    2. 入力欄：
-        ◦ tokenAddress: 送りたいトークンのアドレス 
-        ◦ recipients: ["アドレス1", "アドレス2"] 
-        ◦ amounts: [数量1, 数量2] （18桁。人数分をカンマ区切りで入力） 
+　　B. AdvancedAirdrop を使う場合（個別数量）
+
+　　　　1. ADVANCEDAIRDROP パネルの sendAdvancedTokens を開きます 。
+
+　　　　2. 入力欄：
+
+　　　　　　　◦ tokenAddress: 送りたいトークンのアドレス 
+
+　　　　　　　◦ recipients: ["アドレス1", "アドレス2"] 
+
+　　　　　　　◦ amounts: [数量1, 数量2] （18桁。人数分をカンマ区切りで入力） 
 
 💡 失敗しないための最終チェックリスト
     • 承認パネルのミス: 送りたいトークンがTSLAなら、TSLAのパネルで approve しましたか？ 
