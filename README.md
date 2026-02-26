@@ -15,78 +15,53 @@
 
 
 ## 操作マニュアル
-SimpleAirdrop 送金・完全操作マニュアル
+Robinhood Chain 一括送金 完全マスターガイド
+（SimpleAirdrop & AdvancedAirdrop 対応版）
 
-このマニュアルは、Remixのリロード後や、新しいネットワークで一括送金を行う際の標準手順です。
+この手順書は、Remixを使用して自作トークン（MRT）や株式トークン（TSLA/AMZN等）を複数アドレスへ効率的に配布するための標準マニュアルです。
 
-ステップ 1：ネットワークの同期確認
+ステップ 1：環境とネットワークの同期
+    1. MetaMaskの確認: ネットワークが「Robinhood Chain Testnet」になっていることを確認します 。
+    2. Remixの接続: Deploy & Run Transactions タブの ENVIRONMENT で Injected Provider - MetaMask を選択します 。
+    3. チェーンIDの確認: Custom (46630) network と表示されていることを必ず確認してください 。
 
-　Remixがあなたのメタマスク（Robinhood Chain）を正しく認識しているか確認します。
- 
-   1. MetaMaskを開き、ネットワークが「Robinhood Chain Testnet」であることを確認します。
-   2. Remixの「Deploy & Run Transactions」タブで、ENVIRONMENT を一度別のものに切り替えてから、再度 Injected Provider - MetaMask を選択します。
-   3. 【重要チェック】: ENVIRONMENTのすぐ下の表示が Custom (46630) network になっていることを必ず確認してください。
-            ▪ 注釈: ここが Main (1) のままだと、残高が正しく反映されず、送金も失敗します。
-
-
-ステップ 2：既存コントラクトの読み込み（At Address）
-
-　すでにブロックチェーン上にある「トークン」と「送金道具」をRemixに呼び出します。
- 
-   1. MyTokenの読み込み
-      
-      ▪ CONTRACT 欄で MyToken を選択します。
-      
-      ▪ At Address ボタンの横の欄に 「トークンのコントラクトアドレス」 を貼り付けてボタンをクリックします。
-      
-   2. SimpleAirdropの読み込み
-      
-      ▪ CONTRACT 欄で SimpleAirdrop を選択します
-      
-      ▪ At Address ボタンの横の欄に 「SimpleAirdropのコントラクトアドレス」 を貼り付けてボタンをクリックします
-      
-      ▪ 注釈: もしSimpleAirdropをまだ作っていない場合は、ここで Deploy ボタンを押して新しく作成してください。
-
+ステップ 2：コントラクトの読み込み（At Address）
+すでにデプロイ済みのコントラクトを操作パネルに呼び出します。
+① トークンパネルの準備
+    • CONTRACT欄: MyToken（または IERC20）を選択します 。
+    • At Addressボタンの横: 送りたいトークンのアドレス を貼り付けてボタンをクリックします 。
+        ◦ ※重要: TSLAなどの株式トークンを送る場合は、MyTokenのアドレスではなく TSLAのアドレス を使用してください。
+② 送金用コントラクト（道具）の準備
+    • CONTRACT欄: 使用したい方のコントラクトを選択します。
+        ◦ 全員に同じ量を送るなら：SimpleAirdrop 
+        ◦ 人ごとに違う量を送るなら：AdvancedAirdrop 
+    • At Addressボタンの横: それぞれの コントラクトアドレス を貼り付けてボタンをクリックします 。
 
 ステップ 3：送金の許可（Approve）
+このステップを忘れると送金は必ず失敗します。
+    1. ステップ2-①で出した 「送りたいトークン（TSLAやMRT）」のパネル を開きます 。
+    2. approve 関数に以下を入力します：
+        ◦ spender: 使用する送金用コントラクトのアドレス（Simple or Advanced）を貼り付けます 。
+        ◦ value: 送付する 合計数量 を18桁のゼロを付けて入力します（例：合計5枚なら 5000000000000000000） 。
+    3. transact を押し、MetaMaskで承認します 。
 
-「送金用の道具（SimpleAirdrop）」に、あなたのトークンを動かす許可を与えます。
+ステップ 4：一括送金の実行
+使用するコントラクトに合わせて、以下のいずれかを実行します。
+A. SimpleAirdrop を使う場合（全員同量）
+    1. SIMPLEAIRDROP パネルの sendTokens を開きます 。
+    2. 入力欄：
+        ◦ tokenAddress: 送りたいトークンのアドレス 
+        ◦ recipients: ["アドレス1", "アドレス2"] （カッコと引用符に注意） 
+        ◦ amount: 1人あたりの数量（18桁） 
+B. AdvancedAirdrop を使う場合（個別数量）
+    1. ADVANCEDAIRDROP パネルの sendAdvancedTokens を開きます 。
+    2. 入力欄：
+        ◦ tokenAddress: 送りたいトークンのアドレス 
+        ◦ recipients: ["アドレス1", "アドレス2"] 
+        ◦ amounts: [数量1, 数量2] （18桁。人数分をカンマ区切りで入力） 
 
-   1. 読み込んだ MYTOKEN のパネルを開きます。
-   2. approve 関数の各欄に以下を入力します。
-      
-        ◦ spender: 「SimpleAirdropのコントラクトアドレス」 を貼り付けます。
-      
-        ◦ value: 「送付したい合計数量」の数字の後に「0」を18個 つけて入力します。（例：1枚なら 1000000000000000000）
-      
-   4. transact を押し、メタマスクで「承認」します。
-      
-      　▪ 注意事項: spender に自分の財布のアドレスを入れてしまうミスが多いです。必ず「SimpleAirdropのアドレス」を指定してください。
-
- 
-ステップ 4：一括送金の実行（sendTokens）
-
-   実際にAirdropコントラクトを使ってトークンを配布します。
-
-   1. 読み込んだ SIMPLEAIRDROP のパネルを開きます。
-
-   2. sendTokens 関数の各欄に以下を 正確に 入力します。
-      
-         • TokenAddress: 「トークンのコントラクトアドレス」 を貼り付けます。
-
-         • recipients: ["受け取り先のアドレス"] という形式で入力します。
-
-         • 注意事項: 必ず [ と ] で囲み、アドレスを " で囲ってください。これを忘れるとRemixがフリーズします。
-
-         • amount: 「送付したい数量」の数字の後に「0」を18個 つけて入力します。
-  
-   4. transact を押し、メタマスクで「確定」します。
-
- 失敗しないための最終チェックリスト
-
-   ◦ ゼロの数: approve した数量と sendTokens で指定した数量が一致しているか？（0は18個か？）
-      
-   ◦ 配列のカッコ: recipients 欄に [" "] が付いているか？
-      
-   ◦ ガス代: メタマスクにテスト用のETH（またはROB）が残っているか？
-
+💡 失敗しないための最終チェックリスト
+    • 承認パネルのミス: 送りたいトークンがTSLAなら、TSLAのパネルで approve しましたか？ 
+    • 配列の不一致: AdvancedAirdrop の場合、アドレスの数と数量の数は一致していますか？ 
+    • ゼロの数: 全ての数量指定に「0」を18個付けていますか？ 
+    • カッコの形式: recipients や amounts を [ ] で囲っていますか？ 
