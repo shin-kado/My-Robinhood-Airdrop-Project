@@ -22,12 +22,13 @@ Robinhood Chain 一括送金 完全マスターガイド
 
 ステップ 1：環境とネットワークの同期
 
-  1. MetaMaskの確認: ネットワークが「Robinhood Chain Testnet」になっていることを確認します 。
-  2. Remixの接続: Deploy & Run Transactions タブの ENVIRONMENT で Injected Provider - MetaMask を選択します 。
-  3. チェーンIDの確認: Custom (46630) network と表示されていることを必ず確認してください 。
+　　1. MetaMaskの確認: ネットワークが「Robinhood Chain Testnet」になっていることを確認します 。
+  
+  　2. Remixの接続: Deploy & Run Transactions タブの ENVIRONMENT で Injected Provider - MetaMask を選択します 。
+　　3. チェーンIDの確認: Custom (46630) network と表示されていることを必ず確認してください 。
 
 　
-ステップ 2：コントラクトの読み込み（At Address）
+ ステップ 2：コントラクトの読み込み（At Address）
 
 　　すでにデプロイ済みのコントラクトを操作パネルに呼び出します。
   
