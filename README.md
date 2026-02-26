@@ -73,13 +73,21 @@ Robinhood Chain 一括送金 完全マスターガイド
 　　3. transact を押し、MetaMaskで承認します 。
 
 ステップ 4：一括送金の実行
-使用するコントラクトに合わせて、以下のいずれかを実行します。
-A. SimpleAirdrop を使う場合（全員同量）
-    1. SIMPLEAIRDROP パネルの sendTokens を開きます 。
-    2. 入力欄：
-        ◦ tokenAddress: 送りたいトークンのアドレス 
-        ◦ recipients: ["アドレス1", "アドレス2"] （カッコと引用符に注意） 
-        ◦ amount: 1人あたりの数量（18桁） 
+
+　　使用するコントラクトに合わせて、以下のいずれかを実行します。
+  
+　　A. SimpleAirdrop を使う場合（全員同量）
+
+　　　　1. SIMPLEAIRDROP パネルの sendTokens を開きます 。
+
+　　　　2. 入力欄：
+
+　　　　　　　◦ tokenAddress: 送りたいトークンのアドレス 
+
+　　　　　　　◦ recipients: ["アドレス1", "アドレス2"] （カッコと引用符に注意） 
+       
+　　　　　　　◦ amount: 1人あたりの数量（18桁） 
+       
 B. AdvancedAirdrop を使う場合（個別数量）
     1. ADVANCEDAIRDROP パネルの sendAdvancedTokens を開きます 。
     2. 入力欄：
