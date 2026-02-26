@@ -39,9 +39,10 @@ Robinhood Chain 一括送金 完全マスターガイド
      ※重要: TSLAなどの株式トークンを送る場合は、MyTokenのアドレスではなく TSLAのアドレス を使用してください。
 
   3. 送金用コントラクト（道具）の準備
-    • CONTRACT欄: 使用したい方のコントラクトを選択します。
-        ◦ 全員に同じ量を送るなら：SimpleAirdrop 
-        ◦ 人ごとに違う量を送るなら：AdvancedAirdrop 
+
+   • CONTRACT欄: 使用したい方のコントラクトを選択します。
+   　　　　◦ 全員に同じ量を送るなら：SimpleAirdrop 
+       　　◦ 人ごとに違う量を送るなら：AdvancedAirdrop 
     • At Addressボタンの横: それぞれの コントラクトアドレス を貼り付けてボタンをクリックします 。
 
 ステップ 3：送金の許可（Approve）
