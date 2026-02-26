@@ -26,6 +26,7 @@ Robinhood Chain 一括送金 完全マスターガイド
   2. Remixの接続: Deploy & Run Transactions タブの ENVIRONMENT で Injected Provider - MetaMask を選択します 。
   3. チェーンIDの確認: Custom (46630) network と表示されていることを必ず確認してください 。
 
+　
 ステップ 2：コントラクトの読み込み（At Address）
 
 　　すでにデプロイ済みのコントラクトを操作パネルに呼び出します。
