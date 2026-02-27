@@ -2,6 +2,7 @@
 ## （SimpleAirdrop & AdvancedAirdrop 対応版）  
 <br>
 
+### 📖 機能説明  
 ### この手順書は、Remixを使用して自作トークン（MRT）や株式トークン（TSLA/AMZN等）を複数アドレスへ効率的に配布するための標準マニュアルです。  
 <br>
 
