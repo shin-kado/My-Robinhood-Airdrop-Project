@@ -1,8 +1,9 @@
-# My Robinhood Airdrop Project
-
-このプロジェクトは、Robinhood Chain Testnet で自作トークンを発行し、
-様々な方法で配布（エアドロップ）するテストプロジェクトです。
+# My Robinhood Airdrop Project  
 <br>
+
+## ⚠️ ご利用の際の注意  
+* 本プロジェクトはテストネット用です。  
+* 操作中にMetaMaskで警告が表示された場合は、入力を間違えている可能性があります。無理に実行せず、各マニュアルのトラブルシューティングを確認してください。  
 <br>
 
 ## 📖 操作マニュアル
