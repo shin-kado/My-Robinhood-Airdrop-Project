@@ -64,11 +64,9 @@
 　　　　　　　　　◦ recipients: ["アドレス1", "アドレス2"] （カッコと引用符に注意）  
        
 　　　　　　　　　◦ amount: 1人あたりの数量（18桁）  
-    
 <br> 
 
 ### 　　B. AdvancedAirdrop を使う場合（個別数量）　　
-<br>
 
 　　　　　　1. ADVANCEDAIRDROP パネルの sendAdvancedTokens を開きます 。  
 
