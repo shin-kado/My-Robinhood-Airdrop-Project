@@ -20,7 +20,7 @@
 <br>
 
 　　• 上記表を参考にしてUnixタイムスタンプを計算するかwebページで直接時間を設定して確認する  
-  　　        https://www.unixtimestamp.com/  
+　　　　　[https://www.unixtimestamp.com/](https://www.unixtimestamp.com/)  
 <br>
 
 ## ステップ 1：コントラクトのデプロイ  
