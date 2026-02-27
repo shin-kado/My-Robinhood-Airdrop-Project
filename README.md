@@ -17,10 +17,14 @@
 - **MyToken アドレス**: `0x196eCa072F41571233E4F6D215F89A3446DD569b`
 - **SimpleAirdrop アドレス**: `0x1926e8C311Ae38Bd2d20A2755852f8B5aF0F4258`
 - **AdvancedAirdrop アドレス**: `0x86238ed61A026604a58D43C554Bde90281f05102`
-
+- **TiemeLockAirdrop アドレス** `0x9258F07C118e2F141c676d330A70eAf630b2F90E`
+  
+## 検証済みコントラクト  
 - **SimpleAirdrop検証済みURL**: [https://explorer.testnet.chain.robinhood.com/address/0x1926e8C311Ae38Bd2d20A2755852f8B5aF0F4258?tab=contract](https://explorer.testnet.chain.robinhood.com/address/0x1926e8C311Ae38Bd2d20A2755852f8B5aF0F4258?tab=contract)
 - **AdvancedAirdrop検証済みURL**: 
 [https://explorer.testnet.chain.robinhood.com/address/0x86238ed61A026604a58D43C554Bde90281f05102?tab=contract](https://explorer.testnet.chain.robinhood.com/address/0x86238ed61A026604a58D43C554Bde90281f05102?tab=contract)
+- **TimeLovkAirdrop検証済みURL**: [https://explorer.testnet.chain.robinhood.com/address/0x9258F07C118e2F141c676d330A70eAf630b2F90E?tab=contract](https://explorer.testnet.chain.robinhood.com/address/0x9258F07C118e2F141c676d330A70eAf630b2F90E?tab=contract)
+
 
 💡 Tips: > 検証済みコントラクトは、エクスプローラー上の「Contract」>「Write Contract」タブから、Remixを使わずに直接実行することも可能です。
 
