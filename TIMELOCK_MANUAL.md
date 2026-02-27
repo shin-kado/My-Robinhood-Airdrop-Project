@@ -1,4 +1,4 @@
-# TimeLockAirdrop（タイムロック配布）実行マニュアル  
+# TimeLockAirdrop（タイムロック配布）操作マニュアル  
 <br>
 
 ### 基礎知識：Unixタイムスタンプとは？  
