@@ -36,23 +36,17 @@
 <br>
 
 ## ソースコード  
-* [SimpleAirdrop.sol](./SimpleAirdrop.sol)  
-　　[AdvancedAirdrop.sol](./AdvancedAirdrop.sol)  
-　　[TimeLockAirdrop.sol](./TimeLockAirdrop.sol)  
-　　[SimpleAirDropPausable.sol](./SimpleAirDropPausable.sol)  
+　　・ [SimpleAirdrop.sol](./SimpleAirdrop.sol)  
+　　・ [AdvancedAirdrop.sol](./AdvancedAirdrop.sol)    
+　　・ [TimeLockAirdrop.sol](./TimeLockAirdrop.sol)  
+　　・ [SimpleAirDropPausable.sol](./SimpleAirDropPausable.sol)  
 <br>
 
-## フラット化済みコード (Verify用)
-　　[SimpleAirdrop_flattened.sol](./SimpleAirdrop_flattened.sol)  
-　　・ [AdvancedAirdrop_flattened.sol](./AdvancedAirdrop_flattened.sol)
-* [TimeLockAirdrop_flattened.sol](./TimeLockAirdrop_flattened.sol)
-* [SimpleAirDropPausable_flattened.sol](./SimpleAirDropPausable_flattened.sol)
-
 ## フラット化済みコード (Verify用)  
-　　[SimpleAirdrop_flattened.sol](./SimpleAirdrop_flattened.sol)  
-　　[AdvancedAirdrop_flattened.sol](./AdvancedAirdrop_flattened.sol)  
-　　[TimeLockAirdrop_flattened.sol](./TimeLockAirdrop_flattened.sol)  
-　　[SimpleAirDropPausable_flattened.sol](./SimpleAirDropPausable_flattened.sol)  
+　　・ [SimpleAirdrop_flattened.sol](./SimpleAirdrop_flattened.sol)  
+　　・ [AdvancedAirdrop_flattened.sol](./AdvancedAirdrop_flattened.sol)    
+　　・ [TimeLockAirdrop_flattened.sol](./TimeLockAirdrop_flattened.sol)  
+　　・ [SimpleAirDropPausable_flattened.sol](./SimpleAirDropPausable_flattened.sol)  
 <br>  
 
 ## 実績ドキュメント
