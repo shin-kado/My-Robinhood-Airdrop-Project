@@ -13,8 +13,8 @@
 <br>
 
 ### 　SimpleAirdrop  
-　　ソースコード　　　　　　　　 ：[SimpleAirdrop](./SimpleAirDrop.sol)  
-　　フラット化済みコード (Verify用)：[SimpleAirDrop_flattened](./SimpleAirDrop_flattened.sol)  
+　　ソースコード　　　　　　　　 ：[SimpleAirdrop](./SimpleAirdrop.sol)  
+　　フラット化済みコード (Verify用)：[SimpleAirdrop_flattened](./SimpleAirdrop_flattened.sol)  
 <br>
 
 ### 　AdvancedAirdrop  
