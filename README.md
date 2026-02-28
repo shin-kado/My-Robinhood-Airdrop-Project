@@ -16,11 +16,8 @@
 　　すべての配布プロジェクトの基盤となる自作ERC-20トークンです。　　
 
 　　ソースコード：[MyToken.sol](./MyToken.sol)  
-
-Verified Address: 　
-　　フラット化済みコード (Verify用)  
-　　　・ [myToken_flattened.sol](./myToken_flattened.sol)  
-検証済みURL**:
+　　フラット化済みコード (Verify用)：[myToken_flattened.sol](./myToken_flattened.sol)  
+　　検証済みURL：
 [https://explorer.testnet.chain.robinhood.com/address/0x196eCa072F41571233E4F6D215F89A3446DD569b?tab=contract](https://explorer.testnet.chain.robinhood.com/address/0x196eCa072F41571233E4F6D215F89A3446DD569b?tab=contract)  
 
 
