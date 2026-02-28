@@ -167,4 +167,4 @@
 <br>
 <br>
 
-検証済みのアドレスは[こちら](https://explorer.testnet.chain.robinhood.com/address/0x9258F07C118e2F141c676d330A70eAf630b2F90E)から確認できます。
+検証済みのアドレスは[こちら](https://explorer.testnet.chain.robinhood.com/address/0x9258F07C118e2F141c676d330A70eAf630b2F90E?tab=contract)から確認できます。
