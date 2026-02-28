@@ -11,7 +11,7 @@
 
 　　・ソースコード： [MyToken.sol](./MyToken.sol)  
   
-　　・フラット化済みコード (Verify用)： [myToken_flattened.sol](./myToken_flattened.sol)  
+　　・フラット化済みコード (Verify用)： [myToken_flattened.sol](./myToken_flattened.sol)    
   
 　　・検証済みのアドレスは[こちら](https://explorer.testnet.chain.robinhood.com/address/0x196eCa072F41571233E4F6D215F89A3446DD569b?tab=contract)から確認できます。  
 　　　　（※別タブで開くには Ctrl + クリックしてください）  
@@ -43,13 +43,14 @@
 　　　　・**AdvancedAirdrop アドレス**: `0x86238ed61A026604a58D43C554Bde90281f05102`  
 
 　　・[📖 基本・一括配布操作マニュアル(Simple & Advanced)](./SIMPLE_ADVANCED_MANUAL.md)  
+　　　（※別タブで開くには Ctrl + クリックしてください）
 <br>
 <br>
 
 ## タイムロック配布 (TimeLock)  
 　　指定した時間までトークンを引き出せないように制限をかけて配布する  
 
-　　・ソースコード： [TimeLockAirdrop.sol](./TimeLockAirdrop.sol)  
+　　・ソースコード： [TimeLockAirdrop.sol](./TimeLockAirdrop.sol)    
 
 　　・フラット化済みコード (Verify用)： [TimeLockAirdrop_flattened.sol](./TimeLockAirdrop_flattened.sol)  
 
@@ -59,59 +60,27 @@
 　　　　・**TiemeLockAirdrop アドレス** `0x9258F07C118e2F141c676d330A70eAf630b2F90E`  
 
 　　・[📖 タイムロック配布マニュアル (TimeLock)](./TIMELOCK_MANUAL.md)  
+　　　（※別タブで開くには Ctrl + クリックしてください）
+
 <br>
 <br>
 
 ## [緊急停止機能付き一括配布（SimpleAirDropPausable）  
+　　配布停止機能付きで一括配布する手順です。  
 
 　　・ソースコード： [SimpleAirDropPausable.sol](./SimpleAirDropPausable.sol)  
 
-　　・フラット化済みコード (Verify用)： [SimpleAirDropPausable_flattened.sol](./SimpleAirDropPausable_flattened.sol)
+　　・フラット化済みコード (Verify用)： [SimpleAirDropPausable_flattened.sol](./SimpleAirDropPausable_flattened.sol)  
   
 
 　　・検証済みのアドレス： [SimpleAirDropPausable検証済みURL](https://explorer.testnet.chain.robinhood.com/address/0x1cd4DB04175bfdD2e8802d52C995B79294Dc5ac8?tab=contract)  
 
 　　・コントラクトアドレス  
-　　　　・**SimpleAirDropPausable アドレス** `0x1cd4DB04175bfdD2e8802d52C995B79294Dc5ac8`
+　　　　・**SimpleAirDropPausable アドレス** `0x1cd4DB04175bfdD2e8802d52C995B79294Dc5ac8`  
 
 　　・[📖 緊急停止機能付き一括配布操作マニュアル（SimpleAirDropPausable）](./SIMPLE_PAUSABLE_MANUAL.md)  
-　　配布停止機能付きで一括配布する手順です。
-
-
-
-
-## 📖 操作マニュアル
-具体的な使い方は、以下プロジェクトのマニュアルを参照してください。  
-（※別タブで開くには Ctrl + クリックしてください）
-
-
+　　　（※別タブで開くには Ctrl + クリックしてください）
 <br>
-
-<br>
-
-このプロジェクトは、Robinhood Chain Testnet で自作トークン（MRT）を発行し、
-セキュリティ機能付きの一括送金（Airdrop）を成功させた開発実績です。
-<br>
-<br>
-
-## ソースコード  
-　　・ 　　・   
-<br>
-
-## フラット化済みコード (Verify用)  
-　　・ 　　・   
-<br>  
-
-## 実績ドキュメント
-- 
-<br>
-
-## 検証済みコントラクト  
-
-
-<br>
-
-
 <br>
 
 ### 💡 Tips  
