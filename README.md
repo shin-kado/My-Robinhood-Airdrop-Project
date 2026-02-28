@@ -26,6 +26,10 @@
 　　指定した時間までトークンを引き出せないように制限をかけて配布する手順です。  
 <br>
 
+- [緊急停止機能付き一括配布操作マニュアル（SimpleAirDropPausable）](./SIMPLE_PAUSABLE_MANUAL.md)  
+　　配布停止機能付きで一括配布する手順です。
+<br>
+
 このプロジェクトは、Robinhood Chain Testnet で自作トークン（MRT）を発行し、
 セキュリティ機能付きの一括送金（Airdrop）を成功させた開発実績です。
 <br>
