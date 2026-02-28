@@ -11,6 +11,17 @@
 > **MetaMaskで赤い警告（エラー）が表示された場合**
 > 入力したアドレスや数値、あるいはロック解除時間の設定が正しくない可能性があります。そのまま実行するとガス代のみが消費されるため、必ず一度「拒否」をクリックし、マニュアルの手順に従って入力内容を再確認してください。
 <br>
+
+### 　SimpleAirdrop  
+　　ソースコード　　　　　　　　 ：[SimpleAirdrop](./SimpleAirDrop.sol)  
+　　フラット化済みコード (Verify用)：[SimpleAirDrop_flattened](./SimpleAirDrop_flattened.sol)  
+<br>
+
+### 　AdvancedAirdrop  
+　　ソースコード　　　　　　　　 ：[AdvancedAirdrop](./AdvancedAirdrop.sol)  
+　　フラット化済みコード (Verify用)：[AdvancedAirdrop](./AdvancedAirDrop_flattened.sol)  
+<br>
+<br>
  
   ## ステップ 1：環境とネットワークの同期  
   
@@ -97,3 +108,10 @@
 　　• ゼロの数: 全ての数量指定に「0」を18個付けていますか？ 
 
 　　• カッコの形式: recipients や amounts を [ ] で囲っていますか？ 
+<br>
+<br>
+
+### 　検証済みコントラクト  
+　　[SimpleAirdrop](https://explorer.testnet.chain.robinhood.com/address/0x1926e8C311Ae38Bd2d20A2755852f8B5aF0F4258)  
+　　[AdvancedAirdrop](https://explorer.testnet.chain.robinhood.com/address/0x86238ed61A026604a58D43C554Bde90281f05102)  
+  
