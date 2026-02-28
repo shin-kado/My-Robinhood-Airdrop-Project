@@ -164,3 +164,7 @@
 
 　　　　　claim（回収）が失敗したときは、まず userLockBoxes で claimed が true になっていないか確認しましょう。  
 　　　　　もし true なら、それは「失敗」ではなく「すでに受け取り済み」という成功の証です。 
+<br>
+<br>
+
+検証済みのアドレスは[こちら](https://explorer.testnet.chain.robinhood.com/address/0x9258F07C118e2F141c676d330A70eAf630b2F90E)から確認できます。
