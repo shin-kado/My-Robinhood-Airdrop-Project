@@ -18,18 +18,28 @@
 ## 操作ステップ  
 
 ### 　　1. トークン（MRT）のコントラクト画面を開く。  
-・File ExploreでMyTokenを選択しコンパイル。
-           ・Deploy & run transactions でAt Addressに送金したいトークンのアドレスを入力しAt Addressをクリックし展開する。
-        2. 展開したMyTokenでapprove 関数を選択する。
-        3. spender に SimpleAirDropPausableのコントラクトアドレス を入力する。
-        4. amount に配布する合計数量を 最小単位（18桁の0を考慮） で入力し、実行（Transact）する。
-      ⚠️ 注意事項:
-           amount の桁数を間違えると、後の sendTokens でエラー（不足）が発生します。
-      💡 コツ:
-           approve は「上書き」が可能です。もし金額を間違えたら、正しい金額で再度実行すれば上書きされます。
-2. 緊急停止機能の制御（setPaused）
-予期せぬトラブル時にコントラクトの全機能をストップさせるための安全装置です。
-    • 操作ステップ:
+
+　　　　　　・File ExploreでMyTokenを選択しコンパイル。  
+　　　　　　・Deploy & run transactions でAt Addressに送金したいトークンのアドレスを入力しAt Addressをクリックし展開する。  
+### 　　2. 展開したMyTokenでapprove 関数を選択する。  
+
+### 　　3. spender に SimpleAirDropPausableのコントラクトアドレス を入力する。  
+
+### 　　4. amount に配布する合計数量を 最小単位（18桁の0を考慮） で入力し、実行（Transact）する。  
+<br>
+
+### 　　⚠️ 注意事項  
+　　　　　　amount の桁数を間違えると、後の sendTokens でエラー（不足）が発生します。  
+
+### 　　💡 コツ  
+　　　　　　approve は「上書き」が可能です。もし金額を間違えたら、正しい金額で再度実行すれば上書きされます。  
+<br>
+
+## 2. 緊急停止機能の制御（setPaused）  
+
+　　予期せぬトラブル時にコントラクトの全機能をストップさせるための安全装置です。  
+
+• 操作ステップ:
         1. SimpleAirDropPausable コントラクトの setPaused 関数を開く。
         2. 停止させる場合は true、再開させる場合は false を入力して実行する。
         3. 青色の paused ボタン（状態確認ボタン）を押し、意図した状態（true/false）になっているか指差し確認する。
