@@ -16,27 +16,39 @@
 　　すべての配布プロジェクトの基盤となる自作ERC-20トークンです。　　
 
 　　・ソースコード：[MyToken.sol](./MyToken.sol)  
+  
 　　・フラット化済みコード (Verify用)：[myToken_flattened.sol](./myToken_flattened.sol)  
+  
 　　・検証済みのアドレスは[こちら](https://explorer.testnet.chain.robinhood.com/address/0x196eCa072F41571233E4F6D215F89A3446DD569b?tab=contract)から確認できます。  
 　　　　（※別タブで開くには Ctrl + クリックしてください）  
+    
 　　・MyToken アドレス：`0x196eCa072F41571233E4F6D215F89A3446DD569b`  
+  
 　　・Description: OpenZeppelinを使用した標準的なERC-20の実装。
-
-
+<br>
+<br>
 
 ## 基本・一括配布マニュアル (Simple & Advanced)  
 　　全員に同じ量を配る、または個別に量を指定して一括送金する  
-　　[📖 操作マニュアル](./SIMPLE_ADVANCED_MANUAL.md)   
-　　ソースコード  
-　　　・ [SimpleAirdrop.sol](./SimpleAirDrop.sol)  
-　　　・ [AdvancedAirdrop.sol](./AdvancedAirdrop.sol)    
-　　フラット化済みコード (Verify用)  
-　　　・ [SimpleAirdrop_flattened.sol](./SimpleAirdrop_flattened.sol)  
-　　　・ [AdvancedAirdrop_flattened.sol](./AdvancedAirdrop_flattened.sol)    
-## 実績ドキュメント
-- **MyToken アドレス**: `0x196eCa072F41571233E4F6D215F89A3446DD569b`
-　　実績ドキュメント　　
 
+　　・ソースコード  
+　　　　・ [SimpleAirdrop.sol](./SimpleAirDrop.sol)  
+　　　　・ [AdvancedAirdrop.sol](./AdvancedAirdrop.sol)  
+
+　　・フラット化済みコード (Verify用)  
+　　　　・ [SimpleAirdrop_flattened.sol](./SimpleAirdrop_flattened.sol)  
+　　　　・ [AdvancedAirdrop_flattened.sol](./AdvancedAirdrop_flattened.sol)  
+   
+　　・検証済みのアドレス
+　　　　・[SimpleAirdrop検証済みURL](https://explorer.testnet.chain.robinhood.com/address/0x1926e8C311Ae38Bd2d20A2755852f8B5aF0F4258?tab=contract)  
+    
+　　　　・[AdvancedAirdrop検証済みURL](https://explorer.testnet.chain.robinhood.com/address/0x86238ed61A026604a58D43C554Bde90281f05102?tab=contract)  
+
+　　・コントラクトアドレス  
+　　　　　**SimpleAirdrop アドレス**: `0x1926e8C311Ae38Bd2d20A2755852f8B5aF0F4258`  
+　　　　　**AdvancedAirdrop アドレス**: `0x86238ed61A026604a58D43C554Bde90281f05102`  
+
+　  [📖 操作マニュアル](./SIMPLE_ADVANCED_MANUAL.md)   
 
 
 
@@ -76,20 +88,11 @@
 <br>  
 
 ## 実績ドキュメント
-- **SimpleAirdrop アドレス**: `0x1926e8C311Ae38Bd2d20A2755852f8B5aF0F4258`
-- **AdvancedAirdrop アドレス**: `0x86238ed61A026604a58D43C554Bde90281f05102`
 - **TiemeLockAirdrop アドレス** `0x9258F07C118e2F141c676d330A70eAf630b2F90E`
 - **SimpleAirDropPausable アドレス** `0x1cd4DB04175bfdD2e8802d52C995B79294Dc5ac8`
 <br>
 
 ## 検証済みコントラクト  
-- **SimpleAirdrop検証済みURL**:
-　　　　[https://explorer.testnet.chain.robinhood.com/address/0x1926e8C311Ae38Bd2d20A2755852f8B5aF0F4258?tab=contract](https://explorer.testnet.chain.robinhood.com/address/0x1926e8C311Ae38Bd2d20A2755852f8B5aF0F4258?tab=contract)
-<br>
-
-- **AdvancedAirdrop検証済みURL**: 
-　　　　[https://explorer.testnet.chain.robinhood.com/address/0x86238ed61A026604a58D43C554Bde90281f05102?tab=contract](https://explorer.testnet.chain.robinhood.com/address/0x86238ed61A026604a58D43C554Bde90281f05102?tab=contract)
-<br>
 
 - **TimeLockAirdrop検証済みURL**:
 　　　　[https://explorer.testnet.chain.robinhood.com/address/0x9258F07C118e2F141c676d330A70eAf630b2F90E?tab=contract](https://explorer.testnet.chain.robinhood.com/address/0x9258F07C118e2F141c676d330A70eAf630b2F90E?tab=contract)
