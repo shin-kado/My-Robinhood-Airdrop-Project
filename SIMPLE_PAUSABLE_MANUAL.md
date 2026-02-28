@@ -17,8 +17,8 @@
 
 ## 操作ステップ  
 
-1. トークン（MRT）のコントラクト画面を開く。
-           ・File ExploreでMyTokenを選択しコンパイル。
+### 　　1. トークン（MRT）のコントラクト画面を開く。  
+・File ExploreでMyTokenを選択しコンパイル。
            ・Deploy & run transactions でAt Addressに送金したいトークンのアドレスを入力しAt Addressをクリックし展開する。
         2. 展開したMyTokenでapprove 関数を選択する。
         3. spender に SimpleAirDropPausableのコントラクトアドレス を入力する。
