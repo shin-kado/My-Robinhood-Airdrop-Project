@@ -22,7 +22,7 @@
 <br>
 <br>
 
-## 基本・一括配布マニュアル (Simple & Advanced)  
+## 基本・一括配布 (Simple & Advanced)  
 　　全員に同じ量を配る、または個別に量を指定して一括送金する  
 
 　　・ソースコード  
@@ -42,12 +42,12 @@
 　　　　・**SimpleAirdrop アドレス**: `0x1926e8C311Ae38Bd2d20A2755852f8B5aF0F4258`  
 　　　　・**AdvancedAirdrop アドレス**: `0x86238ed61A026604a58D43C554Bde90281f05102`  
 
-　　・[📖 Simple & Advanced操作マニュアル](./SIMPLE_ADVANCED_MANUAL.md)  
+　　・[📖 基本・一括配布操作マニュアル(Simple & Advanced)](./SIMPLE_ADVANCED_MANUAL.md)  
 <br>
 <br>
 
-## タイムロック配布マニュアル (TimeLock)  
-　　指定した時間までトークンを引き出せないように制限をかけて配布する手順です。  
+## タイムロック配布 (TimeLock)  
+　　指定した時間までトークンを引き出せないように制限をかけて配布する  
 
 　　・ソースコード： [TimeLockAirdrop.sol](./TimeLockAirdrop.sol)  
 
@@ -62,7 +62,7 @@
 <br>
 <br>
 
-## [緊急停止機能付き一括配布操作マニュアル（SimpleAirDropPausable）  
+## [緊急停止機能付き一括配布（SimpleAirDropPausable）  
 
 　　・ソースコード： [SimpleAirDropPausable.sol](./SimpleAirDropPausable.sol)  
 
@@ -74,6 +74,8 @@
 　　・コントラクトアドレス  
 　　　　・**SimpleAirDropPausable アドレス** `0x1cd4DB04175bfdD2e8802d52C995B79294Dc5ac8`
 
+　　・[📖 緊急停止機能付き一括配布操作マニュアル（SimpleAirDropPausable）](./SIMPLE_PAUSABLE_MANUAL.md)  
+　　配布停止機能付きで一括配布する手順です。
 
 
 
@@ -85,8 +87,6 @@
 
 <br>
 
-- [緊急停止機能付き一括配布操作マニュアル（SimpleAirDropPausable）](./SIMPLE_PAUSABLE_MANUAL.md)  
-　　配布停止機能付きで一括配布する手順です。
 <br>
 
 このプロジェクトは、Robinhood Chain Testnet で自作トークン（MRT）を発行し、
