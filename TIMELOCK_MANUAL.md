@@ -11,6 +11,9 @@
 > 入力したアドレスや数値、あるいはロック解除時間の設定が正しくない可能性があります。そのまま実行するとガス代のみが消費されるため、必ず一度「拒否」をクリックし、マニュアルの手順に従って入力内容を再確認してください。
 <br>
 
+　ソースコード　　　　　　　　 ：[TimeLockAirdrop](./TimeLockAirDrop.sol)  
+　フラット化済みコード (Verify用)：[TimeLockAirdrop_flattened](./TimeLockAirDrop_flattened.sol)  
+<br>
 
 ### 基礎知識：Unixタイムスタンプとは？  
 
