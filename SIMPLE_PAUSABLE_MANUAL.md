@@ -10,8 +10,8 @@
 <br>
 
 
-　ソースコード　　　　　　　　 ：[SimpleAirDrop](./SimpelTimeLockAirDrop.sol)  
-　フラット化済みコード (Verify用)：[TimeLockAirdrop_flattened](./TimeLockAirDrop_flattened.sol)  
+　ソースコード　　　　　　　　 ：[SimpleAirDropPausable.sol](./SimpleAirDropPausable.sol)  
+　フラット化済みコード (Verify用)：[SimpleAirDropPausable_flattened.sol](./SimpleAirDropPausable_flattened.sol)  
 <br>
 
 
