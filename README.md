@@ -64,14 +64,15 @@
 
 ## [緊急停止機能付き一括配布操作マニュアル（SimpleAirDropPausable）  
 
-　　・ソースコード： 
+　　・ソースコード： [SimpleAirDropPausable.sol](./SimpleAirDropPausable.sol)  
 
-　　・フラット化済みコード (Verify用)： 
+　　・フラット化済みコード (Verify用)： [SimpleAirDropPausable_flattened.sol](./SimpleAirDropPausable_flattened.sol)
   
 
-　　・検証済みのアドレス
+　　・検証済みのアドレス： [SimpleAirDropPausable検証済みURL](https://explorer.testnet.chain.robinhood.com/address/0x1cd4DB04175bfdD2e8802d52C995B79294Dc5ac8?tab=contract)  
 
 　　・コントラクトアドレス  
+　　　　・**SimpleAirDropPausable アドレス** `0x1cd4DB04175bfdD2e8802d52C995B79294Dc5ac8`
 
 
 
@@ -94,16 +95,15 @@
 <br>
 
 ## ソースコード  
-　　・ 　　・ [SimpleAirDropPausable.sol](./SimpleAirDropPausable.sol)  
+　　・ 　　・   
 <br>
 
 ## フラット化済みコード (Verify用)  
-　　・ 　　・ [SimpleAirDropPausable_flattened.sol](./SimpleAirDropPausable_flattened.sol)  
+　　・ 　　・   
 <br>  
 
 ## 実績ドキュメント
 - 
-- **SimpleAirDropPausable アドレス** `0x1cd4DB04175bfdD2e8802d52C995B79294Dc5ac8`
 <br>
 
 ## 検証済みコントラクト  
@@ -111,8 +111,7 @@
 
 <br>
 
-- **SimpleAirDropPausable検証済みURL**:
-　　　　[https://explorer.testnet.chain.robinhood.com/address/0x1cd4DB04175bfdD2e8802d52C995B79294Dc5ac8?tab=contract](https://explorer.testnet.chain.robinhood.com/address/0x1cd4DB04175bfdD2e8802d52C995B79294Dc5ac8?tab=contract)
+
 <br>
 
 ### 💡 Tips  
