@@ -16,7 +16,7 @@
 　　すべての配布プロジェクトの基盤となる自作ERC-20トークンです。　　
 
 Source Code: MyToken.sol　　
-　　　・ [SimpleAirdrop.sol](./SimpleAirDrop.sol)  
+　　　・ [MyToken.sol](./MyToken.sol)  
 
 Verified Address: 　
 　　フラット化済みコード (Verify用)  
