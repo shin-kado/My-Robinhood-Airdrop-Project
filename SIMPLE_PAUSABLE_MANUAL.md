@@ -9,11 +9,14 @@
 「配布準備（Approve）完了後から、実際の配布（sendTokens）開始直前までの間は、原則として paused 状態を true（停止中）に維持し、最終確認が完了した瞬間にのみ解除を行う運用を推奨する。」   
 <br>
 
-
-　ソースコード　　　　　　　　 ：[SimpleAirDropPausable.sol](./SimpleAirDropPausable.sol)  
-　フラット化済みコード (Verify用)：[SimpleAirDropPausable_flattened.sol](./SimpleAirDropPausable_flattened.sol)  
+　ソースコード  
+　　・ [SimpleAirDropPausable.sol](./SimpleAirDropPausable.sol)  
 <br>
 
+　フラット化済みコード (Verify用)  
+　　・ [SimpleAirDropPausable_flattened.sol](./SimpleAirDropPausable_flattened.sol)  
+<br>
+<br>
 
 ## ステップ1. 事前準備（Approve：トークンの使用許可）  
 
