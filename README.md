@@ -40,6 +40,8 @@
 - **SimpleAirdrop アドレス**: `0x1926e8C311Ae38Bd2d20A2755852f8B5aF0F4258`
 - **AdvancedAirdrop アドレス**: `0x86238ed61A026604a58D43C554Bde90281f05102`
 - **TiemeLockAirdrop アドレス** `0x9258F07C118e2F141c676d330A70eAf630b2F90E`
+- **SimpleAirDropPausable アドレス** `0x1cd4DB04175bfdD2e8802d52C995B79294Dc5ac8`
+
 <br>
 
 ## 検証済みコントラクト  
