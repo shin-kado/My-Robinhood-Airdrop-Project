@@ -15,8 +15,7 @@
 ## 🪙 Base Token: MyToken (MRT)  
 　　すべての配布プロジェクトの基盤となる自作ERC-20トークンです。　　
 
-Source Code: MyToken.sol　　
-　　　・ [MyToken.sol](./MyToken.sol)  
+　　ソースコード：[MyToken.sol](./MyToken.sol)  
 
 Verified Address: 　
 　　フラット化済みコード (Verify用)  
