@@ -20,7 +20,7 @@ Source Code: MyToken.sol　　
 
 Verified Address: 　
 　　フラット化済みコード (Verify用)  
-　　　・ [SimpleAirdrop_flattened.sol](./SimpleAirdrop_flattened.sol)  
+　　　・ [myToken_flattened.sol](./myToken_flattened.sol)  
 検証済みURL**:
 [https://explorer.testnet.chain.robinhood.com/address/0x196eCa072F41571233E4F6D215F89A3446DD569b?tab=contract](https://explorer.testnet.chain.robinhood.com/address/0x196eCa072F41571233E4F6D215F89A3446DD569b?tab=contract)  
 
