@@ -12,9 +12,29 @@
 > 入力したアドレスや数値、あるいはロック解除時間の設定が正しくない可能性があります。そのまま実行するとガス代のみが消費されるため、必ず一度「拒否」をクリックし、マニュアルの手順に従って入力内容を再確認してください。
 <br>
 
+## 🪙 Base Token: MyToken (MRT)  
+　　すべての配布プロジェクトの基盤となる自作ERC-20トークンです。　　
+
+Source Code: MyToken.sol　　
+
+Verified Address: 　
+
+Description: OpenZeppelinを使用した標準的なERC-20の実装。
+
+
+
 ## 基本・一括配布マニュアル (Simple & Advanced)  
 　　全員に同じ量を配る、または個別に量を指定して一括送金する  
 　　[📖 操作マニュアル](./SIMPLE_ADVANCED_MANUAL.md)   
+　　ソースコード  
+　　　・ [SimpleAirdrop.sol](./SimpleAirDrop.sol)  
+　　　・ [AdvancedAirdrop.sol](./AdvancedAirdrop.sol)    
+　　フラット化済みコード (Verify用)  
+　　　・ [SimpleAirdrop_flattened.sol](./SimpleAirdrop_flattened.sol)  
+　　　・ [AdvancedAirdrop_flattened.sol](./AdvancedAirdrop_flattened.sol)    
+　　実績ドキュメント　　
+
+
 
 
 ## タイムロック配布マニュアル (TimeLock)
@@ -28,9 +48,6 @@
 具体的な使い方は、以下プロジェクトのマニュアルを参照してください。  
 （※別タブで開くには Ctrl + クリックしてください）
 
-- [基本・一括配布マニュアル (Simple & Advanced)](./SIMPLE_ADVANCED_MANUAL.md)  
-　　全員に同じ量を配る、または個別に量を指定して一括送金する手順です。
-<br>
 
 - [タイムロック配布マニュアル (TimeLock)](./TIMELOCK_MANUAL.md)  
 　　指定した時間までトークンを引き出せないように制限をかけて配布する手順です。  
@@ -46,15 +63,11 @@
 <br>
 
 ## ソースコード  
-　　・ [SimpleAirdrop.sol](./SimpleAirDrop.sol)  
-　　・ [AdvancedAirdrop.sol](./AdvancedAirdrop.sol)    
 　　・ [TimeLockAirdrop.sol](./TimeLockAirdrop.sol)  
 　　・ [SimpleAirDropPausable.sol](./SimpleAirDropPausable.sol)  
 <br>
 
 ## フラット化済みコード (Verify用)  
-　　・ [SimpleAirdrop_flattened.sol](./SimpleAirdrop_flattened.sol)  
-　　・ [AdvancedAirdrop_flattened.sol](./AdvancedAirdrop_flattened.sol)    
 　　・ [TimeLockAirdrop_flattened.sol](./TimeLockAirdrop_flattened.sol)  
 　　・ [SimpleAirDropPausable_flattened.sol](./SimpleAirDropPausable_flattened.sol)  
 <br>  
