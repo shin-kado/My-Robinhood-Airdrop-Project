@@ -12,14 +12,14 @@
 > 入力したアドレスや数値、あるいはロック解除時間の設定が正しくない可能性があります。そのまま実行するとガス代のみが消費されるため、必ず一度「拒否」をクリックし、マニュアルの手順に従って入力内容を再確認してください。
 <br>
 
-### 　SimpleAirdrop  
-　　ソースコード　　　　　　　　 ：[SimpleAirdrop.sol](./SimpleAirdrop.sol)  
-　　フラット化済みコード (Verify用)：[SimpleAirdrop_flattened.sol](./SimpleAirdrop_flattened.sol)  
-<br>
 
-### 　AdvancedAirdrop  
-　　ソースコード　　　　　　　　 ：[AdvancedAirdrop.sol](./AdvancedAirdropsol)  
-　　フラット化済みコード (Verify用)：[AdvancedAirdrop_flattened.sol](./AdvancedAirdrop_flattened.sol)  
+ソースコード  
+　　[SimpleAirdrop.sol](./SimpleAirdrop.sol)  
+　　[AdvancedAirdrop.sol](./AdvancedAirdropsol)  
+
+フラット化済みコード (Verify用)  
+　　[SimpleAirdrop_flattened.sol](./SimpleAirdrop_flattened.sol)  
+　　[AdvancedAirdrop_flattened.sol](./AdvancedAirdrop_flattened.sol)  
 <br>
 <br>
  
