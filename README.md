@@ -37,7 +37,7 @@
 
 ## ソースコード  
 　　[SimpleAirdrop.sol](./SimpleAirdrop.sol)  
-　　[AdvancedAirdrop.sol](./AdvancedAirdropsol)  
+　　[AdvancedAirdrop.sol](./AdvancedAirdrop.sol)  
 　　[TimeLockAirdrop.sol](./TimeLockAirdrop.sol)  
 　　[SimpleAirDropPausable.sol](./SimpleAirDropPausable.sol)  
 <br>
