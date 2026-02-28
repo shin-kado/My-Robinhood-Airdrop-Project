@@ -64,7 +64,7 @@
 <br>
 <br>
 
-## [緊急停止機能付き一括配布（SimpleAirDropPausable）  
+## 緊急停止機能付き一括配布（SimpleAirDropPausable）  
 　　配布停止機能付きで一括配布する手順です。  
 
 　　・ソースコード： [SimpleAirDropPausable.sol](./SimpleAirDropPausable.sol)  
