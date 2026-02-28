@@ -114,4 +114,4 @@
 ### 　検証済みコントラクト  
 　　[SimpleAirdrop](https://explorer.testnet.chain.robinhood.com/address/0x1926e8C311Ae38Bd2d20A2755852f8B5aF0F4258?tab=contract)  
 　　[AdvancedAirdrop](https://explorer.testnet.chain.robinhood.com/address/0x86238ed61A026604a58D43C554Bde90281f05102?tab=contract)  
-  
+　　（※別タブで開くには Ctrl + クリックしてください）  
