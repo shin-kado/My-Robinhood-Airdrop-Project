@@ -1,13 +1,13 @@
 # My Robinhood Airdrop Project  
 <br>
 
-このプロジェクトは、Robinhood Chain Testnet上で自作トークンの発行から、複数の手法を用いた効率的な配布（エアドロップ）までを実践するテストプロジェクトです。
+このプロジェクトは、Robinhood Chain Testnet上で自作トークンの発行から、複数の手法を用いた効率的な配布（エアドロップ）までを実践するテストプロジェクトです。  
 
-スマートコントラクトの透明性を重視し、すべてのソースコードを公開するとともに、初心者でも**Remix**を使用して安全に操作できる再現性の高いマニュアルを完備しています。
+スマートコントラクトの透明性を重視し、すべてのソースコードを公開するとともに、初心者でも**Remix**を使用して安全に操作できる再現性の高いマニュアルを完備しています。  
 
 
 ## 🪙 Base Token: MyToken (MRT)  
-　　すべての配布プロジェクトの基盤となる自作ERC-20トークンです。　　
+　　すべての配布プロジェクトの基盤となる自作ERC-20トークンです。  
 
 　　・ソースコード： [MyToken.sol](./MyToken.sol)  
   
@@ -18,7 +18,7 @@
     
 　　・MyToken アドレス：`0x196eCa072F41571233E4F6D215F89A3446DD569b`  
   
-　　・Description: OpenZeppelinを使用した標準的なERC-20の実装。
+　　・Description: OpenZeppelinを使用した標準的なERC-20の実装。  
 <br>
 <br>
 
@@ -33,7 +33,7 @@
 　　　　・ [SimpleAirdrop_flattened.sol](./SimpleAirdrop_flattened.sol)  
 　　　　・ [AdvancedAirdrop_flattened.sol](./AdvancedAirdrop_flattened.sol)  
    
-　　・検証済みのアドレス
+　　・検証済みのアドレス  
 　　　　・[SimpleAirdrop検証済みURL](https://explorer.testnet.chain.robinhood.com/address/0x1926e8C311Ae38Bd2d20A2755852f8B5aF0F4258?tab=contract)  
     
 　　　　・[AdvancedAirdrop検証済みURL](https://explorer.testnet.chain.robinhood.com/address/0x86238ed61A026604a58D43C554Bde90281f05102?tab=contract)  
@@ -42,11 +42,11 @@
 　　　　・**SimpleAirdrop アドレス**: `0x1926e8C311Ae38Bd2d20A2755852f8B5aF0F4258`  
 　　　　・**AdvancedAirdrop アドレス**: `0x86238ed61A026604a58D43C554Bde90281f05102`  
 
-　　・[📖 Simple & Advanced操作マニュアル](./SIMPLE_ADVANCED_MANUAL.md)   
+　　・[📖 Simple & Advanced操作マニュアル](./SIMPLE_ADVANCED_MANUAL.md)  
 <br>
 <br>
 
-## タイムロック配布マニュアル (TimeLock)
+## タイムロック配布マニュアル (TimeLock)  
 　　指定した時間までトークンを引き出せないように制限をかけて配布する手順です。  
 
 　　・ソースコード： [TimeLockAirdrop.sol](./TimeLockAirdrop.sol)  
@@ -62,7 +62,7 @@
 <br>
 <br>
 
-## [緊急停止機能付き一括配布操作マニュアル（SimpleAirDropPausable）
+## [緊急停止機能付き一括配布操作マニュアル（SimpleAirDropPausable）  
 
 　　・ソースコード： 
 
