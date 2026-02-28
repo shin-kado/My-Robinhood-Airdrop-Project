@@ -18,7 +18,7 @@
 　　・ソースコード：[MyToken.sol](./MyToken.sol)  
 　　・フラット化済みコード (Verify用)：[myToken_flattened.sol](./myToken_flattened.sol)  
 　　・検証済みのアドレスは[こちら](https://explorer.testnet.chain.robinhood.com/address/0x196eCa072F41571233E4F6D215F89A3446DD569b?tab=contract)から確認できます。  
-　　　（※別タブで開くには Ctrl + クリックしてください）  
+　　　　（※別タブで開くには Ctrl + クリックしてください）  
 　　・MyToken アドレス：`0x196eCa072F41571233E4F6D215F89A3446DD569b`  
 　　・Description: OpenZeppelinを使用した標準的なERC-20の実装。
 
