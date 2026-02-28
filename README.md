@@ -44,7 +44,7 @@
 
 ## フラット化済みコード (Verify用)
 　　[SimpleAirdrop_flattened.sol](./SimpleAirdrop_flattened.sol)  
-  * [AdvancedAirdrop_flattened.sol](./AdvancedAirdrop_flattened.sol)
+　　* [AdvancedAirdrop_flattened.sol](./AdvancedAirdrop_flattened.sol)
 * [TimeLockAirdrop_flattened.sol](./TimeLockAirdrop_flattened.sol)
 * [SimpleAirDropPausable_flattened.sol](./SimpleAirDropPausable_flattened.sol)
 
