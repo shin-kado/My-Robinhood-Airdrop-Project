@@ -49,12 +49,10 @@
 
 
 ### 　　📖 操作マニュアル  
-　　　　　具体的な使い方は、GitHub Wikiにてステップバイステップで解説しています。
+　　　　　具体的な使い方は、GitHub Wikiにてステップバイステップで解説しています。  
 
 　　　　　* [基本・一括配布 (Simple & Advanced)](https://github.com/shin-kado/My-Robinhood-Airdrop-Project/wiki/Simple-&-Advanced-Airdrop-Manual)  
 　　　　　　（※別タブで開くには Ctrl + クリックしてください）  
-
-
 <br>
 <br>
 
@@ -72,11 +70,10 @@
 
 
 ### 　　📖 操作マニュアル  
-　　　　　具体的な使い方は、GitHub Wikiにてステップバイステップで解説しています。
+　　　　　具体的な使い方は、GitHub Wikiにてステップバイステップで解説しています。  
 
 　　　　　* [タイムロック配布 (TimeLock)](https://github.com/shin-kado/My-Robinhood-Airdrop-Project/wiki/TimeLock-Manual)  
 　　　　　　（※別タブで開くには Ctrl + クリックしてください）  
-
 <br>
 <br>
 
@@ -94,12 +91,10 @@
 　　　　・**SimpleAirDropPausable アドレス** `0x1cd4DB04175bfdD2e8802d52C995B79294Dc5ac8`  
 
 ### 　　📖 操作マニュアル  
-　　　　　具体的な使い方は、GitHub Wikiにてステップバイステップで解説しています。
+　　　　　具体的な使い方は、GitHub Wikiにてステップバイステップで解説しています。  
 
 　　　　　* [緊急停止機能付き一括配布 (SimpleAirDropPausable)](https://github.com/shin-kado/My-Robinhood-Airdrop-Project/wiki/SimpleAirDropPausable-Manual)  
 　　　　　　（※別タブで開くには Ctrl + クリックしてください）  
-
-
 <br>
 <br>
 
