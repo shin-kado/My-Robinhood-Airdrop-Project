@@ -20,38 +20,45 @@
   
 　　・検証済みエクスプローラー： [Blockscout（MyToken）](https://explorer.testnet.chain.robinhood.com/address/0x196eCa072F41571233E4F6D215F89A3446DD569b?tab=contract)  
     
-　　・MyToken アドレス：`0x196eCa072F41571233E4F6D215F89A3446DD569b`  
+　　・**MyToken アドレス**：`0x196eCa072F41571233E4F6D215F89A3446DD569b`  
   
 　　・Description: OpenZeppelinを使用した標準的なERC-20の実装。  
 <br>
 <br>
 
-# 定期日付保存 (Storage)
+## 定期日付保存 (Storage)
 　　ブロックチェーン上でのアクティビティを維持するために毎週行う「日付保存」のツールです。  
 
-　　・ソースコード[Storage.sol](./Storage.sol)  
+　　・ソースコード： [Storage.sol](./Storage.sol)  
 　　・検証済みエクスプローラー： [Blockscout（Storage）](https://explorer.testnet.chain.robinhood.com/address/0x14cbB4da6Ad42877d065eE1D1398c984E0b1a426?tab=contract)  
+　　・コントラクトアドレス  
+　　　　・**Storage アドレス** `0x14cbB4da6Ad42877d065eE1D1398c984E0b1a426`  
+
 ### 　　📖 操作マニュアル  
 　　　　　具体的な使い方は、GitHub Wikiにてステップバイステップで解説しています。  
 　　　　　* [定期日付保存 (Storage)](https://github.com/shin-kado/My-Robinhood-Airdrop-Project/wiki/Weekly-Routine-%28Storage%29)  
 <br>
 <br>
 
-# 管理者権限管理 (Owner)  
+## 管理者権限管理 (Owner)  
 　　コントラクトの管理者権限（Ownership）を管理・確認するツールです。  
 
-　　・ソースコード[Owner_Simple.sol](./Owner_Simple.sol)  
+　　・ソースコード： [Owner_Simple.sol](./Owner_Simple.sol)  
 　　・検証済みエクスプローラー： [Blockscout（Owner）](https://explorer.testnet.chain.robinhood.com/address/0xca18d49df82e420BBd40a46c95A48d1717976Dd1?tab=contract)  
+　　　　・**Owner アドレス** `0xca18d49df82e420BBd40a46c95A48d1717976Dd1`  
+    
 ### 　　📖 操作マニュアル  
 　　　　　具体的な使い方は、GitHub Wikiにてステップバイステップで解説しています。  
 　　　　　* [管理者権限管理 (Owner)](https://github.com/shin-kado/My-Robinhood-Airdrop-Project/wiki/Owner-Manual)  
 <br>
 <br>
-# 電子投票システム (Ballot)  
+## 電子投票システム (Ballot)  
 　　ブロックチェーン上での電子投票システム（Ballot）ツールです。  
 
-　　・ソースコード[Ballot.sol](./Ballot.sol)  
+　　・ソースコード： [Ballot.sol](./Ballot.sol)  
 　　・検証済みエクスプローラー： [Blockscout（Ballot）](https://explorer.testnet.chain.robinhood.com/address/0x9f4801277A2e2C67896A06E89021e6bcef7c9106?tab=contract)  
+　　　　・**Ballot アドレス** `0x9f4801277A2e2C67896A06E89021e6bcef7c9106`  
+
 ### 　　📖 操作マニュアル  
 　　　　　具体的な使い方は、GitHub Wikiにてステップバイステップで解説しています。  
   　　　　* [電子投票システム (Ballot)](https://github.com/shin-kado/My-Robinhood-Airdrop-Project/wiki/Ballot-Manual)
