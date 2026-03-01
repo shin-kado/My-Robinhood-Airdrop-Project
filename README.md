@@ -27,6 +27,13 @@
 <br>
 <br>
 
+* [定期日付保存 (Storage)](WikiのURL)
+
+* [管理者権限管理 (Owner)](WikiのURL)
+
+* [電子投票システム (Ballot)](WikiのURL)
+
+
 ## 基本・一括配布 (Simple & Advanced)  
 　　全員に同じ量を配る、または個別に量を指定して一括送金するツールです。  
 
