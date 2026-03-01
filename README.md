@@ -18,8 +18,8 @@
   
 　　・フラット化済みコード (Verify用)： [myToken_flattened.sol](./myToken_flattened.sol)    
   
-　　・検証済みのアドレスは[こちら](https://explorer.testnet.chain.robinhood.com/address/0x196eCa072F41571233E4F6D215F89A3446DD569b?tab=contract)から確認できます。  
-　　　　（※別タブで開くには Ctrl + クリックしてください）  
+　　・検証済みエクスプローラー  
+　　　　・ [Blockscout（MyToken）](https://explorer.testnet.chain.robinhood.com/address/0x196eCa072F41571233E4F6D215F89A3446DD569b?tab=contract)   
     
 　　・MyToken アドレス：`0x196eCa072F41571233E4F6D215F89A3446DD569b`  
   
@@ -27,8 +27,14 @@
 <br>
 <br>
 
+# Weekly Routine (Storage)
+毎週1回、その日の日付をスマートコントラクトに記録することで、継続的な利用実績（オンチェーン・アクティビティ）をブロックチェーン上に残します。
+
+
 * [定期日付保存 (Storage)](WikiのURL)
 * ソースコード[Storage.sol](./Storage.sol)
+* **検証済みエクスプローラー**: [Blockscout (Robinhood Chain)](https://explorer.testnet.chain.robinhood.com/address/0x14cbB4da6Ad42877d065eE1D1398c984E0b1a426?tab=contract)  
+
 
 * [管理者権限管理 (Owner)](WikiのURL)
 * ソースコード[Owner_Simple.sol](./Owner_Simple.sol)
@@ -48,10 +54,10 @@
 　　　　・ [SimpleAirdrop_flattened.sol](./SimpleAirdrop_flattened.sol)  
 　　　　・ [AdvancedAirdrop_flattened.sol](./AdvancedAirdrop_flattened.sol)  
    
-　　・検証済みのアドレス  
-　　　　・[SimpleAirdrop検証済みURL](https://explorer.testnet.chain.robinhood.com/address/0x1926e8C311Ae38Bd2d20A2755852f8B5aF0F4258?tab=contract)  
+　　・検証済みエクスプローラー  
+　　　　・ [Blockscout（SimpleAirdrop）](https://explorer.testnet.chain.robinhood.com/address/0x1926e8C311Ae38Bd2d20A2755852f8B5aF0F4258?tab=contract)  
     
-　　　　・[AdvancedAirdrop検証済みURL](https://explorer.testnet.chain.robinhood.com/address/0x86238ed61A026604a58D43C554Bde90281f05102?tab=contract)  
+　　　　・ [Blockscout（AdvancedAirdrop）](https://explorer.testnet.chain.robinhood.com/address/0x86238ed61A026604a58D43C554Bde90281f05102?tab=contract)  
 
 　　・コントラクトアドレス  
 　　　　・**SimpleAirdrop アドレス**: `0x1926e8C311Ae38Bd2d20A2755852f8B5aF0F4258`  
@@ -73,7 +79,8 @@
 
 　　・フラット化済みコード (Verify用)： [TimeLockAirdrop_flattened.sol](./TimeLockAirdrop_flattened.sol)  
 
-　　・検証済みのアドレス： [TimeLockAirdrop検証済みURL](https://explorer.testnet.chain.robinhood.com/address/0x9258F07C118e2F141c676d330A70eAf630b2F90E?tab=contract)  
+　　・検証済みエクスプローラー  
+　　　　・ [Blockscout（TimeLockAirdrop）](https://explorer.testnet.chain.robinhood.com/address/0x9258F07C118e2F141c676d330A70eAf630b2F90E?tab=contract)  
   
 　　・コントラクトアドレス  
 　　　　・**TiemeLockAirdrop アドレス** `0x9258F07C118e2F141c676d330A70eAf630b2F90E`  
@@ -95,7 +102,8 @@
 　　・フラット化済みコード (Verify用)： [SimpleAirDropPausable_flattened.sol](./SimpleAirDropPausable_flattened.sol)  
   
 
-　　・検証済みのアドレス： [SimpleAirDropPausable検証済みURL](https://explorer.testnet.chain.robinhood.com/address/0x1cd4DB04175bfdD2e8802d52C995B79294Dc5ac8?tab=contract)  
+　　・検証済みエクスプローラー  
+　　　　・ [Blockscout（SimpleAirDropPausable）](https://explorer.testnet.chain.robinhood.com/address/0x1cd4DB04175bfdD2e8802d52C995B79294Dc5ac8?tab=contract)  
 
 　　・コントラクトアドレス  
 　　　　・**SimpleAirDropPausable アドレス** `0x1cd4DB04175bfdD2e8802d52C995B79294Dc5ac8`  
