@@ -47,8 +47,14 @@
 　　　　・**SimpleAirdrop アドレス**: `0x1926e8C311Ae38Bd2d20A2755852f8B5aF0F4258`  
 　　　　・**AdvancedAirdrop アドレス**: `0x86238ed61A026604a58D43C554Bde90281f05102`  
 
-　　・[📖 基本・一括配布操作マニュアル(Simple & Advanced)](./SIMPLE_ADVANCED_MANUAL.md)  
-　　　（※別タブで開くには Ctrl + クリックしてください）
+
+### 　　📖 操作マニュアル  
+　　　　　具体的な使い方は、GitHub Wikiにてステップバイステップで解説しています。
+
+　　　　　* [基本・一括配布 (Simple & Advanced)](https://github.com/shin-kado/My-Robinhood-Airdrop-Project/wiki/Simple-&-Advanced-Airdrop-Manual)  
+　　　　　　（※別タブで開くには Ctrl + クリックしてください）  
+
+
 <br>
 <br>
 
@@ -64,8 +70,13 @@
 　　・コントラクトアドレス  
 　　　　・**TiemeLockAirdrop アドレス** `0x9258F07C118e2F141c676d330A70eAf630b2F90E`  
 
-　　・[📖 タイムロック配布マニュアル (TimeLock)](./TIMELOCK_MANUAL.md)  
-　　　（※別タブで開くには Ctrl + クリックしてください）
+
+### 　　📖 操作マニュアル  
+　　　　　具体的な使い方は、GitHub Wikiにてステップバイステップで解説しています。
+
+　　　　　* [タイムロック配布 (TimeLock)](https://github.com/shin-kado/My-Robinhood-Airdrop-Project/wiki/TimeLock-Manual)  
+　　　　　　（※別タブで開くには Ctrl + クリックしてください）  
+
 <br>
 <br>
 
@@ -82,8 +93,13 @@
 　　・コントラクトアドレス  
 　　　　・**SimpleAirDropPausable アドレス** `0x1cd4DB04175bfdD2e8802d52C995B79294Dc5ac8`  
 
-　　・[📖 緊急停止機能付き一括配布操作マニュアル（SimpleAirDropPausable）](./SIMPLE_PAUSABLE_MANUAL.md)  
-　　　（※別タブで開くには Ctrl + クリックしてください）
+### 　　📖 操作マニュアル  
+　　　　　具体的な使い方は、GitHub Wikiにてステップバイステップで解説しています。
+
+　　　　　* [緊急停止機能付き一括配布 (SimpleAirDropPausable)](https://github.com/shin-kado/My-Robinhood-Airdrop-Project/wiki/SimpleAirDropPausable-Manual)  
+　　　　　　（※別タブで開くには Ctrl + クリックしてください）  
+
+
 <br>
 <br>
 
