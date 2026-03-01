@@ -28,10 +28,13 @@
 <br>
 
 * [定期日付保存 (Storage)](WikiのURL)
+* ソースコード[Storage.sol](./Storage.sol)
 
 * [管理者権限管理 (Owner)](WikiのURL)
-
+* ソースコード[Owner_Simple.sol](./Owner_Simple.sol)
+  
 * [電子投票システム (Ballot)](WikiのURL)
+* ソースコード[Ballot.sol](./Ballot.sol)
 
 
 ## 基本・一括配布 (Simple & Advanced)  
