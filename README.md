@@ -138,6 +138,26 @@
 <br>
 <br>
 
+### 複数トークン一括送金（MultiTokenTransfer）  
+　複数の異なるERC20トークンを1回のトランザクションで一括して指定のアドレスへ配布するツールです。  
+
+　　・ソースコード： [MultiTokenTransfer.sol](./MultiTokenTransfer.sol)  
+
+
+　　・検証済みエクスプローラー  
+　　　　・ [Blockscout（MultiTokenTransfer）](https://explorer.testnet.chain.robinhood.com/address/0xa547a0B7c0CA10fcf9E904eB9656942E3578e1D7?tab=contract)  
+
+　　・コントラクトアドレス  
+　　　　・**SimpleAirDropPausable アドレス** `0xa547a0B7c0CA10fcf9E904eB9656942E3578e1D7`  
+
+### 　　📖 操作マニュアル  
+　　　　　具体的な使い方は、GitHub Wikiにてステップバイステップで解説しています。  
+
+　　　　　* [緊急停止機能付き一括配布 (MultiTokenTransfer.sol)](https://github.com/shin-kado/My-Robinhood-Airdrop-Project/wiki/Multi%E2%80%90Token-Transfer-Manual)  
+　　　　　　（※別タブで開くには Ctrl + クリックしてください）  
+<br>
+<br>
+
 ### 💡 Tips  
  * 検証済みコントラクトは、エクスプローラー上の「Contract」>「Write Contract」タブから、Remixを使わずに直接実行することも可能です。
 <br>
