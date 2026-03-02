@@ -158,7 +158,7 @@
 <br>
 <br>
 
-## ホワイトリスト制限付き複数トークン一括配布（MultiTokenTransferWithWhitelist）  
+## ホワイトリスト権限管理付き一括配布（MultiTokenTransferWithWhitelist）  
 　複数の異なるERC20トークンを1回のトランザクションで一括して指定のアドレスへ配布するツールです。  
 
 　　・ソースコード： [MultiTokenTransfer.sol](./MultiTokenTransferWithWhitelist.sol)  
@@ -173,7 +173,7 @@
 ### 　　📖 操作マニュアル  
 　　　　　具体的な使い方は、GitHub Wikiにてステップバイステップで解説しています。  
 
-　　　　　* [ホワイトリスト制限付き複数トークン一括配布 (MultiTokenTransferWithWhitelist)](https://github.com/shin-kado/My-Robinhood-Airdrop-Project/wiki/MultiTokenTransfer-%28ERC20-Batch-Transfer-with-Whitelist%29-Manual)  
+　　　　　* [ホワイトリスト権限管理付き一括配布 (MultiTokenTransferWithWhitelist)](https://github.com/shin-kado/My-Robinhood-Airdrop-Project/wiki/MultiTokenTransfer-%28ERC20-Batch-Transfer-with-Whitelist%29-Manual)  
 　　　　　　（※別タブで開くには Ctrl + クリックしてください）  
 <br>
 <br>
