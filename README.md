@@ -71,7 +71,7 @@
 
 ### 　　📖 操作マニュアル  
 　　　　　具体的な使い方は、GitHub Wikiにてステップバイステップで解説しています。  
-  　　　　* [時間制限付き電子投票システム (TimedBallot)](https://github.com/shin-kado/My-Robinhood-Airdrop-Project/wiki/Ballot-Manual)
+  　　　　* [時間制限付き電子投票システム (TimedBallot)](https://github.com/shin-kado/My-Robinhood-Airdrop-Project/wiki/TimedBallot-Manual)
 <br>
 <br>
 
