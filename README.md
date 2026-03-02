@@ -138,7 +138,7 @@
 <br>
 <br>
 
-### 複数トークン一括送金（MultiTokenTransfer）  
+## 複数トークン一括送金（MultiTokenTransfer）  
 　複数の異なるERC20トークンを1回のトランザクションで一括して指定のアドレスへ配布するツールです。  
 
 　　・ソースコード： [MultiTokenTransfer.sol](./MultiTokenTransfer.sol)  
