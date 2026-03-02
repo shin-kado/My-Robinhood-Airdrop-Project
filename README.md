@@ -148,7 +148,7 @@
 　　　　・ [Blockscout（MultiTokenTransfer）](https://explorer.testnet.chain.robinhood.com/address/0xa547a0B7c0CA10fcf9E904eB9656942E3578e1D7?tab=contract)  
 
 　　・コントラクトアドレス  
-　　　　・**SimpleAirDropPausable アドレス** `0xa547a0B7c0CA10fcf9E904eB9656942E3578e1D7`  
+　　　　・**MultiTokenTransfer アドレス** `0xa547a0B7c0CA10fcf9E904eB9656942E3578e1D7`  
 
 ### 　　📖 操作マニュアル  
 　　　　　具体的な使い方は、GitHub Wikiにてステップバイステップで解説しています。  
@@ -161,19 +161,19 @@
 ## ホワイトリストによる制限付き複数トークン一括配布（MultiTokenTransfer）  
 　複数の異なるERC20トークンを1回のトランザクションで一括して指定のアドレスへ配布するツールです。  
 
-　　・ソースコード： [MultiTokenTransfer.sol](./MultiTokenTransfer.sol)  
+　　・ソースコード： [MultiTokenTransfer.sol](./MultiTokenTransferWithWhitelist.sol)  
 
 
 　　・検証済みエクスプローラー  
-　　　　・ [Blockscout（MultiTokenTransfer）](https://explorer.testnet.chain.robinhood.com/address/0xa547a0B7c0CA10fcf9E904eB9656942E3578e1D7?tab=contract)  
+　　　　・ [Blockscout（MultiTokenTransfer）](https://explorer.testnet.chain.robinhood.com/address/0xEC4Ae1A488a4615d5e159c6c0675c38a9Bd27376)  
 
 　　・コントラクトアドレス  
-　　　　・**SimpleAirDropPausable アドレス** `0xa547a0B7c0CA10fcf9E904eB9656942E3578e1D7`  
+　　　　・**MultiTokenTransferWithWhitelist アドレス** `0xEC4Ae1A488a4615d5e159c6c0675c38a9Bd27376`  
 
 ### 　　📖 操作マニュアル  
 　　　　　具体的な使い方は、GitHub Wikiにてステップバイステップで解説しています。  
 
-　　　　　* [複数トークン一括配布 (MultiTokenTransfer.sol)](https://github.com/shin-kado/My-Robinhood-Airdrop-Project/wiki/Multi%E2%80%90Token-Transfer-Manual)  
+　　　　　* [ホワイトリストによる制限付き複数トークン一括配布 (MultiTokenTransferWithWhitelist.sol)](https://github.com/shin-kado/My-Robinhood-Airdrop-Project/wiki/MultiTokenTransfer-%28ERC20-Batch-Transfer-with-Whitelist%29-Manual)  
 　　　　　　（※別タブで開くには Ctrl + クリックしてください）  
 <br>
 <br>
