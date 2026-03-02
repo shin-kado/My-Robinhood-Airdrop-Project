@@ -59,9 +59,19 @@
 　　・検証済みエクスプローラー： [Blockscout（Ballot）](https://explorer.testnet.chain.robinhood.com/address/0x9f4801277A2e2C67896A06E89021e6bcef7c9106?tab=contract)  
 　　　　・**Ballot アドレス** `0x9f4801277A2e2C67896A06E89021e6bcef7c9106`  
 
+<br>
+<br>
+## 時間制限付き電子投票システム (Ballot)  
+　　ブロックチェーン上での電子投票システム（Ballot）ツールです。  
+
+　　・ソースコード： [TimedBallot.sol](./TimedBallot.sol)  
+　　・検証済みエクスプローラー： [Blockscout（TimedBallot）](https://explorer.testnet.chain.robinhood.com/address/0x52798A5079e9BCf4409D7287a88bA05b1d72D6a0?tab=contract)  
+　　　　・**TimedBallot アドレス** `0x52798A5079e9BCf4409D7287a88bA05b1d72D6a0`  
+
+
 ### 　　📖 操作マニュアル  
 　　　　　具体的な使い方は、GitHub Wikiにてステップバイステップで解説しています。  
-  　　　　* [電子投票システム (Ballot)](https://github.com/shin-kado/My-Robinhood-Airdrop-Project/wiki/Ballot-Manual)
+  　　　　* [時間制限付き電子投票システム (TimedBallot)](https://github.com/shin-kado/My-Robinhood-Airdrop-Project/wiki/Ballot-Manual)
 <br>
 <br>
 
