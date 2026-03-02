@@ -58,10 +58,10 @@
 　　・ソースコード： [Ballot.sol](./Ballot.sol)  
 　　・検証済みエクスプローラー： [Blockscout（Ballot）](https://explorer.testnet.chain.robinhood.com/address/0x9f4801277A2e2C67896A06E89021e6bcef7c9106?tab=contract)  
 　　　　・**Ballot アドレス** `0x9f4801277A2e2C67896A06E89021e6bcef7c9106`  
+<br>
+<br>
 
-<br>
-<br>
-## 時間制限付き電子投票システム (Ballot)  
+## 時間制限付き電子投票システム (TimedBallot)  
 　　ブロックチェーン上での電子投票システム（Ballot）ツールです。  
 
 　　・ソースコード： [TimedBallot.sol](./TimedBallot.sol)  
