@@ -153,7 +153,7 @@
 ### 　　📖 操作マニュアル  
 　　　　　具体的な使い方は、GitHub Wikiにてステップバイステップで解説しています。  
 
-　　　　　* [緊急停止機能付き一括配布 (MultiTokenTransfer.sol)](https://github.com/shin-kado/My-Robinhood-Airdrop-Project/wiki/Multi%E2%80%90Token-Transfer-Manual)  
+　　　　　* [複数トークン一括配布 (MultiTokenTransfer.sol)](https://github.com/shin-kado/My-Robinhood-Airdrop-Project/wiki/Multi%E2%80%90Token-Transfer-Manual)  
 　　　　　　（※別タブで開くには Ctrl + クリックしてください）  
 <br>
 <br>
