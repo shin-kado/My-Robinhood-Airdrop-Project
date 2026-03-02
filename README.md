@@ -171,7 +171,7 @@
 ## ホワイトリスト権限管理付き一括配布（MultiTokenTransferWithWhitelist）  
 　複数の異なるERC20トークンを1回のトランザクションで一括して指定のアドレスへ配布するツールです。  
 
-　　・ソースコード： [MultiTokenTransfer.sol](./MultiTokenTransferWithWhitelist.sol)  
+　　・ソースコード： [MultiTokenTransferWithWhitelist.sol](./MultiTokenTransferWithWhitelist.sol)  
 
 
 　　・検証済みエクスプローラー  
