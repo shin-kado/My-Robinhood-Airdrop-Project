@@ -31,6 +31,11 @@
 <br>
 <br>
 
+## 📜コントラクト実績  
+　　* [PDF版](./docs/contract%20data.pdf)  
+<br>
+<br>
+
 ## 🪙Base Token: MyToken（MRT）  
 　　すべての配布プロジェクトの基盤となる自作ERC-20トークンです。  
 
