@@ -57,6 +57,7 @@
 ### 　　📖 操作マニュアル  
 　　　　　具体的な使い方は、GitHub Wikiにてステップバイステップで解説しています。  
 　　　　　* [定期日付保存 (Storage)](https://github.com/shin-kado/My-Robinhood-Airdrop-Project/wiki/Weekly-Routine-%28Storage%29)  
+- [操作マニュアル (PDF)](./docs/docs/1.Weekly Routine (Storage) Manual.pdf)
 <br>
 <br>
 
