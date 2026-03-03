@@ -72,7 +72,7 @@
 　　　　　* [管理者権限管理 (Owner)](https://github.com/shin-kado/My-Robinhood-Airdrop-Project/wiki/Owner-Manual)  
 <br>
 <br>
-## 電子投票システム（Ballot）  
+## 🗳️ 電子投票システム（Ballot）  
 　　ブロックチェーン上での電子投票システムです。  
 
 　　・ソースコード： [Ballot.sol](./Ballot.sol)  
