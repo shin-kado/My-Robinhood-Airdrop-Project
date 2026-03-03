@@ -57,7 +57,7 @@
 ### 　　📖 操作マニュアル  
 　　　　　具体的な使い方は、GitHub Wikiにてステップバイステップで解説しています。  
 　　　　　　* [定期日付保存 (Storage)](https://github.com/shin-kado/My-Robinhood-Airdrop-Project/wiki/Weekly-Routine-%28Storage%29)       
-　　　　　* [PDF版](./docs/1.Weekly%20Routine%20(Storage)%20Manual.pdf)  
+　　　　　　* [PDF版](./docs/1.Weekly%20Routine%20(Storage)%20Manual.pdf)  
 <br>
 <br>
 
@@ -70,8 +70,8 @@
     
 ### 　　📖 操作マニュアル  
 　　　　　具体的な使い方は、GitHub Wikiにてステップバイステップで解説しています。  
-　　　　　* [管理者権限管理 (Owner)](https://github.com/shin-kado/My-Robinhood-Airdrop-Project/wiki/Owner-Manual)  
-　　　　　* [PDF版](./docs/2.Owner%20Manual.pdf)  
+　　　　　　* [管理者権限管理 (Owner)](https://github.com/shin-kado/My-Robinhood-Airdrop-Project/wiki/Owner-Manual)  
+　　　　　　* [PDF版](./docs/2.Owner%20Manual.pdf)  
 <br>
 <br>
 ## 電子投票システム（Ballot）  
@@ -84,8 +84,8 @@
 
 ### 　　📖 操作マニュアル  
 　　　　　具体的な使い方は、GitHub Wikiにてステップバイステップで解説しています。  
-　　　　　* [時間制限付き電子投票システム (Ballot)](https://github.com/shin-kado/My-Robinhood-Airdrop-Project/wiki/Ballot-Manual)  
-　　　　　* [PDF版](./docs/3.Ballot%20Manual.pdf)  
+　　　　　　* [時間制限付き電子投票システム (Ballot)](https://github.com/shin-kado/My-Robinhood-Airdrop-Project/wiki/Ballot-Manual)  
+　　　　　　* [PDF版](./docs/3.Ballot%20Manual.pdf)  
 <br>
 <br>
 
@@ -99,7 +99,7 @@
 
 ### 　　📖 操作マニュアル  
 　　　　　具体的な使い方は、GitHub Wikiにてステップバイステップで解説しています。  
-  　　　　　* [時間制限付き電子投票システム (TimedBallot)](https://github.com/shin-kado/My-Robinhood-Airdrop-Project/wiki/TimedBallot-Manual)  
+　　　　　　* [時間制限付き電子投票システム (TimedBallot)](https://github.com/shin-kado/My-Robinhood-Airdrop-Project/wiki/TimedBallot-Manual)  
 　　　　　　* [PDF版](./docs/4.TimedBallot%20Manual.pdf)  
 <br>
 <br>
@@ -127,9 +127,9 @@
 
 ### 　　📖 操作マニュアル  
 　　　　　具体的な使い方は、GitHub Wikiにてステップバイステップで解説しています。  
-　　　　　* [基本・一括配布 (Simple & Advanced)](https://github.com/shin-kado/My-Robinhood-Airdrop-Project/wiki/Simple-&-Advanced-Airdrop-Manual)  
-　　　　　* [PDF版](./docs/5.Simple&Advanced%20Manual.pdf)  
-　　　　　　（※別タブで開くには Ctrl + クリックしてください）  
+　　　　　　* [基本・一括配布 (Simple & Advanced)](https://github.com/shin-kado/My-Robinhood-Airdrop-Project/wiki/Simple-&-Advanced-Airdrop-Manual)  
+　　　　　　* [PDF版](./docs/5.Simple&Advanced%20Manual.pdf)  
+　　　　　　　（※別タブで開くには Ctrl + クリックしてください）  
 <br>
 <br>
 
