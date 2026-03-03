@@ -31,7 +31,7 @@
 <br>
 <br>
 
-## 📜コントラクト実績  
+## 📜コントラクトデプロイ実績 (PDF)  
 　　・ [Contract_Deployment_Record.pdf](./docs/Contract_Deployment_Record.pdf)  
 <br>
 <br>
