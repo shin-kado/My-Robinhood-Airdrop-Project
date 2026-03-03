@@ -27,6 +27,7 @@
 * [⏳ タイムロック配布 (TimeLock)](#タイムロック配布-timelock)
 * [🛑 緊急停止機能付き一括配布](#緊急停止機能付き一括配布simpleairdroppausable)
 * [複数トークン一括配布](#複数トークン一括配布MultiTokenTransfer)
+* [ホワイトリスト権限管理付き一括配布](#ホワイトリスト権限管理付き一括配布MultiTokenTransferWithWhitelist)
 <br>
 <br>
 
