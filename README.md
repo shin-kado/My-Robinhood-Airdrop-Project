@@ -149,9 +149,9 @@
 
 ### 　　📖 操作マニュアル  
 　　　　　具体的な使い方は、GitHub Wikiにてステップバイステップで解説しています。  
-　　　　　* [タイムロック配布 (TimeLock)](https://github.com/shin-kado/My-Robinhood-Airdrop-Project/wiki/TimeLock-Manual)  
-　　　　　* [PDF版](./docs/6.TimeLockAirdrop%20Manual.pdf)  
-　　　      （※別タブで開くには Ctrl + クリックしてください）  
+　　　　　　* [タイムロック配布 (TimeLock)](https://github.com/shin-kado/My-Robinhood-Airdrop-Project/wiki/TimeLock-Manual)  
+　　　　　　* [PDF版](./docs/6.TimeLockAirdrop%20Manual.pdf)  
+　　　　　　　（※別タブで開くには Ctrl + クリックしてください）  
 <br>
 <br>
 
@@ -171,9 +171,9 @@
 
 ### 　　📖 操作マニュアル  
 　　　　　具体的な使い方は、GitHub Wikiにてステップバイステップで解説しています。  
-　　　　　* [緊急停止機能付き一括配布 (SimpleAirDropPausable)](https://github.com/shin-kado/My-Robinhood-Airdrop-Project/wiki/SimpleAirDropPausable-Manual)  
-　　　　　* [PDF版](./docs/7.SimpleAirDropPausable%20Manual.pdf)  
-　　　　　　（※別タブで開くには Ctrl + クリックしてください）  
+　　　　　　* [緊急停止機能付き一括配布 (SimpleAirDropPausable)](https://github.com/shin-kado/My-Robinhood-Airdrop-Project/wiki/SimpleAirDropPausable-Manual)  
+　　　　　　* [PDF版](./docs/7.SimpleAirDropPausable%20Manual.pdf)  
+　　　　　　　（※別タブで開くには Ctrl + クリックしてください）  
 <br>
 <br>
 
@@ -191,9 +191,9 @@
 
 ### 　　📖 操作マニュアル  
 　　　　　具体的な使い方は、GitHub Wikiにてステップバイステップで解説しています。  
-　　　　　* [複数トークン一括配布 (MultiTokenTransfer)](https://github.com/shin-kado/My-Robinhood-Airdrop-Project/wiki/Multi%E2%80%90Token-Transfer-Manual)  
-　　　　　* [PDF版](./docs/8.Multi-Token%20Transfer%20Manual.pdf)  
-　　　　　　（※別タブで開くには Ctrl + クリックしてください）  
+　　　　　　* [複数トークン一括配布 (MultiTokenTransfer)](https://github.com/shin-kado/My-Robinhood-Airdrop-Project/wiki/Multi%E2%80%90Token-Transfer-Manual)  
+　　　　　　* [PDF版](./docs/8.Multi-Token%20Transfer%20Manual.pdf)  
+　　　　　　　（※別タブで開くには Ctrl + クリックしてください）  
 <br>
 <br>
 
@@ -211,9 +211,9 @@
 
 ### 　　📖 操作マニュアル  
 　　　　　具体的な使い方は、GitHub Wikiにてステップバイステップで解説しています。  
-　　　　　* [ホワイトリスト権限管理付き一括配布 (MultiTokenTransferWithWhitelist)](https://github.com/shin-kado/My-Robinhood-Airdrop-Project/wiki/MultiTokenTransfer-%28ERC20-Batch-Transfer-with-Whitelist%29-Manual)  
-　　　　　* [PDF版](./docs/9.MultiTokenTransferWithWhitelist%20Manual.pdf)  
-　　　　　　（※別タブで開くには Ctrl + クリックしてください）  
+　　　　　　* [ホワイトリスト権限管理付き一括配布 (MultiTokenTransferWithWhitelist)](https://github.com/shin-kado/My-Robinhood-Airdrop-Project/wiki/MultiTokenTransfer-%28ERC20-Batch-Transfer-with-Whitelist%29-Manual)  
+　　　　　　* [PDF版](./docs/9.MultiTokenTransferWithWhitelist%20Manual.pdf)  
+　　　　　　　（※別タブで開くには Ctrl + クリックしてください）  
 <br>
 <br>
 
