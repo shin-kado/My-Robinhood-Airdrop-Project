@@ -20,7 +20,7 @@
 ## 🛠 収録コントラクト一覧
 * [🪙 Base Token (MyToken)](#base-token-mytokenmrt)
 * [📅 定期日付保存 (Storage)](#定期日付保存storage)
-* [🔑 管理者権限管理 (Owner)](#管理者権限管理-owner)
+* [🔑 管理者権限管理 (Owner)](#管理者権限管理owner)
 * [🗳️ 電子投票システム (Ballot)](#電子投票システム-ballot)
 * [⏱️ 時間制限付き電子投票 (TimedBallot)](#-時間制限付き電子投票システム-timedballot)
 * [📦 基本・一括配布 (Simple & Advanced)](#-基本一括配布-simple--advanced)
