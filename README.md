@@ -99,7 +99,7 @@
 
 ### 　　📖 操作マニュアル  
 　　　　　具体的な使い方は、GitHub Wikiにてステップバイステップで解説しています。  
-  　　　　　* [時間制限付き電子投票システム (TimedBallot)](https://github.com/shin-kado/My-Robinhood-Airdrop-Project/wiki/TimedBallot-Manual)
+  　　　　　* [時間制限付き電子投票システム (TimedBallot)](https://github.com/shin-kado/My-Robinhood-Airdrop-Project/wiki/TimedBallot-Manual)  
 　　　　　　* [PDF版](./docs/4.TimedBallot%20Manual.pdf)  
 <br>
 <br>
@@ -128,8 +128,8 @@
 ### 　　📖 操作マニュアル  
 　　　　　具体的な使い方は、GitHub Wikiにてステップバイステップで解説しています。  
 　　　　　* [基本・一括配布 (Simple & Advanced)](https://github.com/shin-kado/My-Robinhood-Airdrop-Project/wiki/Simple-&-Advanced-Airdrop-Manual)  
-　　　　　　（※別タブで開くには Ctrl + クリックしてください）  
 　　　　　* [PDF版](./docs/5.Simple&Advanced%20Manual.pdf)  
+　　　　　　（※別タブで開くには Ctrl + クリックしてください）  
 <br>
 <br>
 
