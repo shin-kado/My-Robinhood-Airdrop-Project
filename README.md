@@ -104,7 +104,7 @@
 <br>
 <br>
 
-## 📦基本・一括配布（Simple & Advanced）  
+## 📦基本・一括配布（Simple & AdvancedAirdrop）  
 　　全員に同じ量を配る、または個別に量を指定して一括送金するツールです。  
 
 　　・ソースコード  
@@ -127,7 +127,7 @@
 
 ### 　　📖 操作マニュアル  
 　　　　　具体的な使い方は、GitHub Wikiにてステップバイステップで解説しています。  
-　　　　　　* [基本・一括配布 (Simple & Advanced)](https://github.com/shin-kado/My-Robinhood-Airdrop-Project/wiki/Simple-&-Advanced-Airdrop-Manual)  
+　　　　　　* [基本・一括配布 (Simple & AdvancedAirdrop)](https://github.com/shin-kado/My-Robinhood-Airdrop-Project/wiki/Simple-&-Advanced-Airdrop-Manual)  
 　　　　　　* [PDF版](./docs/5.Simple&AdvancedAirdrop%20Manual.pdf)  
 　　　　　　　（※別タブで開くには Ctrl + クリックしてください）  
 <br>
