@@ -84,7 +84,7 @@
 
 ### 　　📖 操作マニュアル  
 　　　　　具体的な使い方は、GitHub Wikiにてステップバイステップで解説しています。  
-　　　　　* [時間制限付き電子投票システム (Ballot)](https://github.com/shin-kado/My-Robinhood-Airdrop-Project/wiki/Ballot-Manual)
+　　　　　* [時間制限付き電子投票システム (Ballot)](https://github.com/shin-kado/My-Robinhood-Airdrop-Project/wiki/Ballot-Manual)  
 　　　　　* [PDF版](./docs/3.Ballot%20Manual.pdf)  
 <br>
 <br>
