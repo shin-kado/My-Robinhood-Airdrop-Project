@@ -119,7 +119,7 @@
 　　　　・ [Blockscout（TimeLockAirdrop）](https://explorer.testnet.chain.robinhood.com/address/0x9258F07C118e2F141c676d330A70eAf630b2F90E?tab=contract)  
   
 　　・コントラクトアドレス  
-　　　　・**TiemeLockAirdrop アドレス** `0x9258F07C118e2F141c676d330A70eAf630b2F90E`  
+　　　　・**TimeLockAirdrop アドレス** `0x9258F07C118e2F141c676d330A70eAf630b2F90E`  
 
 
 ### 　　📖 操作マニュアル  
