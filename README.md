@@ -48,7 +48,7 @@
 <br>
 <br>
 
-## 定期日付保存 (Storage)
+## 📅定期日付保存 (Storage)
 　　ブロックチェーン上でのアクティビティを維持するために毎週行う「日付保存」のツールです。  
 
 　　・ソースコード： [Storage.sol](./Storage.sol)  
@@ -62,7 +62,7 @@
 <br>
 <br>
 
-## 管理者権限管理 (Owner)  
+## 🔑管理者権限管理 (Owner)  
 　　コントラクトの管理者権限（Ownership）を管理・確認するツールです。  
 
 　　・ソースコード： [Owner_Simple.sol](./Owner_Simple.sol)  
