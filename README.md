@@ -34,9 +34,9 @@
 ## 🪙Base Token: MyToken（MRT）  
 　　すべての配布プロジェクトの基盤となる自作ERC-20トークンです。  
 
-　　・ソースコード： [MyToken.sol](./MyToken.sol)  
+　　・ソースコード： [MyToken.sol](./contracts/MyToken.sol)  
   
-　　・フラット化済みコード (Verify用)： [myToken_flattened.sol](./myToken_flattened.sol)    
+　　・フラット化済みコード (Verify用)： [myToken_flattened.sol](./flattened/myToken_flattened.sol)    
   
 　　・検証済みエクスプローラー： [Blockscout（MyToken）](https://explorer.testnet.chain.robinhood.com/address/0x196eCa072F41571233E4F6D215F89A3446DD569b?tab=contract)  
     
@@ -49,7 +49,7 @@
 ## 📅定期日付保存（Storage）
 　　ブロックチェーン上でのアクティビティを維持するために毎週行う「日付保存」のツールです。  
 
-　　・ソースコード： [Storage.sol](./Storage.sol)  
+　　・ソースコード： [Storage.sol](./contracts/Storage.sol)  
 　　・検証済みエクスプローラー： [Blockscout（Storage）](https://explorer.testnet.chain.robinhood.com/address/0x14cbB4da6Ad42877d065eE1D1398c984E0b1a426?tab=contract)  
 　　・コントラクトアドレス  
 　　　　・**Storage アドレス** `0x14cbB4da6Ad42877d065eE1D1398c984E0b1a426`  
@@ -63,7 +63,7 @@
 ## 🔑管理者権限管理（Owner）  
 　　コントラクトの管理者権限（Ownership）を管理・確認するツールです。  
 
-　　・ソースコード： [Owner_Simple.sol](./Owner_Simple.sol)  
+　　・ソースコード： [Owner_Simple.sol](./contracts/Owner_Simple.sol)  
 　　・検証済みエクスプローラー： [Blockscout（Owner）](https://explorer.testnet.chain.robinhood.com/address/0xca18d49df82e420BBd40a46c95A48d1717976Dd1?tab=contract)  
 　　　　・**Owner アドレス** `0xca18d49df82e420BBd40a46c95A48d1717976Dd1`  
     
@@ -75,7 +75,7 @@
 ## 電子投票システム（Ballot）  
 　　ブロックチェーン上での電子投票システムです。  
 
-　　・ソースコード： [Ballot.sol](./Ballot.sol)  
+　　・ソースコード： [Ballot.sol](./contracts/Ballot.sol)  
 　　・検証済みエクスプローラー： [Blockscout（Ballot）](https://explorer.testnet.chain.robinhood.com/address/0x9f4801277A2e2C67896A06E89021e6bcef7c9106?tab=contract)  
 　　　　・**Ballot アドレス** `0x9f4801277A2e2C67896A06E89021e6bcef7c9106`  
 
@@ -89,7 +89,7 @@
 ## ⏰時間制限付き電子投票システム（TimedBallot）  
 　　**「 block.timestamp を利用した、投票期限付きの」**電子投票システムです。  
 
-　　・ソースコード： [TimedBallot.sol](./TimedBallot.sol)  
+　　・ソースコード： [TimedBallot.sol](./contracts/TimedBallot.sol)  
 　　・検証済みエクスプローラー： [Blockscout（TimedBallot）](https://explorer.testnet.chain.robinhood.com/address/0x52798A5079e9BCf4409D7287a88bA05b1d72D6a0?tab=contract)  
 　　　　・**TimedBallot アドレス** `0x52798A5079e9BCf4409D7287a88bA05b1d72D6a0`  
 
@@ -104,12 +104,12 @@
 　　全員に同じ量を配る、または個別に量を指定して一括送金するツールです。  
 
 　　・ソースコード  
-　　　　・ [SimpleAirdrop.sol](./SimpleAirDrop.sol)  
-　　　　・ [AdvancedAirdrop.sol](./AdvancedAirdrop.sol)  
+　　　　・ [SimpleAirdrop.sol](./contracts/SimpleAirDrop.sol)  
+　　　　・ [AdvancedAirdrop.sol](./contracts/AdvancedAirdrop.sol)  
 
 　　・フラット化済みコード (Verify用)  
-　　　　・ [SimpleAirdrop_flattened.sol](./SimpleAirdrop_flattened.sol)  
-　　　　・ [AdvancedAirdrop_flattened.sol](./AdvancedAirdrop_flattened.sol)  
+　　　　・ [SimpleAirdrop_flattened.sol](./flattened/SimpleAirdrop_flattened.sol)  
+　　　　・ [AdvancedAirdrop_flattened.sol](./flattened/AdvancedAirdrop_flattened.sol)  
    
 　　・検証済みエクスプローラー  
 　　　　・ [Blockscout（SimpleAirdrop）](https://explorer.testnet.chain.robinhood.com/address/0x1926e8C311Ae38Bd2d20A2755852f8B5aF0F4258?tab=contract)  
@@ -131,9 +131,9 @@
 ## ⏳タイムロック配布（TimeLock）  
 　　指定時間まで引き出しを制限するロック機能付き配布ツールです。  
 
-　　・ソースコード： [TimeLockAirdrop.sol](./TimeLockAirdrop.sol)    
+　　・ソースコード： [TimeLockAirdrop.sol](./contracts/TimeLockAirdrop.sol)    
 
-　　・フラット化済みコード (Verify用)： [TimeLockAirdrop_flattened.sol](./TimeLockAirdrop_flattened.sol)  
+　　・フラット化済みコード (Verify用)： [TimeLockAirdrop_flattened.sol](./flattened/TimeLockAirdrop_flattened.sol)  
 
 　　・検証済みエクスプローラー  
 　　　　・ [Blockscout（TimeLockAirdrop）](https://explorer.testnet.chain.robinhood.com/address/0x9258F07C118e2F141c676d330A70eAf630b2F90E?tab=contract)  
@@ -152,9 +152,9 @@
 ## 🛑緊急停止機能付き一括配布（SimpleAirDropPausable）  
 　管理者による実行制御（Pausable）を搭載した安全性重視の配布ツールです。  
 
-　　・ソースコード： [SimpleAirDropPausable.sol](./SimpleAirDropPausable.sol)  
+　　・ソースコード： [SimpleAirDropPausable.sol](./contracts/SimpleAirDropPausable.sol)  
 
-　　・フラット化済みコード (Verify用)： [SimpleAirDropPausable_flattened.sol](./SimpleAirDropPausable_flattened.sol)  
+　　・フラット化済みコード (Verify用)： [SimpleAirDropPausable_flattened.sol](./flattened/SimpleAirDropPausable_flattened.sol)  
   
 
 　　・検証済みエクスプローラー  
@@ -173,7 +173,7 @@
 ## 🎁複数トークン一括配布（MultiTokenTransfer）  
 　複数の異なるERC20トークンを1回のトランザクションで一括して指定のアドレスへ配布するツールです。  
 
-　　・ソースコード： [MultiTokenTransfer.sol](./MultiTokenTransfer.sol)  
+　　・ソースコード： [MultiTokenTransfer.sol](./contracts/MultiTokenTransfer.sol)  
 
 
 　　・検証済みエクスプローラー  
@@ -192,7 +192,7 @@
 ## 📜ホワイトリスト権限管理付き一括配布（MultiTokenTransferWithWhitelist）  
 　複数の異なるERC20トークンを1回のトランザクションで一括して指定のアドレスへ配布するツールです。  
 
-　　・ソースコード： [MultiTokenTransferWithWhitelist.sol](./MultiTokenTransferWithWhitelist.sol)  
+　　・ソースコード： [MultiTokenTransferWithWhitelist.sol](./contracts/MultiTokenTransferWithWhitelist.sol)  
 
 
 　　・検証済みエクスプローラー  
