@@ -31,7 +31,7 @@
 <br>
 <br>
 
-## 🪙Base Token: MyToken (MRT)  
+## 🪙Base Token: MyToken（MRT）  
 　　すべての配布プロジェクトの基盤となる自作ERC-20トークンです。  
 
 　　・ソースコード： [MyToken.sol](./MyToken.sol)  
@@ -46,7 +46,7 @@
 <br>
 <br>
 
-## 📅定期日付保存 (Storage)
+## 📅定期日付保存（Storage）
 　　ブロックチェーン上でのアクティビティを維持するために毎週行う「日付保存」のツールです。  
 
 　　・ソースコード： [Storage.sol](./Storage.sol)  
@@ -60,7 +60,7 @@
 <br>
 <br>
 
-## 🔑管理者権限管理 (Owner)  
+## 🔑管理者権限管理（Owner）  
 　　コントラクトの管理者権限（Ownership）を管理・確認するツールです。  
 
 　　・ソースコード： [Owner_Simple.sol](./Owner_Simple.sol)  
@@ -72,7 +72,7 @@
 　　　　　* [管理者権限管理 (Owner)](https://github.com/shin-kado/My-Robinhood-Airdrop-Project/wiki/Owner-Manual)  
 <br>
 <br>
-## 🗳️電子投票システム (Ballot)  
+## 🗳️電子投票システム（Ballot）  
 　　ブロックチェーン上での電子投票システムです。  
 
 　　・ソースコード： [Ballot.sol](./Ballot.sol)  
@@ -86,7 +86,7 @@
 <br>
 <br>
 
-## ⏱️時間制限付き電子投票システム (TimedBallot)  
+## ⏱️時間制限付き電子投票システム（TimedBallot）  
 　　**「 block.timestamp を利用した、投票期限付きの」**電子投票システムです。  
 
 　　・ソースコード： [TimedBallot.sol](./TimedBallot.sol)  
@@ -100,7 +100,7 @@
 <br>
 <br>
 
-## 📦基本・一括配布 (Simple & Advanced)  
+## 📦基本・一括配布（Simple & Advanced）  
 　　全員に同じ量を配る、または個別に量を指定して一括送金するツールです。  
 
 　　・ソースコード  
@@ -128,7 +128,7 @@
 <br>
 <br>
 
-## ⏳タイムロック配布 (TimeLock)  
+## ⏳タイムロック配布（TimeLock）  
 　　指定時間まで引き出しを制限するロック機能付き配布ツールです。  
 
 　　・ソースコード： [TimeLockAirdrop.sol](./TimeLockAirdrop.sol)    
