@@ -53,16 +53,21 @@
 <br>
 <br>
 ## 電子投票システム (Ballot)  
-　　ブロックチェーン上での電子投票システム（Ballot）ツールです。  
+　　ブロックチェーン上での電子投票システムです。  
 
 　　・ソースコード： [Ballot.sol](./Ballot.sol)  
 　　・検証済みエクスプローラー： [Blockscout（Ballot）](https://explorer.testnet.chain.robinhood.com/address/0x9f4801277A2e2C67896A06E89021e6bcef7c9106?tab=contract)  
 　　　　・**Ballot アドレス** `0x9f4801277A2e2C67896A06E89021e6bcef7c9106`  
+
+
+### 　　📖 操作マニュアル  
+　　　　　具体的な使い方は、GitHub Wikiにてステップバイステップで解説しています。  
+　　　　　* [時間制限付き電子投票システム (Ballot)](https://github.com/shin-kado/My-Robinhood-Airdrop-Project/wiki/Ballot-Manual)
 <br>
 <br>
 
 ## 時間制限付き電子投票システム (TimedBallot)  
-　　ブロックチェーン上での電子投票システム（Ballot）ツールです。  
+　　**「 block.timestamp を利用した、投票期限付きの」**電子投票システムです。  
 
 　　・ソースコード： [TimedBallot.sol](./TimedBallot.sol)  
 　　・検証済みエクスプローラー： [Blockscout（TimedBallot）](https://explorer.testnet.chain.robinhood.com/address/0x52798A5079e9BCf4409D7287a88bA05b1d72D6a0?tab=contract)  
@@ -71,7 +76,7 @@
 
 ### 　　📖 操作マニュアル  
 　　　　　具体的な使い方は、GitHub Wikiにてステップバイステップで解説しています。  
-  　　　　* [時間制限付き電子投票システム (TimedBallot)](https://github.com/shin-kado/My-Robinhood-Airdrop-Project/wiki/TimedBallot-Manual)
+  　　　　　* [時間制限付き電子投票システム (TimedBallot)](https://github.com/shin-kado/My-Robinhood-Airdrop-Project/wiki/TimedBallot-Manual)
 <br>
 <br>
 
@@ -98,7 +103,6 @@
 
 ### 　　📖 操作マニュアル  
 　　　　　具体的な使い方は、GitHub Wikiにてステップバイステップで解説しています。  
-
 　　　　　* [基本・一括配布 (Simple & Advanced)](https://github.com/shin-kado/My-Robinhood-Airdrop-Project/wiki/Simple-&-Advanced-Airdrop-Manual)  
 　　　　　　（※別タブで開くには Ctrl + クリックしてください）  
 <br>
@@ -120,7 +124,6 @@
 
 ### 　　📖 操作マニュアル  
 　　　　　具体的な使い方は、GitHub Wikiにてステップバイステップで解説しています。  
-
 　　　　　* [タイムロック配布 (TimeLock)](https://github.com/shin-kado/My-Robinhood-Airdrop-Project/wiki/TimeLock-Manual)  
 　　　　　　（※別タブで開くには Ctrl + クリックしてください）  
 <br>
@@ -142,7 +145,6 @@
 
 ### 　　📖 操作マニュアル  
 　　　　　具体的な使い方は、GitHub Wikiにてステップバイステップで解説しています。  
-
 　　　　　* [緊急停止機能付き一括配布 (SimpleAirDropPausable)](https://github.com/shin-kado/My-Robinhood-Airdrop-Project/wiki/SimpleAirDropPausable-Manual)  
 　　　　　　（※別タブで開くには Ctrl + クリックしてください）  
 <br>
@@ -162,7 +164,6 @@
 
 ### 　　📖 操作マニュアル  
 　　　　　具体的な使い方は、GitHub Wikiにてステップバイステップで解説しています。  
-
 　　　　　* [複数トークン一括配布 (MultiTokenTransfer)](https://github.com/shin-kado/My-Robinhood-Airdrop-Project/wiki/Multi%E2%80%90Token-Transfer-Manual)  
 　　　　　　（※別タブで開くには Ctrl + クリックしてください）  
 <br>
@@ -182,7 +183,6 @@
 
 ### 　　📖 操作マニュアル  
 　　　　　具体的な使い方は、GitHub Wikiにてステップバイステップで解説しています。  
-
 　　　　　* [ホワイトリスト権限管理付き一括配布 (MultiTokenTransferWithWhitelist)](https://github.com/shin-kado/My-Robinhood-Airdrop-Project/wiki/MultiTokenTransfer-%28ERC20-Batch-Transfer-with-Whitelist%29-Manual)  
 　　　　　　（※別タブで開くには Ctrl + クリックしてください）  
 <br>
