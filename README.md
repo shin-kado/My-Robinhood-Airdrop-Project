@@ -74,7 +74,7 @@
 　　　　　* [管理者権限管理 (Owner)](https://github.com/shin-kado/My-Robinhood-Airdrop-Project/wiki/Owner-Manual)  
 <br>
 <br>
-## 電子投票システム (Ballot)  
+## 🗳️電子投票システム (Ballot)  
 　　ブロックチェーン上での電子投票システムです。  
 
 　　・ソースコード： [Ballot.sol](./Ballot.sol)  
@@ -88,7 +88,7 @@
 <br>
 <br>
 
-## 時間制限付き電子投票システム (TimedBallot)  
+## ⏱️時間制限付き電子投票システム (TimedBallot)  
 　　**「 block.timestamp を利用した、投票期限付きの」**電子投票システムです。  
 
 　　・ソースコード： [TimedBallot.sol](./TimedBallot.sol)  
@@ -102,7 +102,7 @@
 <br>
 <br>
 
-## 基本・一括配布 (Simple & Advanced)  
+## 📦基本・一括配布 (Simple & Advanced)  
 　　全員に同じ量を配る、または個別に量を指定して一括送金するツールです。  
 
 　　・ソースコード  
@@ -130,7 +130,7 @@
 <br>
 <br>
 
-## タイムロック配布 (TimeLock)  
+## ⏳タイムロック配布 (TimeLock)  
 　　指定時間まで引き出しを制限するロック機能付き配布ツールです。  
 
 　　・ソースコード： [TimeLockAirdrop.sol](./TimeLockAirdrop.sol)    
@@ -151,7 +151,7 @@
 <br>
 <br>
 
-## 緊急停止機能付き一括配布（SimpleAirDropPausable）  
+## 🛑緊急停止機能付き一括配布（SimpleAirDropPausable）  
 　管理者による実行制御（Pausable）を搭載した安全性重視の配布ツールです。  
 
 　　・ソースコード： [SimpleAirDropPausable.sol](./SimpleAirDropPausable.sol)  
@@ -172,7 +172,7 @@
 <br>
 <br>
 
-## 複数トークン一括配布（MultiTokenTransfer）  
+## 🎁複数トークン一括配布（MultiTokenTransfer）  
 　複数の異なるERC20トークンを1回のトランザクションで一括して指定のアドレスへ配布するツールです。  
 
 　　・ソースコード： [MultiTokenTransfer.sol](./MultiTokenTransfer.sol)  
@@ -191,7 +191,7 @@
 <br>
 <br>
 
-## ホワイトリスト権限管理付き一括配布（MultiTokenTransferWithWhitelist）  
+## 📜ホワイトリスト権限管理付き一括配布（MultiTokenTransferWithWhitelist）  
 　複数の異なるERC20トークンを1回のトランザクションで一括して指定のアドレスへ配布するツールです。  
 
 　　・ソースコード： [MultiTokenTransferWithWhitelist.sol](./MultiTokenTransferWithWhitelist.sol)  
