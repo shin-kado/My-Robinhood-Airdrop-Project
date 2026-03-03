@@ -22,7 +22,7 @@
 * [📅 定期日付保存 (Storage)](#定期日付保存storage)
 * [🔑 管理者権限管理 (Owner)](#管理者権限管理owner)
 * [🗳️ 電子投票システム (Ballot)](#電子投票システムBallot)
-* [⏱️ 時間制限付き電子投票 (TimedBallot)](#時間制限付き電子投票システムtimedballot)
+* [⏰ 時間制限付き電子投票 (TimedBallot)](#時間制限付き電子投票システムtimedballot)
 * [📦 基本・一括配布 (Simple & Advanced)](#基本一括配布simple--advanced)
 * [⏳ タイムロック配布 (TimeLock)](#タイムロック配布timelock)
 * [🛑 緊急停止機能付き一括配布](#緊急停止機能付き一括配布simpleairdroppausable)
@@ -86,7 +86,7 @@
 <br>
 <br>
 
-## 時間制限付き電子投票システム（TimedBallot）  
+## ⏰時間制限付き電子投票システム（TimedBallot）  
 　　**「 block.timestamp を利用した、投票期限付きの」**電子投票システムです。  
 
 　　・ソースコード： [TimedBallot.sol](./TimedBallot.sol)  
