@@ -10,6 +10,12 @@
 > 本プロジェクトはテストネット用です。  
 > **MetaMaskで赤い警告（エラー）が表示された場合実行を中断し、各マニュアルに従って設定を確認してください。**
 <br>
+<br>
+
+### [📖 プロジェクト総合マニュアル (GitHub Wiki)](https://github.com/shin-kado/My-Robinhood-Airdrop-Project/wiki)  
+　　　上記リンクからご確認できます  
+<br>
+<br>
 
 ## 🪙 Base Token: MyToken (MRT)  
 　　すべての配布プロジェクトの基盤となる自作ERC-20トークンです。  
