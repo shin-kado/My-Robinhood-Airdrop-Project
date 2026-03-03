@@ -31,8 +31,6 @@
 <br>
 <br>
 
-
-
 ## 🪙Base Token: MyToken (MRT)  
 　　すべての配布プロジェクトの基盤となる自作ERC-20トークンです。  
 
