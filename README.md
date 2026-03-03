@@ -32,7 +32,7 @@
 <br>
 
 ## 📜コントラクト実績  
-　　・ [PDF版](./docs/Contract_Deployment_Record.pdf)  
+　　・ [Contract_Deployment_Record.pdf](./docs/Contract_Deployment_Record.pdf)  
 <br>
 <br>
 
