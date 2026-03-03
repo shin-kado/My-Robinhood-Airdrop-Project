@@ -86,7 +86,7 @@
 <br>
 <br>
 
-## 時間制限付き電子投票システム (TimedBallot)  
+## ⏱️時間制限付き電子投票システム (TimedBallot)  
 　　**「 block.timestamp を利用した、投票期限付きの」**電子投票システムです。  
 
 　　・ソースコード： [TimedBallot.sol](./TimedBallot.sol)  
