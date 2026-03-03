@@ -26,10 +26,12 @@
 * [📦 基本・一括配布 (Simple & Advanced)](#基本一括配布-simple--advanced)
 * [⏳ タイムロック配布 (TimeLock)](#タイムロック配布-timelock)
 * [🛑 緊急停止機能付き一括配布](#緊急停止機能付き一括配布simpleairdroppausable)
-* [複数トークン一括配布](#複数トークン一括配布MultiTokenTransfer)
-* [ホワイトリスト権限管理付き一括配布](#ホワイトリスト権限管理付き一括配布MultiTokenTransferWithWhitelist)
+* [🎁複数トークン一括配布](#複数トークン一括配布MultiTokenTransfer)
+* [📜ホワイトリスト権限管理付き一括配布](#ホワイトリスト権限管理付き一括配布MultiTokenTransferWithWhitelist)
 <br>
 <br>
+
+
 
 ## 🪙 Base Token: MyToken (MRT)  
 　　すべての配布プロジェクトの基盤となる自作ERC-20トークンです。  
