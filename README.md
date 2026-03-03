@@ -21,7 +21,7 @@
 * [🪙 Base Token (MyToken)](#base-token-mytokenmrt)
 * [📅 定期日付保存 (Storage)](#定期日付保存storage)
 * [🔑 管理者権限管理 (Owner)](#管理者権限管理owner)
-* [🗳️ 電子投票システム (Ballot)](#電子投票システムBallot)
+* [🗳️ 電子投票システム (Ballot)](#-電子投票システムBallot)
 * [⏰ 時間制限付き電子投票 (TimedBallot)](#時間制限付き電子投票システムtimedballot)
 * [📦 基本・一括配布 (Simple & Advanced)](#基本一括配布simple--advanced)
 * [⏳ タイムロック配布 (TimeLock)](#タイムロック配布timelock)
