@@ -56,8 +56,7 @@
 
 ### 　　📖 操作マニュアル  
 　　　　　具体的な使い方は、GitHub Wikiにてステップバイステップで解説しています。  
-　　　　　* [定期日付保存 (Storage)](https://github.com/shin-kado/My-Robinhood-Airdrop-Project/wiki/Weekly-Routine-%28Storage%29)  
-     
+　　　　　* [定期日付保存 (Storage)](https://github.com/shin-kado/My-Robinhood-Airdrop-Project/wiki/Weekly-Routine-%28Storage%29)       
 　　　　　* [PDF版](./docs/1.Weekly%20Routine%20(Storage)%20Manual.pdf)  
 <br>
 <br>
@@ -72,7 +71,6 @@
 ### 　　📖 操作マニュアル  
 　　　　　具体的な使い方は、GitHub Wikiにてステップバイステップで解説しています。  
 　　　　　* [管理者権限管理 (Owner)](https://github.com/shin-kado/My-Robinhood-Airdrop-Project/wiki/Owner-Manual)  
-
 　　　　　* [PDF版](./docs/2.Owner%20Manual.pdf)  
 <br>
 <br>
@@ -87,7 +85,6 @@
 ### 　　📖 操作マニュアル  
 　　　　　具体的な使い方は、GitHub Wikiにてステップバイステップで解説しています。  
 　　　　　* [時間制限付き電子投票システム (Ballot)](https://github.com/shin-kado/My-Robinhood-Airdrop-Project/wiki/Ballot-Manual)
-
 　　　　　* [PDF版](./docs/3.Ballot%20Manual.pdf)  
 <br>
 <br>
@@ -103,8 +100,7 @@
 ### 　　📖 操作マニュアル  
 　　　　　具体的な使い方は、GitHub Wikiにてステップバイステップで解説しています。  
   　　　　　* [時間制限付き電子投票システム (TimedBallot)](https://github.com/shin-kado/My-Robinhood-Airdrop-Project/wiki/TimedBallot-Manual)
-
-　　　　　* [PDF版](./docs/4.TimedBallot%20Manual.pdf)  
+　　　　　　* [PDF版](./docs/4.TimedBallot%20Manual.pdf)  
 <br>
 <br>
 
@@ -133,7 +129,6 @@
 　　　　　具体的な使い方は、GitHub Wikiにてステップバイステップで解説しています。  
 　　　　　* [基本・一括配布 (Simple & Advanced)](https://github.com/shin-kado/My-Robinhood-Airdrop-Project/wiki/Simple-&-Advanced-Airdrop-Manual)  
 　　　　　　（※別タブで開くには Ctrl + クリックしてください）  
-
 　　　　　* [PDF版](./docs/5.Simple&Advanced%20Manual.pdf)  
 <br>
 <br>
@@ -155,9 +150,8 @@
 ### 　　📖 操作マニュアル  
 　　　　　具体的な使い方は、GitHub Wikiにてステップバイステップで解説しています。  
 　　　　　* [タイムロック配布 (TimeLock)](https://github.com/shin-kado/My-Robinhood-Airdrop-Project/wiki/TimeLock-Manual)  
-
 　　　　　* [PDF版](./docs/6.TimeLockAirdrop%20Manual.pdf)  
-　　      （※別タブで開くには Ctrl + クリックしてください）  
+　　　      （※別タブで開くには Ctrl + クリックしてください）  
 <br>
 <br>
 
@@ -178,7 +172,6 @@
 ### 　　📖 操作マニュアル  
 　　　　　具体的な使い方は、GitHub Wikiにてステップバイステップで解説しています。  
 　　　　　* [緊急停止機能付き一括配布 (SimpleAirDropPausable)](https://github.com/shin-kado/My-Robinhood-Airdrop-Project/wiki/SimpleAirDropPausable-Manual)  
-
 　　　　　* [PDF版](./docs/7.SimpleAirDropPausable%20Manual.pdf)  
 　　　　　　（※別タブで開くには Ctrl + クリックしてください）  
 <br>
@@ -199,7 +192,6 @@
 ### 　　📖 操作マニュアル  
 　　　　　具体的な使い方は、GitHub Wikiにてステップバイステップで解説しています。  
 　　　　　* [複数トークン一括配布 (MultiTokenTransfer)](https://github.com/shin-kado/My-Robinhood-Airdrop-Project/wiki/Multi%E2%80%90Token-Transfer-Manual)  
-
 　　　　　* [PDF版](./docs/8.Multi-Token%20Transfer%20Manual.pdf)  
 　　　　　　（※別タブで開くには Ctrl + クリックしてください）  
 <br>
@@ -220,7 +212,6 @@
 ### 　　📖 操作マニュアル  
 　　　　　具体的な使い方は、GitHub Wikiにてステップバイステップで解説しています。  
 　　　　　* [ホワイトリスト権限管理付き一括配布 (MultiTokenTransferWithWhitelist)](https://github.com/shin-kado/My-Robinhood-Airdrop-Project/wiki/MultiTokenTransfer-%28ERC20-Batch-Transfer-with-Whitelist%29-Manual)  
-
 　　　　　* [PDF版](./docs/9.MultiTokenTransferWithWhitelist%20Manual.pdf)  
 　　　　　　（※別タブで開くには Ctrl + クリックしてください）  
 <br>
