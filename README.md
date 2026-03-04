@@ -33,7 +33,7 @@
 <br>
 
 ## 📜コントラクトデプロイ実績 (PDF)  
-　　・ [Contract_Deployment_Record.pdf](./docs/Contract_Deployment_Record.pdf)  
+　　・ [My_Robinhood_Airdrop_Project_Deployment_Ledger.pdf](./docs/My_Robinhood_Airdrop_Project_Deployment_Ledger.pdf)  
 <br>
 <br>
 
