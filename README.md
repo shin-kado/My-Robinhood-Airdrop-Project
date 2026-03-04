@@ -57,13 +57,11 @@
 　　・**Status**: **Verified** (ソースコード認証済み)  
 　　・**On-chain Evidence**: ERC20, Airdrop, および ERC721 の実装と検証を完了した不変の証拠。  
 　　・**Metadata**: [JSON Metadata (Hosted on GitHub)](https://raw.githubusercontent.com/shin-kado/My-Robinhood-Airdrop-Project/refs/heads/main/docs/badge.json)  
-
     
 ### 　　📖 操作マニュアル  
 　　　　　具体的な使い方は、GitHub Wikiにてステップバイステップで解説しています。  
 　　　　　　* [Achievements / NFT実績証明 (ERC-721)](https://github.com/shin-kado/My-Robinhood-Airdrop-Project/wiki/Achievement-NFT-(ERC%E2%80%90721)-Implementation)  
-　　　　　　* [PDF版](./docs/2.Owner%20Manual.pdf)  
-
+　　　　　　* [PDF版](./docs/10.Achievement_NFT_(ERC-721)_Implementation.pdf)  
 
 > [!NOTE]
 > このNFTは、開発者がスマートコントラクトのデプロイ、メタデータの管理、およびエクスプローラーでの検証プロセスを完全にマスターしたことを示すデジタルバッジです。
