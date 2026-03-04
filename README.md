@@ -54,9 +54,9 @@
 　　・ソースコード： [MyToken.sol](./contracts/MyNFT.sol)  
 　　・フラット化済みコード (Verify用)： [myToken_flattened.sol](./flattened/MyNFT_flattened.sol)  
 　　・**Achievement NFT**: [Robinhood Early Developer Badge](https://explorer.testnet.chain.robinhood.com/address/0x680AeA01Ee91170d1927Cccb6DA0067875D1e1fC?tab=contract)
-- **Status**: **Verified** (ソースコード認証済み)
-- **On-chain Evidence**: ERC20, Airdrop, および ERC721 の実装と検証を完了した不変の証拠。
-- **Metadata**: [JSON Metadata (Hosted on GitHub)](https://raw.githubusercontent.com/shin-kado/My-Robinhood-Airdrop-Project/refs/heads/main/docs/badge.json)
+　　・**Status**: **Verified** (ソースコード認証済み)
+　　・**On-chain Evidence**: ERC20, Airdrop, および ERC721 の実装と検証を完了した不変の証拠。
+　　・**Metadata**: [JSON Metadata (Hosted on GitHub)](https://raw.githubusercontent.com/shin-kado/My-Robinhood-Airdrop-Project/refs/heads/main/docs/badge.json)  
 
 > [!NOTE]
 > このNFTは、開発者がスマートコントラクトのデプロイ、メタデータの管理、およびエクスプローラーでの検証プロセスを完全にマスターしたことを示すデジタルバッジです。
