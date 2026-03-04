@@ -1,0 +1,12 @@
+{
+  "name": "Robinhood Early Developer Badge",
+  "description": "Robinhood Testnetでのコントラクト開発と検証を完遂したことを証明します。",
+  "image": "https://raw.githubusercontent.com/shin-kado/My-Robinhood-Airdrop-Project/main/images/badge_sample.png",
+  "external_url": "https://github.com/shin-kado/My-Robinhood-Airdrop-Project",
+  "attributes": [
+    {
+      "trait_type": "Achievement",
+      "value": "Smart Contract Suite"
+    }
+  ]
+}
