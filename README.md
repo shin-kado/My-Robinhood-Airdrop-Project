@@ -12,7 +12,7 @@ All contracts were deployed on the Robinhood Chain Testnet. You can verify the t
 
 | Contract Name | Type | Key Features | Block Explorer |
 |:---|:---|:---|:---|
-| **Developer Badge** | NFT (ERC-721) | Achievement NFT for early developers | [View on Explorer](https://explorer.testnet.robinhood.com/address/0x680AeA01Ee91170d1927Cccb6DA0067875D1e1fC) |
+| **Developer Badge** | NFT (ERC-721) | Achievement NFT for early developers | [View on Explorer](https://explorer.testnet.chain.robinhood.com/address/0x680AeA01Ee91170d1927Cccb6DA0067875D1e1fC) |
 | **Project Token** | ERC-20 | Standard utility token with minting | [View on Explorer](https://explorer.testnet.robinhood.com/address/0x196eCa072F41571233E4F6D215F89A3446DD569b) |
 | **Timed Voting** | Governance | On-chain voting with time constraints | [View on Explorer](https://explorer.testnet.robinhood.com/address/0x52798A5079e9BCf4409D7287a88bA05b1d72D6a0) |
 | **Batch Airdrop** | Utility | Multi-address token distribution | [View on Explorer](https://explorer.testnet.robinhood.com/address/0xa547a0B7c0CA10fcf9E904eB9656942E3578e1D7) |
