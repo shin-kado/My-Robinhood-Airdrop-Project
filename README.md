@@ -24,10 +24,13 @@ I have compiled my learnings and a step-by-step guide in the Wiki section. This 
 
 👉 **[Visit the Project Wiki (English/Japanese)](https://github.com/shin-kado/My-Robinhood-Airdrop-Project/wiki)**
 
-## 📈 Challenges & Learnings
-As a solo developer, I navigated through various technical hurdles, including:
-- Debugging contract interactions in a new L2 environment.
-- Optimizing gas costs for batch transactions.
-- Bridge operations between Arbitrum and Robinhood Chain.
+## 📈 Japanese Solo Developer's Journey
 
-My goal is to contribute to the growth of the Robinhood Chain community by providing accessible, high-quality technical examples.
+Starting as a complete beginner in blockchain development, I took on this challenge to master the Robinhood Chain ecosystem. Within a short period, I successfully navigated through various technical hurdles:
+
+- **Overcoming Errors**: Successfully debugged multiple deployment failures, turning each "Failed" transaction into a valuable learning opportunity.
+- **Community Focus**: To support fellow developers in Japan, I took the initiative to create a bilingual roadmap, bridging the gap between global technology and the local community.
+- **Future Commitment**: This project is just the beginning. I am committed to growing alongside the Robinhood Chain and contributing more advanced solutions in the future.
+
+---
+*For more details on the development process and step-by-step guides, please visit the [Project Wiki](https://github.com/shin-kado/My-Robinhood-Airdrop-Project/wiki).*
