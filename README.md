@@ -1,5 +1,5 @@
 # My Robinhood Chain Testnet Development Project  
-# Robinhood Chain Testnet 開発プロジェクト  
+# My Robinhood Chain Testnet 開発プロジェクト  
 
 This repository documents my journey and technical achievements as an individual developer on the Robinhood Chain Testnet. I have successfully deployed 10 different types of smart contracts and created a comprehensive guide for the developer community.  
 
