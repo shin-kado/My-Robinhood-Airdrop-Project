@@ -2,8 +2,20 @@
 # My Robinhood Chain Testnet 開発プロジェクト  
 
 This repository documents my journey and technical achievements as an individual developer on the Robinhood Chain Testnet. I have successfully deployed 10 different types of smart contracts and created a comprehensive guide for the developer community.  
-
 （このリポジトリは、Robinhood Chain Testnetにおける個人開発者としての私の歩みと技術的成果を記録したものです。これまでに10種類のスマートコントラクトのデプロイに成功し、開発者コミュニティのための包括的なガイドを作成しました。）  
+<br>
+
+## 🪛Smart Contract Implementation / スマートコントラクトの実装  
+　　Use the following source code to compile and deploy on Remix IDE.    
+　　（以下のソースコードを使用し、Remix IDEでコンパイル・デプロイを行う。）  
+  
+　　　　　▪ Contract Name: MultiTokenTransfer  
+　　　　　▪ Compiler Version: v0.8.31 (or latest v0.8.x)  
+　　　　　▪ Optimization: Enabled (Runs: 200)  
+　　　　　▪ EVM Version: osaka (Recommended / 推奨)  
+              
+　　　Note: The IERC20 interface definition is mandatory to interact with other tokens.  
+　　　　　（【注意】 他のトークンを操作するため、IERC20インターフェースの定義が必須。）
 
 ## 🚀 Key Achievements / 主な成果  
 
