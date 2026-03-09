@@ -5,7 +5,7 @@ This repository documents my journey and technical achievements as an individual
 （このリポジトリは、Robinhood Chain Testnetにおける個人開発者としての私の歩みと技術的成果を記録したものです。これまでに10種類のスマートコントラクトのデプロイに成功し、開発者コミュニティのための包括的なガイドを作成しました。）  
 <br>
 
-## 🪛Smart Contract Implementation / スマートコントラクトの実装  
+## ⚙️Smart Contract Implementation / スマートコントラクトの実装  
 　　Use the following source code to compile and deploy on Remix IDE.    
 　　（以下のソースコードを使用し、Remix IDEでコンパイル・デプロイを行う。）  
   
