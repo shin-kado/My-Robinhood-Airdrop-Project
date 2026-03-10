@@ -98,3 +98,4 @@ This repository documents my journey and technical achievements as an individual
 *For more details on the development process and step-by-step guides, please visit the [Project Wiki](https://github.com/shin-kado/My-Robinhood-Airdrop-Project/wiki).*  
 
 （開発プロセスの詳細やガイドについては、[プロジェクトWiki](https://github.com/shin-kado/My-Robinhood-Airdrop-Project/wiki) をご覧ください。）  
+## Environment Setup: Completed
