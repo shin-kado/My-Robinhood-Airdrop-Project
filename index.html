@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web3 Asset Monitor</title>
+    
+    <script src="tokens.js"></script>
+
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; text-align: center; background: #f0f2f5; padding: 40px; color: #333; }
+        .box { background: white; padding: 30px; border-radius: 20px; display: inline-block; text-align: left; box-shadow: 0 10px 25px rgba(0,0,0,0.05); width: 400px; border-top: 6px solid #00c805; }
+        h2 { margin-top: 0; color: #00c805; font-size: 1.4em; border-bottom: 1px solid #eee; padding-bottom: 12px; }
+        .item { padding: 10px 0; border-bottom: 1px solid #f9f9f9; display: flex; justify-content: space-between; align-items: center; }
+        .label { font-size: 0.8em; color: #888; font-weight: bold; text-transform: uppercase; }
+        
+        /* 💡 NetworkやAddressなどの通常の文字情報 */
+        .val-info { font-family: 'Courier New', monospace; font-weight: bold; color: #111; }
+        
+        /* 💡 数量（Balance）専用の強調スタイル（トークン残高と統一） */
+        .val-balance { font-weight: bold; color: #00c805; font-size: 1.1em; }
+
+        .token-section { margin-top: 25px; }
+        .token-row { background: #fff; border: 1px solid #eee; margin-top: 8px; padding: 12px 15px; border-radius: 10px; display: flex; justify-content: space-between; align-items: center; }
+        .token-name { font-weight: bold; color: #333; background: #e8f9e8; padding: 2px 8px; border-radius: 4px; font-size: 0.9em; }
+        .no-assets { font-size: 0.85em; color: #999; text-align: center; margin-top: 15px; font-style: italic; }
+    </style>
+</head>
+<body>
+
+<div class="box">
+    <h2>Web3 Asset Monitor</h2>
+    
+    <div class="item">
+        <span class="label">Network</span>
+        <span id="netName" class="val-info">Syncing...</span>
+    </div>
+    <div class="item">
+        <span class="label">Wallet Address</span>
+        <span id="myAddr" class="val-info">-</span>
+    </div>
+    <div class="item">
+        <span class="label">Native Balance</span>
+        <span id="myBal" class="val-balance">-</span>
+    </div>
+    
+    <div class="token-section">
+        <p class="label" style="color:#00c805;">▼ Token Assets</p>
+        <div id="tokenList"></div>
+    </div>
+</div>
+
+<script>
+    async function sync() {
+        if (!window.ethereum) {
+            document.getElementById('netName').innerText = "MetaMask Not Found";
+            return;
+        }
+        try {
+            const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+            const addr = accounts[0];
+            const chainIdHex = await window.ethereum.request({ method: 'eth_chainId' });
+            const netId = parseInt(chainIdHex, 16);
+
+            const tokens = MASTER_TOKEN_LIST[netId] || [];
+
+            const netNames = { 
+                46630: "Robinhood Chain", 
+                56: "BNB Smart Chain", 
+                1: "Ethereum Mainnet" 
+            };
+            
+            document.getElementById('netName').innerText = netNames[netId] || "Other Network";
+            document.getElementById('myAddr').innerText = addr.slice(0,6) + "..." + addr.slice(-4);
+
+            const balHex = await window.ethereum.request({ method: 'eth_getBalance', params: [addr, 'latest'] });
+            const unit = (netId === 56) ? "BNB" : "ETH";
+            // 💡 数値を整形して表示
+            const nativeAmt = (Number(BigInt(balHex)) / 1e18).toLocaleString(undefined, {minimumFractionDigits: 4});
+            document.getElementById('myBal').innerText = `${nativeAmt} ${unit}`;
+
+            let html = "";
+            for (const t of tokens) {
+                const data = "0x70a08231" + addr.substring(2).padStart(64, '0');
+                try {
+                    const hex = await window.ethereum.request({ method: 'eth_call', params: [{ to: t.a, data: data }, 'latest'] });
+                    
+                    if (hex && hex !== '0x' && hex !== '0x' + '0'.repeat(64)) {
+                        const val = Number(BigInt(hex)) / 1e18;
+                        if (val > 0) {
+                            html += `
+                                <div class="token-row">
+                                    <span class="token-name">${t.s}</span>
+                                    <span class="val-balance">${val.toLocaleString(undefined, {minimumFractionDigits: 2})}</span>
+                                </div>`;
+                        }
+                    }
+                } catch (e) { console.warn("Token check skipped:", t.s); }
+            }
+            document.getElementById('tokenList').innerHTML = html || '<div class="no-assets">No assets detected.</div>';
+
+        } catch (e) { console.error("Sync error:", e); }
+    }
+
+    if (window.ethereum) {
+        window.ethereum.on('chainChanged', () => window.location.reload());
+        window.ethereum.on('accountsChanged', () => window.location.reload());
+    }
+    
+    window.onload = sync;
+</script>
+</body>
+</html>
