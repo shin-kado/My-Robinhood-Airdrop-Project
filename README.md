@@ -2,12 +2,24 @@
 # My Robinhood Chain Testnet 開発プロジェクト  
 <br>
 
-This repository documents my journey and technical achievements as an individual developer on the Robinhood Chain Testnet. I have successfully deployed 10 different types of smart contracts and created a comprehensive guide for the developer community.  
-（このリポジトリは、Robinhood Chain Testnetにおける個人開発者としての私の歩みと技術的成果を記録したものです。これまでに10種類のスマートコントラクトのデプロイに成功し、開発者コミュニティのための包括的なガイドを作成しました。）  
+This repository documents my journey and technical achievements as an individual developer on the Robinhood Chain Testnet. I have successfully deployed 10 different types of smart contracts, developed interactive Web3 applications, and created a comprehensive guide for the developer community.  
+（このリポジトリは、Robinhood Chain Testnetにおける個人開発者としての私の歩みと技術的成果を記録したものです。これまでに10種類のスマートコントラクトのデプロイに成功しただけでなく、対話的なWeb3アプリケーションの開発を行い、開発者コミュニティのための包括的なガイドを作成しました。）  
+<br>
+
+## 🌐 Live Web Applications / 公開中のWebアプリ  
+　　I have developed and hosted web-based tools to interact with the Robinhood Chain ecosystem.  
+　　（Robinhood Chainエコシステムと連携するWebベースのツールを開発・公開しています。）  
+
+　　👉 **[Launch App Portal / アプリポータルを起動する](https://shin-kado.github.io/My-Robinhood-Airdrop-Project/web-app/)**  
+
+　　**Currently Available Tools:**  
+　　　　Web3 Asset Monitor (Dashboard) / Web3アセットモニター**  
+　　　　　　A visual dashboard to track testnet assets and token distributions.  
+　　　　　　（テストネット上の資産やトークン配布を視覚的に管理するダッシュボード。）  
 <br>
 
 ## ⚙️ Smart Contract Implementation / スマートコントラクトの実装  
-　　Use the following source code to compile and deploy on Remix IDE.    
+　　Use the following source code to compile and deploy on Remix IDE.     
 　　（以下のソースコードを使用し、Remix IDEでコンパイル・デプロイを行う。）  
   
 　　　　　▪ Contract Name: MultiTokenTransfer  
@@ -20,16 +32,16 @@ This repository documents my journey and technical achievements as an individual
 <br>
 
 ## 🚀 Key Achievements / 主な成果  
-- **10 Smart Contracts Deployed / 10個のスマートコントラクトをデプロイ**  
-　　Ranging from basic ERC-20 to advanced voting and batch processing systems.  
+- **Interactive Web Dashboard / 対話型Webダッシュボードの開発** 　　Developed a custom frontend to visualize on-chain data, enhancing user experience.  
+　　（オンチェーンデータを視覚化するカスタムフロントエンドを開発し、ユーザー体験を向上させました。）  
+
+- **10 Smart Contracts Deployed / 10個のスマートコントラクトをデプロイ** 　　Ranging from basic ERC-20 to advanced voting and batch processing systems.  
 　　（基本的なERC-20から、高度な投票システム、一括送金システムまで幅広く対応しています。）  
 
-- **Bilingual Documentation / 日英併記のドキュメント**  
-　　Created a step-by-step developer roadmap in both English and Japanese to support global and local adoption.  
+- **Bilingual Documentation / 日英併記のドキュメント** 　　Created a step-by-step developer roadmap in both English and Japanese to support global and local adoption.  
 　　（世界中および国内のユーザーをサポートするため、ステップバイステップの開発ロードマップを日英両言語で作成しました。）  
 
-- **Transparency / 透明性**  
-　　All transaction hashes and contract addresses are documented for verification.  
+- **Transparency / 透明性** 　　All transaction hashes and contract addresses are documented for verification.  
 　　（すべてのトランザクションハッシュとコントラクトアドレスを記録し、検証可能な状態で公開しています。）  
 <br>
 
@@ -48,8 +60,7 @@ This repository documents my journey and technical achievements as an individual
 | **Batch Airdrop** | Utility | Multi-address token distribution<br>複数アドレスへのトークン一括配布 | [View on Explorer](https://explorer.testnet.chain.robinhood.com/address/0xa547a0B7c0CA10fcf9E904eB9656942E3578e1D7) |
 | *(Other 6 contracts)* | Various | See Deployment Ledger for full list<br>詳細はデプロイ台帳を参照 | [View Ledger](./My_Robinhood_Airdrop_Project_Deployment_Ledger.pdf) |
 
-> **Note on NFT Metadata / NFTメタデータに関する注意**  
->　　Due to the current testnet environment, the NFT image may appear blank in some wallets.  
+> **Note on NFT Metadata / NFTメタデータに関する注意** >　　Due to the current testnet environment, the NFT image may appear blank in some wallets.  
 >　　However, the on-chain metadata and ownership are fully verified.  
 >
 >　　（現在のテストネット環境の影響で、一部のウォレットでNFT画像が空白に見える場合があります。  
@@ -64,8 +75,7 @@ This repository documents my journey and technical achievements as an individual
 　　（これまでの学びをステップバイステップガイドとしてWikiセクションにまとめました。  
 　　新しい開発者がRobinhood Chainのエコシステムをスムーズに理解できるよう設計されています。）  
 
-　　👉 **[Visit the Project Wiki (English/Japanese) / プロジェクトWikiはこちら](https://github.com/shin-kado/My-Robinhood-Airdrop-Project/wiki)**  
-<br>
+　　👉 **[Visit the Project Wiki (English/Japanese) / プロジェクトWikiはこちら](https://github.com/shin-kado/My-Robinhood-Airdrop-Project/wiki)** <br>
 
 ## 📈 Japanese Solo Developer's Journey / 日本人個人開発者の挑戦  
 　　Starting as a complete beginner in blockchain development,  
@@ -76,26 +86,20 @@ This repository documents my journey and technical achievements as an individual
 　　短期間のうちに、様々な技術的ハードルを乗り越えることができました。）  
 <br>
 
-- **Overcoming Errors / エラーの克服**  
-　　Successfully debugged multiple deployment failures,  
+- **Overcoming Errors / エラーの克服** 　　Successfully debugged multiple deployment failures,  
 　　turning each "Failed" transaction into a valuable learning opportunity.  
 　　（複数のデプロイ失敗をデバッグし、すべての「失敗」トランザクションを貴重な学習の機会に変えました。）  
 
-- **Community Focus / コミュニティへの貢献**  
-　　To support fellow developers in Japan,  
+- **Community Focus / コミュニティへの貢献** 　　To support fellow developers in Japan,  
 　　I took the initiative to create a bilingual roadmap,  
 　　bridging the gap between global technology and the local community.  
 　　（日本の仲間の開発者をサポートするため日英併記のロードマップを作成し、  
 　　グローバルな技術とローカルコミュニティの橋渡しをしました。）  
 
-- **Future Commitment / 将来へのコミットメント**  
-　　This project is just the beginning.  
+- **Future Commitment / 将来へのコミットメント** 　　This project is just the beginning.  
 　　I am committed to growing alongside the Robinhood Chain and contributing more advanced solutions in the future.  
 　　（このプロジェクトはまだ始まりに過ぎません。  
 　　今後もRobinhood Chainと共に成長し、より高度なソリューションを提供していくことを約束します。）  
 
 ---
-*For more details on the development process and step-by-step guides, please visit the [Project Wiki](https://github.com/shin-kado/My-Robinhood-Airdrop-Project/wiki).*  
-
-（開発プロセスの詳細やガイドについては、[プロジェクトWiki](https://github.com/shin-kado/My-Robinhood-Airdrop-Project/wiki) をご覧ください。）  
-## Environment Setup: Completed
+*For more details on the development process and step-by-step guides, please visit the [Project Wiki](https://github.com/shin-kado/My-Robinhood-Airdrop-Project/wiki).* （開発プロセスの詳細やガイドについては、[プロジェクトWiki](https://github.com/shin-kado/My-Robinhood-Airdrop-Project/wiki) をご覧ください。）
