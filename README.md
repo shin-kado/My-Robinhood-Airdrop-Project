@@ -19,9 +19,9 @@ This repository documents my journey and technical achievements as an individual
 <br>
 
 > ### Notice  
-> Note on Security Alerts: > When accessing the portal, security software (such as Norton) may display a "Dangerous Site" warning. This is a false positive due to the site being newly created and containing Web3-related terms. Please rest assured that this is a safe development portfolio.  
->
->（セキュリティ警告について：アクセス時に警告が表示されることがありますが、サイトが新しくWeb3関連用語を含んでいるための誤検知です。安全な開発実績サイトですのでご安心ください。）  
+> Note on Security Alerts / セキュリティ警告について  
+> When accessing the portal, security software (such as Norton) may display a "Dangerous Site" warning. This is a false positive due to the site being newly created and containing Web3-related terms. Please rest assured that this is a safe development portfolio.  
+>（アクセス時に警告が表示されることがありますが、サイトが新しくWeb3関連用語を含んでいるための誤検知です。安全な開発実績サイトですのでご安心ください。）  
 <br>
 
 ## ⚙️ Smart Contract Implementation / スマートコントラクトの実装  
