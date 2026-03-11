@@ -9,7 +9,7 @@ contract SimpleStorage {
         storedData = x;
     }
 
-    // テストです保存された数字を見る関数（storedDataがpublicなので自動で作られますが、明示的にも書けます）
+    // 保存された数字を見る関数（storedDataがpublicなので自動で作られますが、明示的にも書けます）
     function get() public view returns (uint256) {
         return storedData;
     }
