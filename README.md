@@ -25,34 +25,20 @@ This repository documents my journey and technical achievements as an individual
 <br>
 
 ## ⚙️ Smart Contract Implementation / スマートコントラクトの実装  
-　To ensure transparency and reproducibility, the following environment was used for development.  
-　（透明性と再現性を確保するため、以下の環境で開発を行っています。）    
+I utilize a professional hybrid workflow for developing and deploying secure smart contracts.  
+（セキュアなスマートコントラクトの開発とデプロイのために、プロフェッショナルなハイブリッド・ワークフローを採用しています。）  
 
-| Category (カテゴリ) | Details (詳細) |
-|:---|:---|
-| **Network** | Robinhood Chain Testnet |
-| **Chain ID** | 46630 |
-| **License ID** | MIT |
-| **Solidity Version** | 0.8.20 (Source Code Level) |
-| **Compiler Version** | 0.8.31+commit.fd3a2265 |
-| **EVM Version** | Default (osaka) |
-| **Optimization** | No |
-| **IDE / Editor** | **VS Code** (Local) linked with **Remix IDE** via `remixd` |
-| **Wallet** | MetaMask |
-| **Explorer** | Robinhood Chain Testnet Explorer |
+- **Development Environment / 開発環境**  
+　　**VS Code** (Local) synchronized with **Remix IDE** via `remixd`.  
+　　（`remixd` を介して **VS Code** と **Remix IDE** を同期させたローカル・Webハイブリッド環境。）
+  
+- **Standards & Security / 標準とセキュリティ**  
+　All contracts are verified on the Explorer, adhering to Solidity 0.8.20+ standards and MIT license.  
+　（すべての契約はエクスプローラー上で検証済みであり、Solidity 0.8.20+基準およびMITライセンスに準拠しています。）  
 
-> ### Workflow Note / ワークフローについて  
-> By synchronizing VS Code with Remix IDE, I have established a hybrid development workflow that ensures local source code integrity while leveraging cloud-based deployment tools.  
->（VS CodeとRemixを同期させることで、ローカルでのコード管理の安全性と、クラウドでのデプロイ利便性を両立したハイブリッドな開発体制を構築しています。）  
-
-> ### Technical Note on Interfaces / インターフェースに関するテクニカルノート  
-> While not required for basic storage, the IERC20 interface definition is mandatory when interacting with external tokens (e.g., in my Batch Airdrop project).
->（基本的なストレージ機能には不要ですが、外部トークンを操作する場合（一括送金プロジェクトなど）には IERC20インターフェースの定義 が必須となります。）  
-
-> ### Development Policy / 開発方針  
-> Security: All contracts are verified on-chain to ensure transparency.
-> Modular Design: IERC20 interfaces are implemented for cross-contract interactions where necessary.
-> （透明性確保のため全契約を検証済み。必要に応じてIERC20を実装し、コントラクト間の連携を可能にしています。）  
+> 📖 **Detailed Technical Specifications / 詳細な技術仕様**  
+> For compiler versions, EVM configurations, and specific interface requirements (IERC20), please visit our **[Technical Environment Wiki](https://github.com/shin-kado/My-Robinhood-Airdrop-Project/wiki)**.  
+> （コンパイラバージョン、EVM構成、IERC20インターフェースの要件などの詳細は、**[プロジェクトWiki]** をご参照ください。）  
 <br>
 
 ## 🚀 Key Achievements / 主な成果  
