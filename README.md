@@ -70,7 +70,7 @@ This repository documents my journey and technical achievements as an individual
 　　以下のリンクから各トランザクションを確認できます。）  
 <br>
 
-| Contract Name (コントラクト名) | Type (種別) | Key Features (主な特徴) | Block Explorer (エクスプローラー) |
+| Contract Name<br>(コントラクト名) | Type (種別) | Key Features (主な特徴) | Block Explorer<br>(エクスプローラー) |
 |:---|:---|:---|:---|
 | **Advanced Storage** | Storage | Access control for String/Uint data<br>文字・数値データの権限管理 | [View on Explorer](https://explorer.testnet.chain.robinhood.com/address/0x7212dD5F5a2062a412dc3441A1571A2c335CD7fF) |
 | **Developer Badge** | NFT (ERC-721) | Achievement NFT for early developers<br>初期開発者向けの実績NFT | [View on Explorer](https://explorer.testnet.chain.robinhood.com/address/0x680AeA01Ee91170d1927Cccb6DA0067875D1e1fC) |
