@@ -25,16 +25,34 @@ This repository documents my journey and technical achievements as an individual
 <br>
 
 ## ⚙️ Smart Contract Implementation / スマートコントラクトの実装  
-　　Use the following source code to compile and deploy on Remix IDE.     
-　　（以下のソースコードを使用し、Remix IDEでコンパイル・デプロイを行う。）  
-  
-　　　　　▪ Contract Name: MultiTokenTransfer  
-　　　　　▪ Compiler Version: v0.8.31 (or latest v0.8.x)  
-　　　　　▪ Optimization: Disabled (No)  
-　　　　　▪ EVM Version: osaka (Recommended / 推奨)  
-      
-　　　Note: The IERC20 interface definition is mandatory to interact with other tokens.  
-　　　（【注意】 他のトークンを操作するため、IERC20インターフェースの定義が必須。）  
+　To ensure transparency and reproducibility, the following environment was used for development.  
+　（透明性と再現性を確保するため、以下の環境で開発を行っています。）    
+
+| Category (カテゴリ) | Details (詳細) |
+|:---|:---|
+| **Network** | Robinhood Chain Testnet |
+| **Chain ID** | 46630 |
+| **License ID** | MIT |
+| **Solidity Version** | 0.8.20 (Source Code Level) |
+| **Compiler Version** | 0.8.31+commit.fd3a2265 |
+| **EVM Version** | Default (osaka) |
+| **Optimization** | No |
+| **IDE / Editor** | **VS Code** (Local) linked with **Remix IDE** via `remixd` |
+| **Wallet** | MetaMask |
+| **Explorer** | Robinhood Chain Testnet Explorer |
+
+> ### Workflow Note / ワークフローについて  
+> By synchronizing VS Code with Remix IDE, I have established a hybrid development workflow that ensures local source code integrity while leveraging cloud-based deployment tools.  
+>（VS CodeとRemixを同期させることで、ローカルでのコード管理の安全性と、クラウドでのデプロイ利便性を両立したハイブリッドな開発体制を構築しています。）  
+
+> ### Technical Note on Interfaces / インターフェースに関するテクニカルノート  
+> While not required for basic storage, the IERC20 interface definition is mandatory when interacting with external tokens (e.g., in my Batch Airdrop project).
+>（基本的なストレージ機能には不要ですが、外部トークンを操作する場合（一括送金プロジェクトなど）には IERC20インターフェースの定義 が必須となります。）  
+
+> ### Development Policy / 開発方針  
+> Security: All contracts are verified on-chain to ensure transparency.
+> Modular Design: IERC20 interfaces are implemented for cross-contract interactions where necessary.
+> （透明性確保のため全契約を検証済み。必要に応じてIERC20を実装し、コントラクト間の連携を可能にしています。）  
 <br>
 
 ## 🚀 Key Achievements / 主な成果  
