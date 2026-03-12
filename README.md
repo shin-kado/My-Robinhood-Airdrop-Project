@@ -9,17 +9,22 @@ This repository documents my journey and technical achievements as an individual
 ## 🌐 Live Web Applications / 公開中のWebアプリ  
 　　I have developed and hosted web-based tools to interact with the Robinhood Chain ecosystem.  
 　　（Robinhood Chainエコシステムと連携するWebベースのツールを開発・公開しています。）  
+<br>
 
 　　　　<img src="https://github.com/shin-kado/My-Robinhood-Airdrop-Project/blob/main/images/ScreenStot_My-Robinhood-Airdrop-Project_web-app.png" width="400">  
-
-
+<br>
 
 　　　👉 **[Launch App Portal / アプリポータルを起動する](https://shin-kado.github.io/My-Robinhood-Airdrop-Project/web-app/)**  
+<br>
 
-　　　　　**Currently Available Tools**  
-　　　　　　　Web3 Asset Monitor (Dashboard) / Web3アセットモニター  
-　　　　　　　　A visual dashboard to track testnet assets and token distributions.  
-　　　　　　　　（テストネット上の資産やトークン配布を視覚的に管理するダッシュボード。）  
+　　**Currently Available Tools**  
+　　　　**・Web3 Asset Monitor (Dashboard) / Web3アセットモニター**  
+　　　　　　A visual dashboard to track testnet assets and token distributions.  
+　　　　　　（テストネット上の資産やトークン配布を視覚的に管理するダッシュボード。）  
+
+　　　　**・AdvancedStorage (Data Management) / アドバンスド・ストレージ**    
+　　　　　　A smart contract solution for efficient data persistence and structured information retrieval.  
+　　　　　　（スマートコントラクトによる効率的なデータ永続化と構造化された情報の管理・取得ツール。）  
 <br>
 
 > ### Notice  
