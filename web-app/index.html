@@ -3,22 +3,88 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My App Portal</title>
+    <title>Web3 Project Portal - shin-kado</title>
     <style>
-        body { font-family: sans-serif; background-color: #0f172a; color: white; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; margin: 0; }
-        h1 { color: #22c55e; }
-        .menu-list { list-style: none; padding: 0; }
-        .menu-item { margin: 10px; }
-        .btn { display: inline-block; padding: 15px 30px; background-color: #1e293b; color: #22c55e; text-decoration: none; border: 2px solid #22c55e; border-radius: 8px; transition: 0.3s; }
-        .btn:hover { background-color: #22c55e; color: #0f172a; }
+        :root { --primary: #2196f3; --bg: #f8f9fa; --card-bg: #ffffff; }
+        body { font-family: 'Segoe UI', sans-serif; background: var(--bg); color: #333; margin: 0; display: flex; flex-direction: column; align-items: center; min-height: 100vh; }
+        header { width: 100%; padding: 40px 0; background: #fff; border-bottom: 1px solid #ddd; text-align: center; margin-bottom: 40px; }
+        h1 { margin: 0; font-size: 2em; color: #222; }
+        .container { max-width: 900px; width: 90%; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; }
+        
+        /* プロジェクトカードのスタイル */
+        .project-card { 
+            background: var(--card-bg); 
+            padding: 25px; 
+            border-radius: 20px; 
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05); 
+            transition: all 0.3s ease; 
+            text-decoration: none; 
+            color: inherit; 
+            display: flex; 
+            flex-direction: column;
+            border: 2px solid transparent;
+        }
+        .project-card:hover { 
+            transform: translateY(-10px); 
+            box-shadow: 0 15px 35px rgba(33, 150, 243, 0.15); 
+            border-color: var(--primary);
+        }
+        .status { font-size: 0.75em; font-weight: bold; padding: 4px 10px; border-radius: 20px; width: fit-content; margin-bottom: 15px; }
+        .status-done { background: #e8f5e9; color: #2e7d32; }
+        .status-dev { background: #fff3e0; color: #ef6c00; }
+        
+        .title { font-size: 1.25em; font-weight: bold; margin-bottom: 10px; }
+        .desc { font-size: 0.9em; color: #666; line-height: 1.6; flex-grow: 1; }
+        .tech-stack { margin-top: 20px; display: flex; gap: 8px; flex-wrap: wrap; }
+        .tag { font-size: 0.7em; background: #eee; padding: 2px 8px; border-radius: 4px; color: #555; }
     </style>
 </head>
 <body>
-    <h1>App Portal</h1>
-    <ul class="menu-list">
-        <li class="menu-item">
-            <a href="dashboard.html" class="btn">🚀 Web3 Asset Monitor (Dashboard)</a>
-        </li>
-    </ul>
+
+<header>
+    <h1>Web3 Development Hub</h1>
+    <p>Developer: shin-kado</p>
+</header>
+
+<div class="container">
+    <a href="projects/advanced-storage.html" class="project-card">
+        <div class="status status-done">Completed</div>
+        <div class="title">Advanced Storage Dashboard</div>
+        <div class="desc">
+            オーナー権限管理とリアルタイム通知（Event Listening）を搭載した高度なデータ管理システム。
+            処理中の状態（Pending）を視覚化するUIを採用。
+        </div>
+        <div class="tech-stack">
+            <span class="tag">Solidity</span>
+            <span class="tag">Web3.js</span>
+            <span class="tag">Event Listening</span>
+        </div>
+    </a>
+
+    <a href="projects/dashboard.html" class="project-card">
+        <div class="status status-done">Completed</div>
+        <div class="title">Web3 Basic Dashboard</div>
+        <div class="desc">
+            MetaMask連携と基本的なデータ読み書きを実現した最初の実用ダッシュボード。
+        </div>
+        <div class="tech-stack">
+            <span class="tag">MetaMask</span>
+            <span class="tag">JavaScript</span>
+        </div>
+    </a>
+
+    <div class="project-card" style="opacity: 0.6; cursor: default;">
+        <div class="status status-dev">Coming Soon</div>
+        <div class="title">JavaScript Challenge</div>
+        <div class="desc">
+            次なるステップ。より高度なJavaScriptロジックを用いたWeb3アプリケーションを開発予定。
+        </div>
+        <div class="tech-stack">
+            <span class="tag">JavaScript</span>
+            <span class="tag">Under Dev</span>
+        </div>
+    </div>
+</div>
+
 </body>
 </html>
