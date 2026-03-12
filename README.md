@@ -11,10 +11,17 @@ This repository documents my journey and technical achievements as an individual
 　　（Robinhood Chainエコシステムと連携するWebベースのツールを開発・公開しています。）  
 <br>
 
-　　　　<img src="https://github.com/shin-kado/My-Robinhood-Airdrop-Project/blob/main/images/ScreenStot_My-Robinhood-Airdrop-Project_web-app.png" width="400">  
+<div align="center">
+  <img src="https://github.com/shin-kado/My-Robinhood-Airdrop-Project/blob/main/images/ScreenStot_My-Robinhood-Airdrop-Project_web-portal2.png?raw=true" width="600">
+  <p>App Portal（アプリポータル）</p>
+</div>
+
 <br>
 
-　　　👉 **[Launch App Portal / アプリポータルを起動する](https://shin-kado.github.io/My-Robinhood-Airdrop-Project/web-app/)**  
+<div align="center">
+  
+👉 **[Launch App Portal / アプリポータルを起動する](https://shin-kado.github.io/My-Robinhood-Airdrop-Project/web-app/)**  
+</div>
 <br>
 
 　　**Currently Available Tools**  
