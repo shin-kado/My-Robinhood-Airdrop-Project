@@ -2,8 +2,8 @@
 ## My Robinhood Chain Testnet 開発プロジェクト  
 <br>
 
-This repository documents my journey and technical achievements as an individual developer on the Robinhood Chain Testnet. I have successfully deployed 10 different types of smart contracts, developed interactive Web3 applications, and created a comprehensive guide for the developer community.  
-（このリポジトリは、Robinhood Chain Testnetにおける個人開発者としての私の歩みと技術的成果を記録したものです。これまでに10種類のスマートコントラクトのデプロイに成功しただけでなく、対話的なWeb3アプリケーションの開発を行い、開発者コミュニティのための包括的なガイドを作成しました。）  
+This repository documents my journey and technical achievements as an individual developer on the Robinhood Chain Testnet. I have not only successfully deployed various types of smart contracts centered around a proprietary ERC-20 token (My Token), but I have also developed interactive Web3 applications and created a comprehensive guide for the developer community.  
+（このリポジトリは、Robinhood Chain Testnetにおける個人開発者としての私の歩みと技術的成果を記録したものです。これまでに独自のERC-20トークンを中心に構築された様々なタイプのスマートコントラクトのデプロイに成功しただけでなく、対話的なWeb3アプリケーションの開発を行い、開発者コミュニティのための包括的なガイドを作成しました。）  
 <br>
 
 ## 🌐 Live Web Applications / 公開中のWebアプリ  
@@ -70,7 +70,7 @@ I utilize a professional hybrid workflow for developing and deploying secure sma
 　　Developed a custom frontend to visualize on-chain data, enhancing user experience.  
 　　（オンチェーンデータを視覚化するカスタムフロントエンドを開発し、ユーザー体験を向上させました。）  
 
-- **12 Smart Contracts Deployed / 10個のスマートコントラクトをデプロイ**  
+- **Smart Contracts Deployed / デプロイ済みスマートコントラクト**  
 　　Ranging from basic ERC-20 to advanced voting and batch processing systems.  
 　　（基本的なERC-20から、高度な投票システム、一括送金システムまで幅広く対応しています。）  
 
@@ -92,6 +92,7 @@ I utilize a professional hybrid workflow for developing and deploying secure sma
 
 | Contract Name<br>(コントラクト名) | Type (種別) | Key Features (主な特徴) | Block Explorer<br>(エクスプローラー) |
 |:---|:---|:---|:---|
+| **MyToken** | Key Modules | The fundamental asset for all distribution experiments<br>すべての配布実験の基礎となる基幹資産 | [View on Explorer](https://explorer.testnet.chain.robinhood.com/address/0x196eCa072F41571233E4F6D215F89A3446DD569b?tab=index) |
 | **Advanced Storage** | Storage | Access control for String/Uint data<br>文字・数値データの権限管理 | [View on Explorer](https://explorer.testnet.chain.robinhood.com/address/0x7212dD5F5a2062a412dc3441A1571A2c335CD7fF) |
 | **Developer Badge** | NFT (ERC-721) | Achievement NFT for early developers<br>初期開発者向けの実績NFT | [View on Explorer](https://explorer.testnet.chain.robinhood.com/address/0x680AeA01Ee91170d1927Cccb6DA0067875D1e1fC) |
 | **Project Token** | ERC-20 | Standard utility token with minting<br>ミント機能付き標準ユーティリティトークン | [View on Explorer](https://explorer.testnet.chain.robinhood.com/address/0x196eCa072F41571233E4F6D215F89A3446DD569b) |
