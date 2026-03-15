@@ -19,6 +19,9 @@
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: var(--bg); display: flex; justify-content: center; padding: 20px; }
         .container { background: white; padding: 30px; border-radius: 24px; box-shadow: 0 20px 40px rgba(0,0,0,0.1); width: 580px; }
         
+        /* 追加デザイン: タイトル */
+        .page-main-title { text-align: center; color: var(--primary); margin-bottom: 25px; font-size: 1.8em; font-weight: bold; line-height: 1.2; }
+
         .header { border-bottom: 2px solid #eee; margin-bottom: 25px; padding-bottom: 15px; display: flex; justify-content: space-between; align-items: center; }
         
         #connectBtn { 
@@ -45,8 +48,8 @@
 
         .display-val { font-size: 1.3em; font-weight: bold; margin-bottom: 5px; color: #222; border-left: 4px solid #eee; padding-left: 10px; min-height: 1.4em; word-break: break-all; }
         .update-info { 
-            font-size: 0.7em; /* 少し大きく */
-            color: #666;      /* 濃いグレーに変更 */
+            font-size: 0.7em; 
+            color: #666;      
             margin-bottom: 15px; 
             padding-left: 14px; 
             line-height: 1.2; 
@@ -58,14 +61,13 @@
         .btn-write:hover { background: var(--primary-hover); }
         .btn-write:disabled { background: #eee; color: #aaa; cursor: not-allowed; }
 
-        /* 履歴セクションの改善 */
         .history-section { margin-top: 30px; border-top: 2px solid #eee; padding-top: 20px; }
         .history-list { background: #fff; border: 1px solid #eee; border-radius: 12px; overflow: hidden; margin-bottom: 10px; }
         .history-item { 
             padding: 12px; 
             border-bottom: 1px solid #f5f5f5; 
             font-size: 0.85em; 
-            word-break: break-all; /* 長いテキストの折り返し */
+            word-break: break-all; 
         }
         
         #loadMoreBtn { 
@@ -83,11 +85,31 @@
             0% { box-shadow: 0 0 10px rgba(0,230,118,0.5); transform: scale(1.02); border-color: var(--success); }
             100% { box-shadow: 0 0 0px var(--success); transform: scale(1); border-color: var(--success); }
         }
+
+        /* 追加デザイン: 戻るボタン（薄いグレー） */
+        .return-home-container { text-align: center; margin-top: 30px; }
+        .btn-return { 
+            text-decoration: none; 
+            color: #555; 
+            font-weight: bold; 
+            padding: 12px 24px; 
+            border: 1px solid #ccc; 
+            border-radius: 12px; 
+            background: #f0f0f0; 
+            display: inline-block; 
+            transition: 0.2s; 
+        }
+        .btn-return:hover { 
+            background: #e0e0e0; 
+            border-color: #bbb; 
+        }
     </style>
 </head>
 <body>
 
 <div class="container">
+    <h1 class="page-main-title">Advanced On-chain Multi-Data Permissioned Registry</h1>
+
     <div class="header">
         <div>
             <h2 style="margin:0; color: #333;">Dashboard</h2>
@@ -98,7 +120,7 @@
 
     <div class="name-setting">
         <label>YOUR NAME</label>
-        <input type="text" id="userNameInput" placeholder="名前を入力（ブラウザに自動保存）">
+        <input type="text" id="userNameInput" placeholder="Enter your name (auto-saves to browser)">
     </div>
 
     <div class="grid">
@@ -137,6 +159,10 @@
         <div id="historyList" class="history-list"></div>
         <button id="loadMoreBtn">Load More</button>
         <div id="log">>> Ready for interaction.</div>
+    </div>
+
+    <div class="return-home-container">
+        <a href="../index.html" class="btn-return">← Return to Home Page</a>
     </div>
 </div>
 
@@ -212,8 +238,6 @@
                 if (!latestMap[d.label]) {
                     const date = new Date(d.timestamp * 1000);
                     const timeStr = `${date.getFullYear()}/${(date.getMonth()+1).toString().padStart(2,'0')}/${date.getDate().toString().padStart(2,'0')} ${date.toLocaleTimeString()}`;
-                    
-                    // 👇 修正ポイント：オーナー項目なら名前を「Owner」に固定
                     const isOwnerLabel = d.label.includes("Owner");
                     latestMap[d.label] = { 
                         time: timeStr, 
@@ -222,7 +246,6 @@
                 }
             });
 
-            // メタ情報の表示更新
             updateMeta('Any Number', 'anyNumberInfo', latestMap);
             updateMeta('Any Text', 'anyTextInfo', latestMap);
             updateMeta('Owner Number', 'ownerNumberInfo', latestMap);
@@ -235,8 +258,7 @@
     function updateMeta(label, id, map) {
         const el = document.getElementById(id);
         if (map[label]) {
-            // 👇 ここで色を濃くし、名前の出し分けを確定
-            el.style.color = "#666"; // 文字色を濃く
+            el.style.color = "#666";
             el.style.fontWeight = "500";
             el.innerText = `Updated: ${map[label].time} by ${map[label].user}`;
         }

@@ -11,8 +11,12 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <style>
-        body { font-family: 'Segoe UI', sans-serif; background: #f4f7f6; display: flex; justify-content: center; padding: 20px; color: #333; }
+        body { font-family: 'Segoe UI', sans-serif; background: #f4f7f6; display: flex; flex-direction: column; align-items: center; padding: 20px; color: #333; }
         .container { width: 100%; max-width: 480px; }
+        
+        /* 追加デザイン: タイトル */
+        .page-title { color: #333; margin: 20px 0 30px 0; font-size: 1.5em; font-weight: 800; text-align: center; }
+
         .card { background: white; padding: 25px; border-radius: 24px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); margin-bottom: 20px; border-top: 6px solid #00c805; }
         h2 { margin: 0 0 20px 0; color: #00c805; font-size: 1.2em; text-transform: uppercase; letter-spacing: 1px; }
         .info-row { display: flex; justify-content: space-between; padding: 14px 0; border-bottom: 1px solid #f0f0f0; font-size: 1.1em; align-items: center; }
@@ -26,6 +30,7 @@
         select, input { width: 100%; padding: 15px; margin-top: 10px; border-radius: 12px; border: 1px solid #ddd; box-sizing: border-box; font-size: 1em; outline: none; }
         
         .btn-send { width: 100%; background: #333; color: white; border: none; padding: 18px; border-radius: 50px; font-weight: bold; margin-top: 20px; cursor: pointer; font-size: 1.1em; transition: 0.2s; }
+        .btn-send:hover { opacity: 0.8; }
         .btn-send:disabled { background: #ccc !important; cursor: not-allowed; }
         
         .btn-max { position: absolute; right: 8px; top: 50%; transform: translateY(-50%); background: #00c805; color: white; border: none; padding: 6px 12px; border-radius: 8px; font-size: 0.75em; font-weight: bold; cursor: pointer; }
@@ -34,7 +39,6 @@
         
         #recipientBadge { margin-top: 10px; font-size: 0.8em; font-weight: bold; padding: 6px 14px; border-radius: 8px; display: none; }
         
-        /* エラーメッセージ用スタイル */
         #amountError { font-size: 0.75em; color: #ff4444; font-weight: bold; margin-top: 5px; display: none; }
 
         .hist-item { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid #f9f9f9; }
@@ -44,12 +48,33 @@
         .hist-net { flex: 1; text-align: center; font-size: 0.7em; color: #888; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
         .hist-amt { flex: 1.2; font-weight: 800; color: #00c805; text-align: right; font-size: 0.95em; }
 
+        /* 追加デザイン: 戻るボタン */
+        .btn-return { 
+            display: inline-block; 
+            margin-top: 10px; 
+            padding: 12px 24px; 
+            background: none; 
+            border: 2px solid #ddd; 
+            color: #888; 
+            text-decoration: none; 
+            border-radius: 50px; 
+            font-weight: bold; 
+            font-size: 0.9em; 
+            transition: 0.2s; 
+            text-align: center;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        .btn-return:hover { background: #eee; color: #555; border-color: #ccc; }
+
         #toastContainer { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); z-index: 9999; }
         .toast { background: rgba(0, 0, 0, 0.85); color: white; padding: 12px 24px; border-radius: 50px; margin-top: 10px; font-size: 0.9em; font-weight: bold; text-align: center; min-width: 220px; }
         #chartContainer { position: relative; height: 240px; width: 100%; margin-bottom: 30px; }
     </style>
 </head>
 <body>
+
+<h1 class="page-title">Web3 Asset & Token Distribution Dashboard</h1>
 
 <div class="container">
     <div class="card">
@@ -89,6 +114,8 @@
         <div id="historyList"></div>
         <button onclick="clearHistory()" style="background:none; border:none; color:#ccc; font-size:0.7em; width:100%; margin-top:15px; cursor:pointer;">Clear History</button>
     </div>
+
+    <a href="../index.html" class="btn-return">← Return to Home Page</a>
 </div>
 
 <div id="toastContainer"></div>
@@ -130,7 +157,6 @@
         }
     }
 
-    // ★ 本日追加：送金可能額の判定ロジック
     function checkAmount() {
         const target = document.getElementById('tokenSelector').value;
         const inputVal = parseFloat(document.getElementById('amount').value) || 0;
@@ -141,12 +167,10 @@
         let isInvalid = false;
 
         if (target === "native") {
-            // ネイティブ：保有額 - ガス代 を超えたらダメ
             const netConfig = MASTER_NETWORKS[currentNetId] || { gasFee: 0.005 };
             const limit = Math.max(0, balance - netConfig.gasFee);
             if (inputVal > limit) isInvalid = true;
         } else {
-            // トークン：保有額を超えたらダメ
             if (inputVal > balance) isInvalid = true;
         }
 
@@ -205,7 +229,7 @@
             }
             updateChart(labels, dataValues, activeColors);
             generateAccountTags();
-            checkAmount(); // 同期後にも判定
+            checkAmount();
         } catch (e) { console.error("Sync Error:", e); }
     }
 
@@ -236,7 +260,7 @@
             val = Math.max(0, val - netConfig.gasFee);
         }
         document.getElementById('amount').value = parseFloat(val.toFixed(4));
-        checkAmount(); // MAXボタン押下時もチェック
+        checkAmount();
     }
 
     function displayHistory() {
