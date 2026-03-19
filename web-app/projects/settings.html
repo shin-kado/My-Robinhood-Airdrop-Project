@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard Parameters Settings</title>
+    <script src="../scripts/token-rates.js"></script>
+    <script src="../scripts/fx-rates.js"></script>
+    <script src="../scripts/accounts.js"></script>
+    <style>
+        :root {
+            --primary-color: #00c805;
+            --secondary-color: #2196F3;
+            --danger-color: #ff4444;
+            --bg-color: #f4f7f6;
+            --card-bg: #ffffff;
+            --text-main: #333;
+            --add-color: #512da8;
+        }
+
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: var(--bg-color);
+            color: var(--text-main);
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .card {
+            background: var(--card-bg);
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+
+        h1 {
+            text-align: center;
+            color: var(--text-main);
+            margin-bottom: 30px;
+            font-weight: 800;
+        }
+
+        h2 {
+            border-left: 5px solid var(--primary-color);
+            padding-left: 15px;
+            margin-bottom: 20px;
+            font-size: 1.2em;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 15px;
+        }
+
+        th,
+        td {
+            padding: 12px;
+            border-bottom: 1px solid #eee;
+            text-align: left;
+        }
+
+        th {
+            background: #f9f9f9;
+            font-size: 0.85em;
+            color: #777;
+            text-transform: uppercase;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            box-sizing: border-box;
+            outline: none;
+            transition: 0.2s;
+        }
+
+        input:focus {
+            border-color: var(--secondary-color);
+            box-shadow: 0 0 5px rgba(33, 150, 243, 0.2);
+        }
+
+        input[readonly] {
+            background-color: #f0f0f0;
+            color: #666;
+            cursor: not-allowed;
+            border-color: #ddd;
+        }
+
+        .duplicate-error {
+            border: 2px solid var(--danger-color) !important;
+            background: #fff1f1;
+        }
+
+        .error-msg {
+            color: var(--danger-color);
+            font-size: 0.85em;
+            font-weight: bold;
+            margin-bottom: 10px;
+            display: none;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.3s;
+            font-size: 0.9em;
+        }
+
+        .btn:disabled {
+            background: #ccc !important;
+            cursor: not-allowed;
+            opacity: 0.6;
+        }
+
+        .btn-primary {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .btn-secondary {
+            background: var(--add-color);
+            color: white;
+        }
+
+        .btn-update {
+            background: #333;
+            color: white;
+        }
+
+        .btn-danger {
+            background: var(--danger-color);
+            color: white;
+            padding: 5px 10px;
+            font-size: 0.8em;
+        }
+
+        .network-card {
+            border-top: 4px solid var(--primary-color);
+        }
+
+        .network-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 15px;
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+        }
+
+        .net-info-group {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            flex: 1;
+        }
+
+        .net-input-unit {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .net-input-unit label {
+            font-size: 0.75em;
+            font-weight: bold;
+            color: #666;
+        }
+
+        .net-input-unit input {
+            width: 180px;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .code-output {
+            background: #2d3436;
+            color: #dfe6e9;
+            padding: 20px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.85em;
+            white-space: pre-wrap;
+            margin-top: 15px;
+            display: none;
+            position: relative;
+        }
+
+        .copy-hint {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.7em;
+        }
+
+        .top-nav {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            gap: 10px;
+            z-index: 1000;
+        }
+
+        .btn-nav {
+            padding: 8px 18px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-return {
+            background: #bfccde;
+            color: rgb(62, 62, 62);
+        }
+
+        .btn-reset {
+            background: #ff9800;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="top-nav">
+            <button class="btn-nav btn-reset" onclick="allReset()">All Reset</button>
+            <a href="../index.html" class="btn-nav btn-return">Back To Home Page</a>
+        </div>
+
+        <h1 style="font-size: 1rem;margin-bottom: -30px; color: #28a745;">Robinhood Testnet</h1>
+        <h1 style="margin-bottom: 30px;">Dashboard Parameters Settings</h1>
+
+        <h2>1. Global FX Rates (USD Base)</h2>
+        <div class="card">
+            <div id="fx-error" class="error-msg">⚠️ Duplicate or Empty Order found in FX
+                Rates!（FX設定に重複または未入力があります！）</div>
+            <table>
+                <thead>
+                    <tr>
+                        <th style="width:80px;">Order</th>
+                        <th style="width:120px;">ID (Fixed)</th>
+                        <th>Symbol</th>
+                        <th>Rate</th>
+                        <th style="width:60px;">Action</th>
+                    </tr>
+                </thead>
+                <tbody id="fx-container"></tbody>
+            </table>
+            <div class="btn-group">
+                <button class="btn btn-secondary" onclick="addFXRate()">+ Add New Currency</button>
+                <button id="btn-save-fx" class="btn btn-update" onclick="saveFXOnly()">Update FX Memory</button>
+            </div>
+        </div>
+
+        <h2>2. Network & Token Configuration</h2>
+        <div id="networks-container"></div>
+        <div class="btn-group" style="justify-content: center; margin-bottom: 30px;">
+            <button class="btn btn-secondary" style="background:#c6a70b;" onclick="addNewNetwork()">+ Add New
+                Network</button>
+            <button id="btn-save-tokens" class="btn btn-update" onclick="saveTokensOnly()">Update Token
+                Memory</button>
+        </div>
+
+        <h2>3. Master Account List</h2>
+        <div class="card">
+            <div id="accounts-error" class="error-msg">⚠️ Duplicate or Empty Name/Address found in Account
+                List!<br>（アカウント設定（Name または Address）に重複または未入力があります！）</div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Account Name</th>
+                        <th>Address</th>
+                        <th style="width:60px; text-align:center;">Action</th>
+                    </tr>
+                </thead>
+                <tbody id="accounts-container"></tbody>
+            </table>
+            <div class="btn-group">
+                <button class="btn btn-secondary" onclick="addAccount()">+ Add New Account</button>
+                <button id="btn-save-accounts" class="btn btn-update" onclick="saveAccountsOnly()">Update Account
+                    Memory</button>
+            </div>
+        </div>
+
+        <div class="card" style="background: #f0f0f0;">
+            <h2>4. Export Configuration Code</h2>
+            <div class="btn-group">
+                <button id="btn-gen-fx" class="btn btn-primary" onclick="generateFXCode()">Generate
+                    fx-rates.js</button>
+                <button id="btn-gen-tokens" class="btn btn-primary" onclick="generateTokenCode()">Generate
+                    token-rates.js</button>
+                <button id="btn-gen-accounts" class="btn btn-primary" onclick="generateAccountCode()">Generate
+                    accounts.js</button>
+                <button class="btn btn-danger" style="margin-left:auto;" onclick="allReset()">All Reset</button>
+            </div>
+            <div id="code-output" class="code-output"><span class="copy-hint">Auto-copied to clipboard!</span><code
+                    id="code-content"></code></div>
+        </div>
+
+        <div class="card">
+            <a href="../index.html" style="text-decoration: none; color: #777;; font-weight: bold;">← Back to Home
+                Page</a>
+        </div>
+    </div>
+
+    <script>
+        let currentFX = {};
+        let currentTokens = {};
+        let currentAccounts = [];
+
+        function initData() {
+            const savedFX = localStorage.getItem('tmp_fx');
+            const savedTokens = localStorage.getItem('tmp_tokens');
+            const savedAccounts = localStorage.getItem('tmp_accounts');
+            currentFX = savedFX ? JSON.parse(savedFX) : JSON.parse(JSON.stringify(FX_RATES));
+            currentTokens = savedTokens ? JSON.parse(savedTokens) : JSON.parse(JSON.stringify(TOKEN_USD_RATES));
+            currentAccounts = savedAccounts ? JSON.parse(savedAccounts) : JSON.parse(JSON.stringify(MASTER_ACCOUNT_LIST));
+        }
+
+        // --- Helper: Get Next Order ---
+        function getNextOrder(dataObj) {
+            let maxOrder = 0;
+            const items = Array.isArray(dataObj) ? dataObj : Object.values(dataObj);
+            items.forEach(item => {
+                if (item && typeof item.order === 'number' && item.order > maxOrder) {
+                    maxOrder = item.order;
+                }
+            });
+            return Math.floor(maxOrder / 10) * 10 + 10;
+        }
+
+        // --- バリデーション (0と00を同一視) ---
+        function checkValidity(inputs) {
+            const vals = Array.from(inputs).map(i => {
+                const raw = i.value.trim();
+                if (raw === "") return "";
+                // 数値入力なら評価して比較(00 -> 0)
+                return i.type === 'number' ? Number(raw).toString() : raw.toLowerCase();
+            });
+
+            const dups = vals.filter((v, idx) => v !== "" && vals.indexOf(v) !== idx);
+
+            let hasError = false;
+            inputs.forEach((i, idx) => {
+                const currentVal = vals[idx];
+                if (currentVal === "" || dups.includes(currentVal)) {
+                    i.classList.add('duplicate-error');
+                    hasError = true;
+                } else {
+                    i.classList.remove('duplicate-error');
+                }
+            });
+            return hasError;
+        }
+
+        function checkAllValidation() {
+            const fxInvalid = checkValidity(document.querySelectorAll('.fx-order-input'));
+            document.getElementById('fx-error').style.display = fxInvalid ? 'block' : 'none';
+
+            let tokensInvalid = false;
+            for (let chainId in currentTokens) {
+                const orderInputs = document.querySelectorAll(`.order-input-${chainId}`);
+                const netError = checkValidity(orderInputs);
+                const errorDiv = document.getElementById(`error-${chainId}`);
+                if (errorDiv) errorDiv.style.display = netError ? 'block' : 'none';
+                if (netError) tokensInvalid = true;
+            }
+
+            const nameInvalid = checkValidity(document.querySelectorAll('.acc-name-input'));
+            const addrInvalid = checkValidity(document.querySelectorAll('.acc-addr-input'));
+            const accountsInvalid = nameInvalid || addrInvalid;
+            document.getElementById('accounts-error').style.display = accountsInvalid ? 'block' : 'none';
+
+            const anyError = fxInvalid || tokensInvalid || accountsInvalid;
+            ['btn-save-fx', 'btn-save-tokens', 'btn-save-accounts', 'btn-gen-fx', 'btn-gen-tokens', 'btn-gen-accounts'].forEach(id => {
+                const btn = document.getElementById(id);
+                if (btn) btn.disabled = anyError;
+            });
+        }
+
+        // --- Render ---
+        function renderFX() {
+            const container = document.getElementById('fx-container');
+            container.innerHTML = '';
+            const sortedKeys = Object.keys(currentFX).sort((a, b) => currentFX[a].order - currentFX[b].order);
+            sortedKeys.forEach(id => {
+                const item = currentFX[id];
+                container.innerHTML += `
+                <tr>
+                    <td><input type="number" class="fx-order-input" value="${item.order}" oninput="checkAllValidation()" onchange="updateFX('${id}','order',this.value)"></td>
+                    <td><input type="text" value="${id}" readonly></td>
+                    <td><input type="text" value="${item.symbol}" onchange="updateFX('${id}','symbol',this.value)"></td>
+                    <td><input type="number" step="0.01" value="${item.rate}" onchange="updateFX('${id}','rate',this.value)"></td>
+                    <td><button class="btn btn-danger" onclick="deleteFX('${id}')">Del</button></td>
+                </tr>`;
+            });
+            checkAllValidation();
+        }
+
+        function renderNetworks() {
+            const container = document.getElementById('networks-container');
+            container.innerHTML = '';
+            const sortedChainIds = Object.keys(currentTokens).sort((a, b) => parseInt(a) - parseInt(b));
+            sortedChainIds.forEach(chainId => {
+                const net = currentTokens[chainId];
+                const sortedAddrs = Object.keys(net.tokens).sort((a, b) => net.tokens[a].order - net.tokens[b].order);
+                let rows = '';
+                sortedAddrs.forEach(addr => {
+                    const token = net.tokens[addr];
+                    const isNative = (addr === "0x0000000000000000000000000000000000000000");
+                    rows += `
+                    <tr>
+                        <td><input type="number" class="order-input-${chainId}" value="${token.order}" oninput="checkAllValidation()" onchange="updateToken('${chainId}','${addr}','order',this.value)"></td>
+                        <td><input type="text" value="${addr}" readonly></td>
+                        <td><input type="text" value="${token.symbol}" readonly></td>
+                        <td><input type="number" step="0.000001" value="${token.rate}" onchange="updateToken('${chainId}','${addr}','rate',this.value)"></td>
+                        <td style="text-align:center;">${isNative ? '-' : `<button class="btn btn-danger" onclick="deleteToken('${chainId}','${addr}')">Del</button>`}</td>
+                    </tr>`;
+                });
+                container.innerHTML += `
+                <div class="card network-card">
+                    <div class="network-header">
+                        <div class="net-info-group">
+                            <div class="net-input-unit"><label style="font-size: 16px; font-weight: bold;">Network Name (Fixed)</label><input type="text" value="${net.networkName}" readonly></div>
+                            <div class="net-input-unit"><label style="font-size: 16px; font-weight: bold;">Chain ID (Fixed)</label><input type="text" value="${chainId}" readonly></div>
+                            <div class="net-input-unit"><label style="font-size: 16px; font-weight: bold;">Gas Fee</label><input type="number" step="0.0001" value="${net.gasFee}" onchange="updateNet('${chainId}','gasFee',this.value)"></div>
+                        </div>
+                        <button class="btn btn-danger" onclick="deleteNetwork('${chainId}')">Delete Network</button>
+                    </div>
+                    <div id="error-${chainId}" class="error-msg">⚠️ Duplicate or Empty Token Order!（トークンのOrderが重複または未入力です！）</div>
+                    <table><thead><tr><th style="width:80px;">Order</th><th>Address (Fixed)</th><th style="width:100px;">Symbol</th><th>Rate (USD)</th><th style="width:60px;">Action</th></tr></thead><tbody>${rows}</tbody></table>
+                    <button class="btn btn-secondary" style="font-size:0.8em;" onclick="addToken('${chainId}')">+ Add Token</button>
+                </div>`;
+            });
+            checkAllValidation();
+        }
+
+        function renderAccounts() {
+            const container = document.getElementById('accounts-container');
+            container.innerHTML = '';
+            currentAccounts.forEach((acc, idx) => {
+                container.innerHTML += `
+                <tr>
+                    <td><input type="text" class="acc-name-input" value="${acc.name}" oninput="checkAllValidation()" onchange="updateAcc(${idx},'name',this.value)"></td>
+                    <td><input type="text" class="acc-addr-input" value="${acc.address}" oninput="checkAllValidation()" onchange="updateAcc(${idx},'address',this.value)"></td>
+                    <td style="text-align:center;"><button class="btn btn-danger" onclick="deleteAcc(${idx})">Del</button></td>
+                </tr>`;
+            });
+            checkAllValidation();
+        }
+
+        // --- Add Functions (重複チェック復元版) ---
+        function addFXRate() {
+            const id = prompt("Currency ID (e.g., EUR, BTC):");
+            if (!id) return;
+            const upperId = id.toUpperCase();
+            if (currentFX[upperId]) return alert("Error: This ID already exists.\n（IDは既に登録済です。）");
+            const sym = prompt("Symbol:", upperId);
+            const next = getNextOrder(currentFX);
+            currentFX[upperId] = { order: next, symbol: sym, rate: 1.0 };
+            renderFX();
+        }
+
+        function addNewNetwork() {
+            const id = prompt("Chain ID (Number):");
+            if (!id) return;
+            if (currentTokens[id]) return alert(`Warning: Chain ID "${id}" already exists.\n（Chain IDは既に登録済です。）`);
+            const name = prompt("Network Name (e.g., BNB Smart Chain):");
+            if (!name) return;
+            const nativeSym = prompt("Native Token Symbol (e.g., BNB, MATIC, ETH):", "ETH");
+            if (!nativeSym) return;
+
+            currentTokens[id] = {
+                networkName: name,
+                gasFee: 0,
+                tokens: { "0x0000000000000000000000000000000000000000": { order: 0, symbol: nativeSym.toUpperCase(), rate: 0 } }
+            };
+            renderNetworks();
+        }
+
+        function addToken(cid) {
+            const addr = prompt("Token Address (0x...):");
+            if (!addr) return;
+            const lowerInputAddr = addr.toLowerCase();
+            const networkTokens = currentTokens[cid].tokens;
+            if (Object.keys(networkTokens).some(k => k.toLowerCase() === lowerInputAddr)) return alert("Error: This address already exists in this network.\n（このアドレスは既にこのネットワークに登録されています。）");
+
+            const sym = prompt("Token Symbol:");
+            if (!sym) return;
+            const upperInputSym = sym.toUpperCase();
+            if (Object.values(networkTokens).some(t => t.symbol.toUpperCase() === upperInputSym)) return alert(`Error: Symbol "${upperInputSym}" already exists in this network.\n（シンボルは既にこのネットワークに登録されています。）`);
+
+            const next = getNextOrder(networkTokens);
+            currentTokens[cid].tokens[lowerInputAddr] = { order: next, symbol: upperInputSym, rate: 0 };
+            renderNetworks();
+        }
+
+        function addAccount() {
+            currentAccounts.push({ name: "New Account", address: "0x..." });
+            renderAccounts();
+        }
+
+        // --- Data Updates ---
+        function updateFX(id, f, v) { currentFX[id][f] = (f === 'order' || f === 'rate') ? parseFloat(v) : v; }
+        function updateNet(c, f, v) { currentTokens[c][f] = f === 'gasFee' ? parseFloat(v) : v; }
+        function updateToken(c, a, f, v) { currentTokens[c].tokens[a][f] = (f === 'order' || f === 'rate') ? parseFloat(v) : v; }
+        function updateAcc(idx, f, v) { currentAccounts[idx][f] = v; }
+
+        function deleteFX(id) { if (confirm("Delete " + id + "?")) { delete currentFX[id]; renderFX(); } }
+        function deleteNetwork(c) { if (confirm("Delete Network " + c + "?")) { delete currentTokens[c]; renderNetworks(); } }
+        function deleteToken(c, a) { if (confirm("Delete Token?")) { delete currentTokens[c].tokens[a]; renderNetworks(); } }
+        function deleteAcc(idx) { if (confirm("Delete Account?")) { currentAccounts.splice(idx, 1); renderAccounts(); } }
+
+        // --- Save & Generate ---
+        function saveFXOnly() { localStorage.setItem('tmp_fx', JSON.stringify(currentFX)); alert("FX Memory Updated!"); }
+        function saveTokensOnly() { localStorage.setItem('tmp_tokens', JSON.stringify(currentTokens)); alert("Token Memory Updated!"); }
+        function saveAccountsOnly() { localStorage.setItem('tmp_accounts', JSON.stringify(currentAccounts)); alert("Account Memory Updated!"); }
+
+        function generateFXCode() {
+            const exp = {};
+            Object.keys(currentFX).sort((a, b) => currentFX[a].order - currentFX[b].order).forEach(k => exp[k] = currentFX[k]);
+            showCode(`const FX_RATES = ${JSON.stringify(exp, null, 4)};`);
+        }
+        function generateTokenCode() {
+            const exp = {};
+            Object.keys(currentTokens).sort((a, b) => parseInt(a) - parseInt(b)).forEach(c => {
+                const n = currentTokens[c];
+                exp[c] = { networkName: n.networkName, gasFee: n.gasFee, tokens: {} };
+                Object.keys(n.tokens).sort((a, b) => n.tokens[a].order - n.tokens[b].order).forEach(a => exp[c].tokens[a] = n.tokens[a]);
+            });
+            showCode(`const TOKEN_USD_RATES = ${JSON.stringify(exp, null, 4)};`);
+        }
+        function generateAccountCode() { showCode(`const MASTER_ACCOUNT_LIST = ${JSON.stringify(currentAccounts, null, 4)};`); }
+
+        function showCode(code) {
+            document.getElementById('code-content').textContent = code;
+            document.getElementById('code-output').style.display = 'block';
+            navigator.clipboard.writeText(code);
+            window.scrollTo(0, document.body.scrollHeight);
+        }
+
+        function allReset() { if (confirm("Reset all settings?")) { localStorage.clear(); location.reload(); } }
+
+        initData();
+        renderFX();
+        renderNetworks();
+        renderAccounts();
+    </script>
+</body>
+
+</html>

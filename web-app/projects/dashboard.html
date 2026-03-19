@@ -1,337 +1,841 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Web3 Portfolio - Ultimate Edition</title>
-    
-    <script src="../scripts/tokens.js"></script>
+    <title>Asset & Token Distribution Dashboard | Robinhood Testnet</title>
+
+    <script src="../scripts/token-rates.js"></script>
+    <script src="../scripts/fx-rates.js"></script>
     <script src="../scripts/colors.js"></script>
     <script src="../scripts/accounts.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <style>
-        body { font-family: 'Segoe UI', sans-serif; background: #f4f7f6; display: flex; flex-direction: column; align-items: center; padding: 20px; color: #333; }
-        .container { width: 100%; max-width: 480px; }
-        
-        /* 追加デザイン: タイトル */
-        .page-title { color: #333; margin: 20px 0 30px 0; font-size: 1.5em; font-weight: 800; text-align: center; }
+        /* 既存スタイルを維持 */
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: #f4f7f6;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            color: #333;
+        }
 
-        .card { background: white; padding: 25px; border-radius: 24px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); margin-bottom: 20px; border-top: 6px solid #00c805; }
-        h2 { margin: 0 0 20px 0; color: #00c805; font-size: 1.2em; text-transform: uppercase; letter-spacing: 1px; }
-        .info-row { display: flex; justify-content: space-between; padding: 14px 0; border-bottom: 1px solid #f0f0f0; font-size: 1.1em; align-items: center; }
-        .label { color: #888; font-weight: 600; font-size: 0.85em; text-transform: uppercase; }
-        .val-info { font-family: 'Courier New', monospace; font-weight: bold; color: #111; }
-        .val-balance-main { font-weight: 800; font-size: 1.5em; color: #111; display: flex; align-items: center; }
-        .token-item { display: flex; justify-content: space-between; align-items: center; padding: 16px; background: #fff; border-radius: 16px; margin-top: 10px; border: 1px solid #f0f0f0; }
-        .color-dot { width: 16px; height: 16px; border-radius: 50%; display: inline-block; margin-right: 12px; border: 1px solid rgba(0,0,0,0.08); flex-shrink: 0; }
-        .token-left { display: flex; align-items: center; font-weight: bold; font-size: 1.2em; }
-        .token-val { font-weight: 800; color: #111; font-size: 1.3em; }
-        select, input { width: 100%; padding: 15px; margin-top: 10px; border-radius: 12px; border: 1px solid #ddd; box-sizing: border-box; font-size: 1em; outline: none; }
-        
-        .btn-send { width: 100%; background: #333; color: white; border: none; padding: 18px; border-radius: 50px; font-weight: bold; margin-top: 20px; cursor: pointer; font-size: 1.1em; transition: 0.2s; }
-        .btn-send:hover { opacity: 0.8; }
-        .btn-send:disabled { background: #ccc !important; cursor: not-allowed; }
-        
-        .btn-max { position: absolute; right: 8px; top: 50%; transform: translateY(-50%); background: #00c805; color: white; border: none; padding: 6px 12px; border-radius: 8px; font-size: 0.75em; font-weight: bold; cursor: pointer; }
-        .quick-tags { display: flex; gap: 8px; margin-top: 8px; flex-wrap: wrap; }
-        .quick-tags span { font-size: 0.75em; background: #eee; padding: 4px 12px; border-radius: 6px; cursor: pointer; color: #666; font-weight: bold; }
-        
-        #recipientBadge { margin-top: 10px; font-size: 0.8em; font-weight: bold; padding: 6px 14px; border-radius: 8px; display: none; }
-        
-        #amountError { font-size: 0.75em; color: #ff4444; font-weight: bold; margin-top: 5px; display: none; }
+        .container {
+            width: 100%;
+            max-width: 480px;
+        }
 
-        .hist-item { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid #f9f9f9; }
-        .hist-info { flex: 1.5; display: flex; flex-direction: column; }
-        .hist-flow { font-weight: bold; color: #333; font-size: 0.9em; margin-bottom: 2px; }
-        .hist-date { font-size: 0.75em; color: #aaa; }
-        .hist-net { flex: 1; text-align: center; font-size: 0.7em; color: #888; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
-        .hist-amt { flex: 1.2; font-weight: 800; color: #00c805; text-align: right; font-size: 0.95em; }
+        .page-title {
+            color: #333;
+            margin: 20px 0 10px 0;
+            font-size: 1.5em;
+            font-weight: 800;
+            text-align: center;
+        }
 
-        /* 追加デザイン: 戻るボタン */
-        .btn-return { 
-            display: inline-block; 
-            margin-top: 10px; 
-            padding: 12px 24px; 
-            background: none; 
-            border: 2px solid #ddd; 
-            color: #888; 
-            text-decoration: none; 
-            border-radius: 50px; 
-            font-weight: bold; 
-            font-size: 0.9em; 
-            transition: 0.2s; 
+        .btn-connect {
+            width: 100%;
+            max-width: 240px;
+            padding: 12px 20px;
+            border-radius: 50px;
+            border: none;
+            background: #ff9800;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            margin: 0 auto 20px auto;
+            display: block;
+            transition: 0.3s;
+            box-shadow: 0 4px 15px rgba(255, 152, 0, 0.2);
+            font-size: 0.9em;
+            letter-spacing: 1px;
+        }
+
+        .btn-connect.is-connected {
+            background: #e67e22;
+        }
+
+        .notice {
+            color: #ff4444;
+            font-size: 0.75rem;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 20px;
+            line-height: 1.4;
+            background: rgba(255, 68, 68, 0.05);
+            padding: 10px;
+            border-radius: 12px;
+        }
+
+        .card {
+            background: white;
+            padding: 25px;
+            border-radius: 24px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            margin-bottom: 20px;
+            border-top: 6px solid #00c805;
+        }
+
+        .total-card {
+            background: linear-gradient(135deg, #00c805 0%, #00a504 100%);
+            color: white;
+            border: none;
+        }
+
+        h2 {
+            margin: 0 0 20px 0;
+            color: #00c805;
+            font-size: 1.1em;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .info-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 14px 0;
+            border-bottom: 1px solid #f0f0f0;
+            font-size: 1.1em;
+            align-items: center;
+        }
+
+        .label {
+            color: #888;
+            font-weight: 600;
+            font-size: 0.85em;
+            text-transform: uppercase;
+        }
+
+        .val-info {
+            font-family: 'Courier New', monospace;
+            font-weight: bold;
+            color: #111;
+        }
+
+        .val-balance-main {
+            font-weight: 800;
+            font-size: 1.5em;
+            color: #111;
+        }
+
+        .token-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px;
+            background: #fff;
+            border-radius: 16px;
+            margin-top: 10px;
+            border: 1px solid #f0f0f0;
+        }
+
+        .color-dot {
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            display: inline-block;
+            margin-right: 12px;
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            flex-shrink: 0;
+        }
+
+        .token-left {
+            display: flex;
+            align-items: center;
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+
+        .token-right {
+            text-align: right;
+        }
+
+        .token-val {
+            font-weight: 800;
+            color: #111;
+            font-size: 1.3em;
+            line-height: 1;
+        }
+
+        .token-subval {
+            font-size: 0.75em;
+            color: #00c805;
+            font-weight: bold;
+            margin-top: 4px;
+        }
+
+        select,
+        input {
+            width: 100%;
+            padding: 15px;
+            margin-top: 10px;
+            border-radius: 12px;
+            border: 1px solid #ddd;
+            box-sizing: border-box;
+            font-size: 1em;
+            outline: none;
+        }
+
+        .btn-send {
+            width: 100%;
+            background: #333;
+            color: white;
+            border: none;
+            padding: 18px;
+            border-radius: 50px;
+            font-weight: bold;
+            margin-top: 20px;
+            cursor: pointer;
+            font-size: 1.1em;
+            transition: 0.2s;
+        }
+
+        .btn-send:disabled {
+            background: #ccc !important;
+            cursor: not-allowed;
+        }
+
+        .btn-max {
+            position: absolute;
+            right: 8px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: #00c805;
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 8px;
+            font-size: 0.75em;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        #liveExchangeRate {
+            font-size: 0.85em;
+            color: #00c805;
+            font-weight: bold;
+            margin-top: 8px;
+            text-align: right;
+            min-height: 1.2em;
+        }
+
+        .btn-return {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 12px 24px;
+            background: none;
+            border: 2px solid #ddd;
+            color: #888;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 0.9em;
             text-align: center;
             width: 100%;
             box-sizing: border-box;
         }
-        .btn-return:hover { background: #eee; color: #555; border-color: #ccc; }
 
-        #toastContainer { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); z-index: 9999; }
-        .toast { background: rgba(0, 0, 0, 0.85); color: white; padding: 12px 24px; border-radius: 50px; margin-top: 10px; font-size: 0.9em; font-weight: bold; text-align: center; min-width: 220px; }
-        #chartContainer { position: relative; height: 240px; width: 100%; margin-bottom: 30px; }
+        .hist-item {
+            padding: 12px 0;
+            border-bottom: 1px solid #f0f0f0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.85em;
+        }
+
+        .hist-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .hist-flow {
+            font-weight: bold;
+            color: #333;
+        }
+
+        .hist-amt {
+            font-weight: 800;
+            color: #ff4444;
+            text-align: right;
+        }
+
+        #toastContainer {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 9999;
+        }
+
+        .toast {
+            background: white;
+            color: #333;
+            padding: 14px 24px;
+            border-radius: 16px;
+            margin-bottom: 10px;
+            font-size: 0.9em;
+            font-weight: bold;
+            min-width: 250px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            border-left: 6px solid #00c805;
+            animation: slideIn 0.3s ease forwards;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        #chartContainer {
+            position: relative;
+            height: 240px;
+            width: 100%;
+            margin-bottom: 30px;
+        }
+
+        /* 通貨プルダウン用のスタイル調整 */
+        .currency-selector {
+            background: rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            color: white;
+            padding: 4px 8px;
+            border-radius: 12px;
+            cursor: pointer;
+            font-size: 0.75rem;
+            font-weight: bold;
+            outline: none;
+            width: auto;
+            margin-top: 0;
+        }
+
+        .currency-selector option {
+            color: #333;
+        }
+
+        .account-selector-container {
+            margin-top: 10px;
+        }
+
+        .account-selector-container select {
+            font-size: 0.85em;
+            background-color: #f9f9f9;
+            border-style: dashed;
+        }
+
+        .top-nav {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            gap: 10px;
+            z-index: 1000;
+        }
+
+        .btn-nav {
+            padding: 8px 18px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-back {
+            background: #bfccde;
+            color: rgb(62, 62, 62);
+        }
     </style>
 </head>
+
 <body>
+    <h1 style="font-size: 1rem;margin-bottom: -20px; color: #28a745;">Robinhood Testnet</h1>
 
-<h1 class="page-title">Web3 Asset & Token Distribution Dashboard</h1>
+    <h1 class="page-title">Asset & Token<br>Distribution Dashboard</h1>
+    <button id="connectBtn" class="btn-connect" onclick="connectWallet()">CONNECT</button>
 
-<div class="container">
-    <div class="card">
-        <h2>Asset Overview</h2>
-        <div id="chartContainer"><canvas id="assetChart"></canvas></div>
-        <div class="info-row"><span class="label">Network</span><span id="netName" class="val-info">Syncing...</span></div>
-        <div class="info-row"><span class="label">Address</span><span id="myAddr" class="val-info">-</span></div>
-        <div class="info-row" style="border-bottom:none;"><span class="label">Native Balance</span><span id="myBal" class="val-balance-main">-</span></div>
+    <div class="notice">
+        ※These are custom rates for Robinhood Testnet and do not reflect real market prices.<br>
+        （Robinhood Testnet用独自のレートであり、実際の市場レートではありません。）
     </div>
 
-    <div class="card">
-        <h2>Token Holdings</h2>
-        <div id="tokenList"></div>
-    </div>
-
-    <div class="card">
-        <h2>Quick Transfer</h2>
-        <select id="tokenSelector" onchange="checkAmount(); setMax();"><option value="native">Native Currency</option></select>
-        
-        <div style="position: relative; margin-top: 10px;">
-            <input type="text" id="toAddr" placeholder="Recipient Address (0x...)" oninput="updateRecipientDisplay()">
-            <div id="recipientBadge"></div>
-            <div class="quick-tags" id="accountList"></div>
+    <div class="container">
+        <div class="top-nav">
+            <a href="../index.html" class="btn-nav btn-back">Back To Home Page</a>
         </div>
-        
-        <div style="position: relative; margin-top: 10px;">
-            <input type="number" id="amount" placeholder="0.00" oninput="checkAmount()">
-            <button class="btn-max" onclick="setMax(); checkAmount();">MAX</button>
+        <div class="card total-card">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                <h2 style="color: white; margin: 0; font-size: 0.9rem; opacity: 0.9;">Total Portfolio Value</h2>
+                <select id="currencySelector" class="currency-selector" onchange="changeCurrency(this.value)"></select>
+            </div>
+            <div style="display: flex; justify-content: center; align-items: baseline; width: 100%;">
+                <span id="totalDisplay" style="font-size: 2.6rem; font-weight: 800;">-</span>
+            </div>
         </div>
-        <div id="amountError">Insufficient balance (including gas fee)</div>
-        
-        <button class="btn-send" id="sendBtn" onclick="sendAsset()">Confirm Transfer</button>
+
+        <div class="card">
+            <h2>Asset Distribution</h2>
+            <div id="chartContainer"><canvas id="assetChart"></canvas></div>
+            <div class="info-row"><span class="label">Network</span><span id="netName"
+                    class="val-info">Syncing...</span></div>
+            <div class="info-row"><span class="label">Address</span><span id="myAddr" class="val-info">-</span></div>
+            <div class="info-row" style="border-bottom:none;">
+                <span class="label">Native Balance</span>
+                <div id="myBal" class="val-balance-main" style="text-align: right;">-</div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>Token Holdings</h2>
+            <div id="tokenList"></div>
+        </div>
+
+        <div class="card">
+            <h2>Quick Transfer</h2>
+            <label class="label">Recipient Network</label>
+            <select id="targetNetworkSelector" onchange="checkAmount()"></select>
+
+            <label class="label" style="margin-top: 15px; display: block;">Select Token</label>
+            <select id="tokenSelector" onchange="checkAmount(); setMax(); updateLiveExchange();"></select>
+
+            <label class="label" style="margin-top: 15px; display: block;">Recipient Address</label>
+            <div class="account-selector-container">
+                <select id="accountDropdown" onchange="selectAccount(this.value)">
+                    <option value="">-- Choose from Registered Accounts --</option>
+                </select>
+            </div>
+            <div style="position: relative;">
+                <input type="text" id="toAddr" placeholder="Recipient Address (0x...)" oninput="checkAmount()">
+            </div>
+
+            <label class="label" style="margin-top: 15px; display: block;">Amount</label>
+            <div style="position: relative;">
+                <input type="number" id="amount" placeholder="0.00" oninput="checkAmount(); updateLiveExchange();">
+                <button class="btn-max" onclick="setMax(); checkAmount(); updateLiveExchange();">MAX</button>
+            </div>
+            <div id="liveExchangeRate"></div>
+
+            <div id="amountError"
+                style="font-size: 0.75em; color: #ff4444; font-weight: bold; margin-top: 10px; display: none;"></div>
+            <button class="btn-send" id="sendBtn" onclick="sendAsset()">Confirm Transfer</button>
+        </div>
+
+        <div class="card">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                <h2>Transaction History</h2>
+                <button onclick="clearHistory()"
+                    style="background:none; border:none; color:#ccc; font-size:0.7em; cursor:pointer;">Clear</button>
+            </div>
+            <div id="historyList"></div>
+        </div>
+
+        <a href="../index.html" class="btn-return">← Return to Home Page</a>
     </div>
 
-    <div class="card">
-        <h2>History</h2>
-        <div id="historyList"></div>
-        <button onclick="clearHistory()" style="background:none; border:none; color:#ccc; font-size:0.7em; width:100%; margin-top:15px; cursor:pointer;">Clear History</button>
-    </div>
+    <div id="toastContainer"></div>
 
-    <a href="../index.html" class="btn-return">← Return to Home Page</a>
-</div>
+    <script>
+        // --- 設定データの同期処理 ---
+        let currentTokens = {};
+        let currentFX = {};
+        let currentAccounts = [];
+        let currentCurrencyKey = "USD"; // デフォルト
 
-<div id="toastContainer"></div>
+        function loadStoredSettings() {
+            // 初回は js ファイルの定義をコピー
+            currentTokens = JSON.parse(JSON.stringify(TOKEN_USD_RATES));
+            currentFX = JSON.parse(JSON.stringify(FX_RATES));
+            currentAccounts = typeof MASTER_ACCOUNT_LIST !== 'undefined' ? JSON.parse(JSON.stringify(MASTER_ACCOUNT_LIST)) : [];
 
-<script>
-    let chart;
-    let currentBalances = { "native": 0 };
-    let currentNativeSymbol = "ETH";
-    let currentNetId = 1;
+            // LocalStorageがあれば上書き
+            const savedTokens = localStorage.getItem('tmp_tokens');
+            const savedFX = localStorage.getItem('tmp_fx');
+            const savedAccounts = localStorage.getItem('tmp_accounts');
+            const savedCurrency = localStorage.getItem('tmp_selected_currency');
 
-    function showToast(msg, isError = false) {
-        const container = document.getElementById('toastContainer');
-        const toast = document.createElement('div');
-        toast.className = 'toast';
-        toast.innerText = msg;
-        if(isError) toast.style.background = "#ff4444";
-        container.appendChild(toast);
-        setTimeout(() => toast.remove(), 4000);
-    }
-
-    function getName(addr) {
-        if(!addr) return "Unknown";
-        const acc = MASTER_ACCOUNT_LIST.find(a => a.address.toLowerCase() === addr.toLowerCase());
-        return acc ? acc.name : addr.slice(0,6)+'...'+addr.slice(-4);
-    }
-
-    function updateRecipientDisplay() {
-        const addr = document.getElementById('toAddr').value.trim().toLowerCase();
-        const badge = document.getElementById('recipientBadge');
-        if (!addr || addr.length < 10) { badge.style.display = 'none'; return; }
-        const acc = MASTER_ACCOUNT_LIST.find(a => a.address.toLowerCase() === addr);
-        badge.style.display = 'inline-block';
-        if (acc) {
-            badge.innerText = `To: ${acc.name} (${addr.slice(0,6)}...${addr.slice(-4)})`;
-            badge.style.color = "#00c805"; badge.style.background = "rgba(0,200,5,0.1)";
-        } else {
-            badge.innerText = "To: Unknown Address";
-            badge.style.color = "#ff4444"; badge.style.background = "rgba(255,68,68,0.1)";
+            if (savedTokens) currentTokens = JSON.parse(savedTokens);
+            if (savedFX) currentFX = JSON.parse(savedFX);
+            if (savedAccounts) currentAccounts = JSON.parse(savedAccounts);
+            if (savedCurrency && currentFX[savedCurrency]) {
+                currentCurrencyKey = savedCurrency;
+            } else {
+                // デフォルトの決定（orderが一番小さいものを初期値にするなど）
+                const sortedKeys = Object.keys(currentFX).sort((a, b) => currentFX[a].order - currentFX[b].order);
+                currentCurrencyKey = sortedKeys[0] || "USD";
+            }
         }
-    }
+        loadStoredSettings();
 
-    function checkAmount() {
-        const target = document.getElementById('tokenSelector').value;
-        const inputVal = parseFloat(document.getElementById('amount').value) || 0;
-        const btn = document.getElementById('sendBtn');
-        const errorMsg = document.getElementById('amountError');
-        
-        let balance = currentBalances[target] || 0;
-        let isInvalid = false;
+        // --- 変数定義 ---
+        let chart;
+        let currentBalances = {};
+        let currentNativeSymbol = "ETH";
+        let currentNetId = 1;
+        const NATIVE_ADDR = "0x0000000000000000000000000000000000000000";
 
-        if (target === "native") {
-            const netConfig = MASTER_NETWORKS[currentNetId] || { gasFee: 0.005 };
-            const limit = Math.max(0, balance - netConfig.gasFee);
-            if (inputVal > limit) isInvalid = true;
-        } else {
-            if (inputVal > balance) isInvalid = true;
+        // 現在の通貨オブジェクト取得用
+        function getActiveCurrency() {
+            return currentFX[currentCurrencyKey] || { symbol: "$", rate: 1 };
         }
 
-        if (isInvalid && inputVal > 0) {
-            btn.disabled = true;
-            errorMsg.style.display = 'block';
-        } else {
-            btn.disabled = false;
-            errorMsg.style.display = 'none';
+        // --- UI初期化 ---
+        function initCurrencySelector() {
+            const selector = document.getElementById('currencySelector');
+            if (!selector) return;
+            selector.innerHTML = "";
+
+            // order順にソートしてプルダウンを生成
+            const sortedKeys = Object.keys(currentFX).sort((a, b) => currentFX[a].order - currentFX[b].order);
+
+            sortedKeys.forEach(key => {
+                const opt = document.createElement('option');
+                opt.value = key;
+                opt.text = `${key} (${currentFX[key].symbol})`;
+                if (key === currentCurrencyKey) opt.selected = true;
+                selector.appendChild(opt);
+            });
         }
-    }
 
-    async function sync() {
-        if (!window.ethereum) return;
-        try {
-            const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
-            if (accounts.length === 0) return;
-            const userAddr = accounts[0];
-            const chainIdHex = await window.ethereum.request({ method: 'eth_chainId' });
-            currentNetId = parseInt(chainIdHex, 16);
+        function changeCurrency(key) {
+            currentCurrencyKey = key;
+            localStorage.setItem('tmp_selected_currency', key);
+            sync();
+            updateLiveExchange();
+        }
 
-            const netConfig = MASTER_NETWORKS[currentNetId] || { name: "Unknown", symbol: "Native" };
-            document.getElementById('netName').innerText = netConfig.name;
-            currentNativeSymbol = netConfig.symbol;
-            document.getElementById('myAddr').innerText = userAddr.slice(0,6) + "..." + userAddr.slice(-4);
+        function initNetworkSelector() {
+            const selector = document.getElementById('targetNetworkSelector');
+            if (!selector) return;
+            selector.innerHTML = "";
+            for (const chainId in currentTokens) {
+                const option = document.createElement('option');
+                option.value = chainId;
+                option.text = currentTokens[chainId].networkName || `Chain ID: ${chainId}`;
+                selector.appendChild(option);
+            }
+        }
 
-            const balHex = await window.ethereum.request({ method: 'eth_getBalance', params: [userAddr, 'latest'] });
-            const nativeVal = Number(BigInt(balHex)) / 1e18;
-            currentBalances["native"] = nativeVal;
-            
-            document.getElementById('myBal').innerHTML = `
-                <span class="color-dot" style="background:${COLOR_PALETTE[0]}"></span>
-                ${nativeVal.toFixed(4)} <span style="font-size:0.6em; margin-left:8px; color:#999;">${currentNativeSymbol}</span>
-            `;
+        function formatAddr(addr) {
+            if (!addr) return "-";
+            return addr.slice(0, 6) + "..." + addr.slice(-4);
+        }
 
-            const tokens = MASTER_TOKEN_LIST[currentNetId] || [];
-            const listDiv = document.getElementById('tokenList');
-            const selector = document.getElementById('tokenSelector');
-            listDiv.innerHTML = "";
-            selector.innerHTML = `<option value="native">Native (${currentNativeSymbol})</option>`;
+        // --- 通信・同期処理 ---
+        async function connectWallet() {
+            if (!window.ethereum) return showToast("MetaMask not found", true);
+            try {
+                await window.ethereum.request({ method: 'eth_requestAccounts' });
+                showToast("Wallet Connected");
+                await sync();
+            } catch (e) { showToast("Connection failed", true); }
+        }
 
-            let labels = [currentNativeSymbol], dataValues = [nativeVal], activeColors = [COLOR_PALETTE[0]], colorIndex = 1;
+        function updateLiveExchange() {
+            const amt = parseFloat(document.getElementById('amount').value) || 0;
+            const targetToken = document.getElementById('tokenSelector').value;
+            const displayDiv = document.getElementById('liveExchangeRate');
+            if (amt <= 0 || !displayDiv) { if (displayDiv) displayDiv.innerText = ""; return; }
 
-            for (const t of tokens) {
-                const data = "0x70a08231" + userAddr.substring(2).padStart(64, '0');
-                const hex = await window.ethereum.request({ method: 'eth_call', params: [{ to: t.a, data: data }, 'latest'] });
-                const val = (hex && hex !== '0x') ? Number(BigInt(hex)) / 1e18 : 0;
-                currentBalances[t.a] = val;
-                
-                if (val > 0) {
-                    const col = COLOR_PALETTE[colorIndex % COLOR_PALETTE.length];
-                    listDiv.innerHTML += `<div class="token-item"><div class="token-left"><span class="color-dot" style="background:${col}"></span>${t.s}</div><span class="token-val">${val.toLocaleString()}</span></div>`;
-                    selector.innerHTML += `<option value="${t.a}">${t.s}</option>`;
-                    labels.push(t.s); dataValues.push(val); activeColors.push(col); colorIndex++;
+            const rateUSD = getPrice(currentNetId, targetToken);
+            const currency = getActiveCurrency();
+            const convertedVal = amt * rateUSD * currency.rate;
+
+            // 小数点以下の表示制御（円などは0、それ以外は2など）
+            const decimals = currency.rate > 10 ? 0 : 2;
+            displayDiv.innerText = `≈ ${currency.symbol} ${convertedVal.toLocaleString(undefined, { minimumFractionDigits: decimals, maximumFractionDigits: decimals })}`;
+        }
+
+        function getPrice(chainId, addr) {
+            const chainData = currentTokens[chainId];
+            if (!chainData || !chainData.tokens) return 0;
+            const tokenEntry = Object.entries(chainData.tokens).find(([k]) => k.toLowerCase() === addr.toLowerCase());
+            return tokenEntry ? (Number(tokenEntry[1].rate) || 0) : 0;
+        }
+
+        let isSyncing = false;
+        async function sync() {
+            if (!window.ethereum || isSyncing) return;
+            isSyncing = true;
+
+            try {
+                const accounts = await window.ethereum.request({ method: 'eth_accounts' });
+                const connectBtn = document.getElementById('connectBtn');
+                if (accounts.length === 0) {
+                    connectBtn.innerText = "CONNECT";
+                    connectBtn.classList.remove('is-connected');
+                    isSyncing = false;
+                    return;
+                }
+                connectBtn.innerText = "CONNECTED";
+                connectBtn.classList.add('is-connected');
+                const userAddr = accounts[0];
+                const chainIdHex = await window.ethereum.request({ method: 'eth_chainId' });
+                currentNetId = parseInt(chainIdHex, 16);
+                const currentChainData = currentTokens[currentNetId] || { networkName: "Unknown", tokens: {} };
+
+                document.getElementById('netName').innerText = currentChainData.networkName;
+                document.getElementById('myAddr').innerText = formatAddr(userAddr);
+
+                const balHex = await window.ethereum.request({ method: 'eth_getBalance', params: [userAddr, 'latest'] });
+                const nativeVal = Number(BigInt(balHex)) / 1e18;
+                currentBalances[NATIVE_ADDR] = nativeVal;
+                const nativeInfo = currentChainData.tokens[NATIVE_ADDR] || { symbol: "ETH", rate: 0 };
+                currentNativeSymbol = nativeInfo.symbol;
+
+                const selector = document.getElementById('tokenSelector');
+                const lastSelected = selector.value;
+                selector.innerHTML = "";
+
+                const nativeOpt = document.createElement('option');
+                nativeOpt.value = NATIVE_ADDR;
+                nativeOpt.text = `${currentNativeSymbol} (Native)`;
+                selector.appendChild(nativeOpt);
+
+                const currency = getActiveCurrency();
+                let totalUSD = nativeVal * (Number(nativeInfo.rate) || 0);
+                let listHTML = "";
+                let labels = [currentNativeSymbol];
+                let dataValues = [nativeVal * (Number(nativeInfo.rate) || 0)];
+                let activeColors = [COLOR_PALETTE[0]];
+                let colorIndex = 1;
+
+                for (const [addr, info] of Object.entries(currentChainData.tokens)) {
+                    if (addr === NATIVE_ADDR) continue;
+                    try {
+                        const data = "0x70a08231" + userAddr.substring(2).padStart(64, '0');
+                        const hex = await window.ethereum.request({ method: 'eth_call', params: [{ to: addr, data: data }, 'latest'] });
+                        const val = (hex && hex !== '0x') ? Number(BigInt(hex)) / 1e18 : 0;
+                        currentBalances[addr] = val;
+                        if (val > 0) {
+                            const usdVal = val * (Number(info.rate) || 0);
+                            totalUSD += usdVal;
+                            const col = COLOR_PALETTE[colorIndex % COLOR_PALETTE.length];
+                            const convertedVal = usdVal * currency.rate;
+
+                            listHTML += `
+                                <div class="token-item">
+                                    <div class="token-left"><span class="color-dot" style="background:${col}"></span>${info.symbol}</div>
+                                    <div class="token-right">
+                                        <div class="token-val">${val.toLocaleString()}</div>
+                                        <div class="token-subval">${currency.symbol} ${convertedVal.toLocaleString(undefined, { maximumFractionDigits: currency.rate > 10 ? 0 : 2 })}</div>
+                                    </div>
+                                </div>`;
+
+                            const opt = document.createElement('option');
+                            opt.value = addr;
+                            opt.text = info.symbol;
+                            selector.appendChild(opt);
+
+                            labels.push(info.symbol);
+                            dataValues.push(usdVal);
+                            activeColors.push(col);
+                            colorIndex++;
+                        }
+                    } catch (e) { console.error("Balance Error:", e); }
+                }
+
+                if (lastSelected) selector.value = lastSelected;
+
+                document.getElementById('tokenList').innerHTML = listHTML;
+                const finalTotal = totalUSD * currency.rate;
+                document.getElementById('totalDisplay').innerText = `${currency.symbol} ${finalTotal.toLocaleString(undefined, { maximumFractionDigits: currency.rate > 10 ? 0 : 2 })}`;
+
+                const nativeConverted = (nativeVal * (Number(nativeInfo.rate) || 0) * currency.rate);
+                document.getElementById('myBal').innerHTML = `
+                    <div>${nativeVal.toFixed(4)} <small style="color:#999; font-size:0.6em;">${currentNativeSymbol}</small></div>
+                    <div style="font-size: 0.6em; color:#00c805; font-weight: bold;">${currency.symbol} ${nativeConverted.toLocaleString()}</div>
+                `;
+
+                updateChart(labels, dataValues, activeColors);
+                updateAccountDropdown();
+                checkAmount();
+                displayHistory();
+            } catch (e) { console.error(e); } finally { isSyncing = false; }
+        }
+
+        // --- その他UI更新系 ---
+        function updateAccountDropdown() {
+            const dropdown = document.getElementById('accountDropdown');
+            if (!dropdown) return;
+            dropdown.innerHTML = '<option value="">-- Choose from Registered Accounts --</option>';
+            currentAccounts.forEach(acc => {
+                const opt = document.createElement('option');
+                opt.value = acc.address;
+                opt.text = acc.name;
+                dropdown.appendChild(opt);
+            });
+        }
+
+        function selectAccount(addr) {
+            if (!addr) return;
+            document.getElementById('toAddr').value = addr;
+            checkAmount();
+        }
+
+        async function checkAmount() {
+            const targetTokenAddr = document.getElementById('tokenSelector').value;
+            const inputVal = parseFloat(document.getElementById('amount').value) || 0;
+            const toAddr = document.getElementById('toAddr').value.trim().toLowerCase();
+            const targetNetId = document.getElementById('targetNetworkSelector').value;
+            const btn = document.getElementById('sendBtn');
+            const errorMsg = document.getElementById('amountError');
+
+            let isInvalid = false;
+            let errorText = "";
+            if (inputVal <= 0) isInvalid = true;
+            if (targetNetId != currentNetId) { isInvalid = true; errorText = "Network Mismatch!"; }
+
+            if (!isInvalid && toAddr !== "") {
+                const allContractAddrs = [];
+                for (const netId in currentTokens) {
+                    const tokenAddrs = Object.keys(currentTokens[netId].tokens);
+                    allContractAddrs.push(...tokenAddrs.map(a => a.toLowerCase()));
+                }
+                if (toAddr !== NATIVE_ADDR && allContractAddrs.includes(toAddr)) {
+                    isInvalid = true;
+                    errorText = "Error: This is a Token Contract address!";
                 }
             }
-            updateChart(labels, dataValues, activeColors);
-            generateAccountTags();
-            checkAmount();
-        } catch (e) { console.error("Sync Error:", e); }
-    }
 
-    function generateAccountTags() {
-        document.getElementById('accountList').innerHTML = MASTER_ACCOUNT_LIST.map(acc => `<span onclick="setAddr('${acc.address}')">${acc.name}</span>`).join('');
-    }
+            if (!isInvalid) {
+                const balance = currentBalances[targetTokenAddr] || 0;
+                const nativeBalance = currentBalances[NATIVE_ADDR] || 0;
+                const netData = currentTokens[currentNetId];
+                const currentGasFee = netData ? (netData.gasFee || netData.gasfee || 0) : 0;
+                const factor = 1e10;
+                const bInt = Math.round(balance * factor);
+                const iInt = Math.round(inputVal * factor);
+                const gInt = Math.round(currentGasFee * factor);
+                const nbInt = Math.round(nativeBalance * factor);
 
-    function updateChart(labels, data, colors) {
-        const ctx = document.getElementById('assetChart').getContext('2d');
-        if (chart) chart.destroy();
-        chart = new Chart(ctx, {
-            type: 'doughnut',
-            data: { labels: labels, datasets: [{ data: data, backgroundColor: colors, borderWidth: 4 }] },
-            options: { responsive: true, maintainAspectRatio: false, cutout: '82%', plugins: { legend: { display: false } } }
-        });
-    }
+                if (targetTokenAddr === NATIVE_ADDR) {
+                    if ((iInt + gInt) > bInt) { isInvalid = true; errorText = `Insufficient balance (Need ${currentGasFee} for Gas)`; }
+                } else {
+                    if (iInt > bInt) { isInvalid = true; errorText = "Insufficient token balance"; }
+                    if (nbInt < gInt) { isInvalid = true; errorText = `Need ${currentGasFee} ${currentNativeSymbol} for Gas Fee`; }
+                }
+            }
 
-    function setAddr(addr) { 
-        document.getElementById('toAddr').value = addr; 
-        updateRecipientDisplay();
-    }
-
-    function setMax() {
-        const target = document.getElementById('tokenSelector').value;
-        let val = currentBalances[target] || 0;
-        if (target === "native") {
-            const netConfig = MASTER_NETWORKS[currentNetId] || { gasFee: 0.005 };
-            val = Math.max(0, val - netConfig.gasFee);
+            btn.disabled = isInvalid || toAddr === "" || inputVal <= 0;
+            if (errorMsg) {
+                errorMsg.innerText = errorText;
+                errorMsg.style.display = (isInvalid && errorText !== "") ? 'block' : 'none';
+            }
+            btn.style.background = isInvalid ? "#ff4444" : (btn.disabled ? "#ccc" : "#333");
         }
-        document.getElementById('amount').value = parseFloat(val.toFixed(4));
-        checkAmount();
-    }
 
-    function displayHistory() {
-        const history = JSON.parse(localStorage.getItem('tx_history') || '[]');
-        const div = document.getElementById('historyList');
-        if (history.length === 0) { div.innerHTML = '<p style="text-align:center;color:#999;font-size:0.8em;">No history yet.</p>'; return; }
-        div.innerHTML = history.map(tx => `
-            <div class="hist-item">
-                <div class="hist-info">
-                    <div class="hist-flow">${getName(tx.from)} → ${getName(tx.to)}</div>
-                    <div class="hist-date">${tx.date}</div>
-                </div>
-                <div class="hist-net">${tx.network || 'Unknown'}</div>
-                <div class="hist-amt">-${tx.amount} ${tx.symbol}</div>
-            </div>`).join('');
-    }
+        async function sendAsset() {
+            const tokenAddr = document.getElementById('tokenSelector').value;
+            const to = document.getElementById('toAddr').value.trim();
+            const amt = document.getElementById('amount').value;
+            const btn = document.getElementById('sendBtn');
+            const currency = getActiveCurrency();
 
-    function clearHistory() { if(confirm("Clear history?")) { localStorage.removeItem('tx_history'); displayHistory(); } }
+            try {
+                btn.disabled = true;
+                btn.innerText = "Sending...";
+                const accounts = await window.ethereum.request({ method: 'eth_accounts' });
+                const fromAddr = accounts[0];
+                const amountWei = (BigInt(Math.floor(parseFloat(amt) * 1e9)) * (10n ** 9n)).toString(16);
+                let txParams = (tokenAddr === NATIVE_ADDR)
+                    ? { from: fromAddr, to: to, value: "0x" + amountWei }
+                    : { from: fromAddr, to: tokenAddr, data: "0xa9059cbb" + to.substring(2).padStart(64, '0') + amountWei.padStart(64, '0') };
 
-    async function sendAsset() {
-        const targetToken = document.getElementById('tokenSelector').value;
-        const to = document.getElementById('toAddr').value;
-        const amt = document.getElementById('amount').value;
-        const btn = document.getElementById('sendBtn');
-        if (!to || !amt) return showToast("Enter address and amount", true);
+                const txHash = await window.ethereum.request({ method: 'eth_sendTransaction', params: [txParams] });
+                showToast("Transaction Sent!");
+                saveHistory(fromAddr, to, amt, (currentTokens[currentNetId].tokens[tokenAddr]?.symbol || "Token"), getPrice(currentNetId, tokenAddr), currency.rate, currency.symbol);
+                setTimeout(() => sync(), 2000);
+            } catch (e) { showToast("Failed", true); } finally { btn.disabled = false; btn.innerText = "Confirm Transfer"; }
+        }
 
-        try {
-            btn.disabled = true;
-            btn.innerText = "Processing...";
-            const accounts = await window.ethereum.request({ method: 'eth_accounts' });
-            const fromAddr = accounts[0];
-            let txParams; let symbol = currentNativeSymbol;
-
-            if (targetToken === "native") {
-                txParams = { from: fromAddr, to: to, value: "0x" + (BigInt(Math.floor(amt * 1e9)) * 10n**9n).toString(16) };
-            } else {
-                const amountWei = (BigInt(Math.floor(amt * 1e6)) * (10n ** 12n)).toString(16).padStart(64, '0');
-                txParams = { from: fromAddr, to: targetToken, data: "0xa9059cbb" + to.substring(2).padStart(64, '0') + amountWei };
-                const tInfo = MASTER_TOKEN_LIST[currentNetId]?.find(t => t.a.toLowerCase() === targetToken.toLowerCase());
-                symbol = tInfo ? tInfo.s : "Token";
-            }
-
-            const txHash = await window.ethereum.request({ method: 'eth_sendTransaction', params: [txParams] });
-            showToast("Sent! Waiting for confirmation...");
-
-            let receipt = null;
-            while (receipt === null) {
-                try { receipt = await window.ethereum.request({ method: 'eth_getTransactionReceipt', params: [txHash] }); } catch (e) { }
-                if (!receipt) await new Promise(res => setTimeout(res, 2000));
-            }
-
-            showToast("Confirmed! Balances updated.");
-            const netConfig = MASTER_NETWORKS[currentNetId] || { name: "Unknown" };
+        function saveHistory(from, to, amount, symbol, rate, fxRate, fxSymbol) {
             const history = JSON.parse(localStorage.getItem('tx_history') || '[]');
-            history.unshift({ from: fromAddr, to: to, date: new Date().toLocaleString(), amount: amt, symbol: symbol, network: netConfig.name });
+            history.unshift({ from, to, date: new Date().toLocaleString(), amount, symbol, rateAtTx: rate, fxRateAtTx: fxRate, fxSymbolAtTx: fxSymbol });
             localStorage.setItem('tx_history', JSON.stringify(history.slice(0, 10)));
-            
-            displayHistory(); await sync();
-            btn.innerText = "Confirm Transfer";
-            document.getElementById('recipientBadge').style.display = 'none';
-        } catch (e) {
-            console.error(e); showToast(e.message || "Error", true);
-            btn.disabled = false; btn.innerText = "Confirm Transfer";
+            displayHistory();
         }
-    }
 
-    window.onload = () => { sync(); displayHistory(); };
-    if (window.ethereum) {
-        window.ethereum.on('chainChanged', () => window.location.reload());
-        window.ethereum.on('accountsChanged', () => window.location.reload());
-    }
-</script>
+        function displayHistory() {
+            const history = JSON.parse(localStorage.getItem('tx_history') || '[]');
+            const div = document.getElementById('historyList');
+            if (history.length === 0) { div.innerHTML = '<p style="text-align:center;color:#999;font-size:0.8em;">No history.</p>'; return; }
+
+            const currency = getActiveCurrency();
+
+            div.innerHTML = history.map(tx => {
+                // 保存時のレートを使用して、現在の選択通貨に換算
+                const converted = tx.amount * tx.rateAtTx * currency.rate;
+                return `
+                <div class="hist-item">
+                    <div class="hist-info">
+                        <div class="hist-flow">${getName(tx.from)} → ${getName(tx.to)}</div>
+                        <div class="hist-date">${tx.date}</div>
+                    </div>
+                    <div style="text-align:right;">
+                        <div class="hist-amt">-${tx.amount} ${tx.symbol}</div>
+                        <div style="font-size:0.75em; color:#00c805; font-weight:bold;">${currency.symbol} ${converted.toLocaleString(undefined, { maximumFractionDigits: currency.rate > 10 ? 0 : 2 })}</div>
+                    </div>
+                </div>`;
+            }).join('');
+        }
+
+        function getName(addr) {
+            const acc = currentAccounts.find(a => a.address.toLowerCase() === addr.toLowerCase());
+            return acc ? acc.name : formatAddr(addr);
+        }
+
+        function clearHistory() { if (confirm("Clear?")) { localStorage.removeItem('tx_history'); displayHistory(); } }
+
+        function updateChart(labels, data, colors) {
+            const ctx = document.getElementById('assetChart').getContext('2d');
+            if (chart) chart.destroy();
+            chart = new Chart(ctx, {
+                type: 'doughnut',
+                data: { labels, datasets: [{ data, backgroundColor: colors, borderWidth: 4 }] },
+                options: { responsive: true, maintainAspectRatio: false, cutout: '82%', plugins: { legend: { display: false } } }
+            });
+        }
+
+        function setMax() {
+            const target = document.getElementById('tokenSelector').value;
+            let val = currentBalances[target] || 0;
+            const netData = currentTokens[currentNetId];
+            const gas = netData ? (netData.gasFee || netData.gasfee || 0.005) : 0.005;
+            if (target === NATIVE_ADDR) val = Math.max(0, val - gas);
+            document.getElementById('amount').value = parseFloat(val.toFixed(6));
+            checkAmount(); updateLiveExchange();
+        }
+
+        function showToast(msg, isError = false) {
+            const container = document.getElementById('toastContainer');
+            const toast = document.createElement('div');
+            toast.className = 'toast';
+            toast.innerText = msg;
+            if (isError) toast.style.borderLeftColor = "#ff4444";
+            container.appendChild(toast);
+            setTimeout(() => { toast.style.opacity = '0'; setTimeout(() => toast.remove(), 500); }, 4000);
+        }
+
+        window.onload = () => {
+            initCurrencySelector(); // 通貨プルダウン初期化
+            initNetworkSelector();
+            sync();
+        };
+        if (window.ethereum) {
+            window.ethereum.on('chainChanged', () => sync());
+            window.ethereum.on('accountsChanged', () => sync());
+        }
+    </script>
 </body>
+
 </html>

@@ -1,326 +1,523 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
     <meta charset="UTF-8">
-    <title>Web3 Storage Dashboard - Professional Edition</title>
+    <title>Advanced On-chain Multi-Data Permissioned Registry | Robinhood Testnet</title>
     <script src="https://cdn.jsdelivr.net/npm/web3@1.8.1/dist/web3.min.js"></script>
     <style>
-        :root { 
+        :root {
             --primary: #ff9800;
             --primary-hover: #f57c00;
             --connect-color: #00bfa5;
             --connect-hover: #009688;
             --any-color: #512da8;
             --owner-color: #666;
-            --success: #00e676; 
-            --pending: #ffc107; 
-            --bg: #f0f2f5; 
+            --success: #00e676;
+            --pending: #ffc107;
+            --bg: #f0f2f5;
         }
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: var(--bg); display: flex; justify-content: center; padding: 20px; }
-        .container { background: white; padding: 30px; border-radius: 24px; box-shadow: 0 20px 40px rgba(0,0,0,0.1); width: 580px; }
-        
-        /* 追加デザイン: タイトル */
-        .page-main-title { text-align: center; color: var(--primary); margin-bottom: 25px; font-size: 1.8em; font-weight: bold; line-height: 1.2; }
 
-        .header { border-bottom: 2px solid #eee; margin-bottom: 25px; padding-bottom: 15px; display: flex; justify-content: space-between; align-items: center; }
-        
-        #connectBtn { 
-            background: var(--connect-color); 
-            color: white; 
-            padding: 10px 24px; 
-            border-radius: 12px; 
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--bg);
+            display: flex;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 24px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            width: 580px;
+        }
+
+        /* 追加デザイン: タイトル */
+        .page-main-title {
+            text-align: center;
+            color: #333;
+            margin-bottom: 25px;
+            font-size: 1.8em;
+            font-weight: bold;
+            line-height: 1.2;
+        }
+
+        .header {
+            border-bottom: 2px solid #eee;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        #connectBtn {
+            background: var(--connect-color);
+            color: white;
+            padding: 10px 24px;
+            border-radius: 12px;
             border: none;
             font-weight: bold;
             cursor: pointer;
             transition: 0.3s;
         }
-        #connectBtn:hover { background: var(--connect-hover); transform: translateY(-1px); }
 
-        .name-setting { margin-bottom: 20px; background: #f8f9fa; padding: 15px; border-radius: 12px; border: 1px solid #e9ecef; }
-        .name-setting label { font-size: 0.75em; font-weight: 900; color: #666; display: block; margin-bottom: 5px; }
-
-        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-        .item-card { background: #fff; border: 2px solid #eee; padding: 18px; border-radius: 16px; transition: all 0.3s ease; }
-        
-        .label { display: inline-block; font-size: 0.65em; color: #fff; padding: 2px 8px; border-radius: 4px; font-weight: 800; margin-bottom: 10px; }
-        .any-label { background: var(--any-color); }
-        .owner-label { background: var(--owner-color); }
-
-        .display-val { font-size: 1.3em; font-weight: bold; margin-bottom: 5px; color: #222; border-left: 4px solid #eee; padding-left: 10px; min-height: 1.4em; word-break: break-all; }
-        .update-info { 
-            font-size: 0.7em; 
-            color: #666;      
-            margin-bottom: 15px; 
-            padding-left: 14px; 
-            line-height: 1.2; 
-            min-height: 1.2em; 
+        #connectBtn:hover {
+            background: var(--connect-hover);
+            transform: translateY(-1px);
         }
 
-        input { width: 100%; padding: 12px; border: 2px solid #eee; border-radius: 10px; margin-bottom: 10px; box-sizing: border-box; }
-        .btn-write { width: 100%; padding: 12px; border: none; border-radius: 10px; cursor: pointer; font-weight: bold; background: var(--primary); color: white; transition: 0.3s; }
-        .btn-write:hover { background: var(--primary-hover); }
-        .btn-write:disabled { background: #eee; color: #aaa; cursor: not-allowed; }
-
-        .history-section { margin-top: 30px; border-top: 2px solid #eee; padding-top: 20px; }
-        .history-list { background: #fff; border: 1px solid #eee; border-radius: 12px; overflow: hidden; margin-bottom: 10px; }
-        .history-item { 
-            padding: 12px; 
-            border-bottom: 1px solid #f5f5f5; 
-            font-size: 0.85em; 
-            word-break: break-all; 
-        }
-        
-        #loadMoreBtn { 
-            display: none; width: 100%; padding: 12px; margin-bottom: 15px; 
-            background: #f8f9fa; border: 1px solid #ddd; border-radius: 12px; 
-            cursor: pointer; font-weight: bold; color: #666;
+        .name-setting {
+            margin-bottom: 20px;
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 12px;
+            border: 1px solid #e9ecef;
         }
 
-        .tag-owner { background: #333; color: #fff; padding: 2px 6px; border-radius: 4px; font-size: 0.75em; font-weight: bold; }
-        #log { padding: 15px; background: #1a1a1a; color: #ddd; font-family: monospace; font-size: 0.8em; border-radius: 12px; height: 100px; overflow-y: auto; }
+        .name-setting label {
+            font-size: 0.75em;
+            font-weight: 900;
+            color: #666;
+            display: block;
+            margin-bottom: 5px;
+        }
 
-        .card-pending { border-color: var(--pending) !important; background: #fffdf7; opacity: 0.8; }
-        .flash-neon { animation: neon-glow 1.5s ease-out forwards; }
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .item-card {
+            background: #fff;
+            border: 2px solid #eee;
+            padding: 18px;
+            border-radius: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .label {
+            display: inline-block;
+            font-size: 0.65em;
+            color: #fff;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-weight: 800;
+            margin-bottom: 10px;
+        }
+
+        .any-label {
+            background: var(--any-color);
+        }
+
+        .owner-label {
+            background: var(--owner-color);
+        }
+
+        .display-val {
+            font-size: 1.3em;
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: #222;
+            border-left: 4px solid #eee;
+            padding-left: 10px;
+            min-height: 1.4em;
+            word-break: break-all;
+        }
+
+        .update-info {
+            font-size: 0.7em;
+            color: #666;
+            margin-bottom: 15px;
+            padding-left: 14px;
+            line-height: 1.2;
+            min-height: 1.2em;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #eee;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+        }
+
+        .btn-write {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: bold;
+            background: var(--primary);
+            color: white;
+            transition: 0.3s;
+        }
+
+        .btn-write:hover {
+            background: var(--primary-hover);
+        }
+
+        .btn-write:disabled {
+            background: #eee;
+            color: #aaa;
+            cursor: not-allowed;
+        }
+
+        .history-section {
+            margin-top: 30px;
+            border-top: 2px solid #eee;
+            padding-top: 20px;
+        }
+
+        .history-list {
+            background: #fff;
+            border: 1px solid #eee;
+            border-radius: 12px;
+            overflow: hidden;
+            margin-bottom: 10px;
+        }
+
+        .history-item {
+            padding: 12px;
+            border-bottom: 1px solid #f5f5f5;
+            font-size: 0.85em;
+            word-break: break-all;
+        }
+
+        #loadMoreBtn {
+            display: none;
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            background: #f8f9fa;
+            border: 1px solid #ddd;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: bold;
+            color: #666;
+        }
+
+        .tag-owner {
+            background: #333;
+            color: #fff;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.75em;
+            font-weight: bold;
+        }
+
+        #log {
+            padding: 15px;
+            background: #1a1a1a;
+            color: #ddd;
+            font-family: monospace;
+            font-size: 0.8em;
+            border-radius: 12px;
+            height: 100px;
+            overflow-y: auto;
+        }
+
+        .card-pending {
+            border-color: var(--pending) !important;
+            background: #fffdf7;
+            opacity: 0.8;
+        }
+
+        .flash-neon {
+            animation: neon-glow 1.5s ease-out forwards;
+        }
+
         @keyframes neon-glow {
-            0% { box-shadow: 0 0 10px rgba(0,230,118,0.5); transform: scale(1.02); border-color: var(--success); }
-            100% { box-shadow: 0 0 0px var(--success); transform: scale(1); border-color: var(--success); }
+            0% {
+                box-shadow: 0 0 10px rgba(0, 230, 118, 0.5);
+                transform: scale(1.02);
+                border-color: var(--success);
+            }
+
+            100% {
+                box-shadow: 0 0 0px var(--success);
+                transform: scale(1);
+                border-color: var(--success);
+            }
         }
 
         /* 追加デザイン: 戻るボタン（薄いグレー） */
-        .return-home-container { text-align: center; margin-top: 30px; }
-        .btn-return { 
-            text-decoration: none; 
-            color: #555; 
-            font-weight: bold; 
-            padding: 12px 24px; 
-            border: 1px solid #ccc; 
-            border-radius: 12px; 
-            background: #f0f0f0; 
-            display: inline-block; 
-            transition: 0.2s; 
+        .return-home-container {
+            text-align: center;
+            margin-top: 30px;
         }
-        .btn-return:hover { 
-            background: #e0e0e0; 
-            border-color: #bbb; 
+
+        .btn-return {
+            text-decoration: none;
+            color: #555;
+            font-weight: bold;
+            padding: 12px 24px;
+            border: 1px solid #ccc;
+            border-radius: 12px;
+            background: #f0f0f0;
+            display: inline-block;
+            transition: 0.2s;
+        }
+
+        .btn-return:hover {
+            background: #e0e0e0;
+            border-color: #bbb;
+        }
+
+        .top-nav {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            gap: 10px;
+            z-index: 1000;
+        }
+
+        .btn-nav {
+            padding: 8px 18px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-back {
+            background: #bfccde;
+            color: rgb(62, 62, 62);
         }
     </style>
 </head>
+
 <body>
 
-<div class="container">
-    <h1 class="page-main-title">Advanced On-chain Multi-Data Permissioned Registry</h1>
-
-    <div class="header">
-        <div>
-            <h2 style="margin:0; color: #333;">Dashboard</h2>
-            <p id="walletInfo" style="font-size: 0.7em; color: #888;">Not Connected</p>
+    <div class="container">
+        <div class="top-nav">
+            <a href="../index.html" class="btn-nav btn-back">Back To Home Page</a>
         </div>
-        <button id="connectBtn">Connect Wallet</button>
+        <h1 style="text-align: center; font-size: 1rem;margin-bottom: -20px; color: #28a745;">Robinhood Testnet</h1>
+        <h1 class="page-main-title">Advanced On-chain Multi-Data Permissioned Registry</h1>
+
+        <div class="header">
+            <div>
+                <h2 style="margin:0; color: #333;">Dashboard</h2>
+                <p id="walletInfo" style="font-size: 0.7em; color: #888;">Not Connected</p>
+            </div>
+            <button id="connectBtn">Connect Wallet</button>
+        </div>
+
+        <div class="name-setting">
+            <label>YOUR NAME</label>
+            <input type="text" id="userNameInput" placeholder="Enter your name (auto-saves to browser)">
+        </div>
+
+        <div class="grid">
+            <div class="item-card" id="card-AnyNumber">
+                <div class="label any-label">ANY NUMBER</div>
+                <div id="anyNumberVal" class="display-val">--</div>
+                <div id="anyNumberInfo" class="update-info">Updated: --</div>
+                <input type="number" id="anyNumberInput" placeholder="New Value">
+                <button class="btn-write" onclick="updateData('setAnyNumber', 'anyNumberInput')"
+                    disabled>Update</button>
+            </div>
+            <div class="item-card" id="card-AnyText">
+                <div class="label any-label">ANY TEXT</div>
+                <div id="anyTextVal" class="display-val">--</div>
+                <div id="anyTextInfo" class="update-info">Updated: --</div>
+                <input type="text" id="anyTextInput" placeholder="New Message">
+                <button class="btn-write" onclick="updateData('setAnyText', 'anyTextInput')" disabled>Update</button>
+            </div>
+            <div class="item-card" id="card-OwnerNumber">
+                <div class="label owner-label">OWNER NUMBER</div>
+                <div id="ownerNumberVal" class="display-val">--</div>
+                <div id="ownerNumberInfo" class="update-info">Updated: --</div>
+                <input type="number" id="ownerNumberInput" placeholder="Owner Only">
+                <button class="btn-write" onclick="updateData('setOwnerNumber', 'ownerNumberInput')"
+                    disabled>Update</button>
+            </div>
+            <div class="item-card" id="card-OwnerText">
+                <div class="label owner-label">OWNER TEXT</div>
+                <div id="ownerTextVal" class="display-val">--</div>
+                <div id="ownerTextInfo" class="update-info">Updated: --</div>
+                <input type="text" id="ownerTextInput" placeholder="Owner Only">
+                <button class="btn-write" onclick="updateData('setOwnerText', 'ownerTextInput')"
+                    disabled>Update</button>
+            </div>
+        </div>
+
+        <div class="history-section">
+            <h3 style="font-size: 1em; margin-bottom: 10px; color: #444;">Activity History</h3>
+            <div id="historyList" class="history-list"></div>
+            <button id="loadMoreBtn">Load More</button>
+            <div id="log">>> Ready for interaction.</div>
+        </div>
+
+        <div class="return-home-container">
+            <a href="../index.html" class="btn-return">← Return to Home Page</a>
+        </div>
     </div>
 
-    <div class="name-setting">
-        <label>YOUR NAME</label>
-        <input type="text" id="userNameInput" placeholder="Enter your name (auto-saves to browser)">
-    </div>
+    <script>
+        const contractAddress = "0x719D976CA63f1491F616a1bC11784c0372CD6262";
+        const contractABI = [{ "anonymous": false, "inputs": [{ "indexed": true, "internalType": "address", "name": "sender", "type": "address" }, { "indexed": false, "internalType": "string", "name": "userName", "type": "string" }, { "indexed": false, "internalType": "string", "name": "label", "type": "string" }, { "indexed": false, "internalType": "string", "name": "newValue", "type": "string" }, { "indexed": false, "internalType": "uint256", "name": "timestamp", "type": "uint256" }], "name": "DataUpdated", "type": "event" }, { "inputs": [], "name": "anyNumber", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "anyText", "outputs": [{ "internalType": "string", "name": "", "type": "string" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "owner", "outputs": [{ "internalType": "address", "name": "", "type": "address" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "ownerNumber", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "ownerText", "outputs": [{ "internalType": "string", "name": "", "type": "string" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "uint256", "name": "_num", "type": "uint256" }, { "internalType": "string", "name": "_userName", "type": "string" }], "name": "setAnyNumber", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [{ "internalType": "string", "name": "_text", "type": "string" }, { "internalType": "string", "name": "_userName", "type": "string" }], "name": "setAnyText", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [{ "internalType": "uint256", "name": "_num", "type": "uint256" }, { "internalType": "string", "name": "_userName", "type": "string" }], "name": "setOwnerNumber", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [{ "internalType": "string", "name": "_text", "type": "string" }, { "internalType": "string", "name": "_userName", "type": "string" }], "name": "setOwnerText", "outputs": [], "stateMutability": "nonpayable", "type": "function" }];
 
-    <div class="grid">
-        <div class="item-card" id="card-AnyNumber">
-            <div class="label any-label">ANY NUMBER</div>
-            <div id="anyNumberVal" class="display-val">--</div>
-            <div id="anyNumberInfo" class="update-info">Updated: --</div>
-            <input type="number" id="anyNumberInput" placeholder="New Value">
-            <button class="btn-write" onclick="updateData('setAnyNumber', 'anyNumberInput')" disabled>Update</button>
-        </div>
-        <div class="item-card" id="card-AnyText">
-            <div class="label any-label">ANY TEXT</div>
-            <div id="anyTextVal" class="display-val">--</div>
-            <div id="anyTextInfo" class="update-info">Updated: --</div>
-            <input type="text" id="anyTextInput" placeholder="New Message">
-            <button class="btn-write" onclick="updateData('setAnyText', 'anyTextInput')" disabled>Update</button>
-        </div>
-        <div class="item-card" id="card-OwnerNumber">
-            <div class="label owner-label">OWNER NUMBER</div>
-            <div id="ownerNumberVal" class="display-val">--</div>
-            <div id="ownerNumberInfo" class="update-info">Updated: --</div>
-            <input type="number" id="ownerNumberInput" placeholder="Owner Only">
-            <button class="btn-write" onclick="updateData('setOwnerNumber', 'ownerNumberInput')" disabled>Update</button>
-        </div>
-        <div class="item-card" id="card-OwnerText">
-            <div class="label owner-label">OWNER TEXT</div>
-            <div id="ownerTextVal" class="display-val">--</div>
-            <div id="ownerTextInfo" class="update-info">Updated: --</div>
-            <input type="text" id="ownerTextInput" placeholder="Owner Only">
-            <button class="btn-write" onclick="updateData('setOwnerText', 'ownerTextInput')" disabled>Update</button>
-        </div>
-    </div>
+        let web3, contract, userAccount;
+        let allEvents = [];
+        let displayCount = 5;
 
-    <div class="history-section">
-        <h3 style="font-size: 1em; margin-bottom: 10px; color: #444;">Activity History</h3>
-        <div id="historyList" class="history-list"></div>
-        <button id="loadMoreBtn">Load More</button>
-        <div id="log">>> Ready for interaction.</div>
-    </div>
+        const nameField = document.getElementById('userNameInput');
+        nameField.value = localStorage.getItem('web3Name') || "";
+        nameField.oninput = () => localStorage.setItem('web3Name', nameField.value);
 
-    <div class="return-home-container">
-        <a href="../index.html" class="btn-return">← Return to Home Page</a>
-    </div>
-</div>
-
-<script>
-    const contractAddress = "0x719D976CA63f1491F616a1bC11784c0372CD6262";
-    const contractABI = [{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"sender","type":"address"},{"indexed":false,"internalType":"string","name":"userName","type":"string"},{"indexed":false,"internalType":"string","name":"label","type":"string"},{"indexed":false,"internalType":"string","name":"newValue","type":"string"},{"indexed":false,"internalType":"uint256","name":"timestamp","type":"uint256"}],"name":"DataUpdated","type":"event"},{"inputs":[],"name":"anyNumber","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"anyText","outputs":[{"internalType":"string","name":"","type":"string"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"owner","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"ownerNumber","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"ownerText","outputs":[{"internalType":"string","name":"","type":"string"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"_num","type":"uint256"},{"internalType":"string","name":"_userName","type":"string"}],"name":"setAnyNumber","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"string","name":"_text","type":"string"},{"internalType":"string","name":"_userName","type":"string"}],"name":"setAnyText","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"uint256","name":"_num","type":"uint256"},{"internalType":"string","name":"_userName","type":"string"}],"name":"setOwnerNumber","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"string","name":"_text","type":"string"},{"internalType":"string","name":"_userName","type":"string"}],"name":"setOwnerText","outputs":[],"stateMutability":"nonpayable","type":"function"}];
-
-    let web3, contract, userAccount;
-    let allEvents = [];
-    let displayCount = 5;
-
-    const nameField = document.getElementById('userNameInput');
-    nameField.value = localStorage.getItem('web3Name') || "";
-    nameField.oninput = () => localStorage.setItem('web3Name', nameField.value);
-
-    async function init() {
-        if (typeof window.ethereum !== 'undefined') {
-            try {
-                web3 = new Web3(window.ethereum);
-                contract = new web3.eth.Contract(contractABI, contractAddress);
-                document.getElementById('connectBtn').onclick = connectWallet;
-                const accounts = await web3.eth.getAccounts();
-                if (accounts.length > 0) {
-                    userAccount = accounts[0];
-                    await updateUIConnected();
-                }
-            } catch (err) { addLog("Init failed.", "err"); }
-        } else { addLog("MetaMask not found.", "err"); }
-    }
-
-    async function updateUIConnected() {
-        if (!userAccount) return;
-        document.getElementById('walletInfo').innerText = `CONNECTED: ${userAccount.slice(0,6)}...${userAccount.slice(-4)}`;
-        document.querySelectorAll('.btn-write').forEach(b => b.disabled = false);
-        setTimeout(async () => {
-            await refreshAll();
-            await loadHistory();
-            addLog("Data synchronized.", "sys");
-        }, 500);
-    }
-
-    async function connectWallet() {
-        try {
-            const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
-            userAccount = accounts[0];
-            await updateUIConnected();
-        } catch (e) { addLog("Connection failed.", "err"); }
-    }
-
-    async function refreshAll() {
-        if (!contract) return;
-        try {
-            const anyNum = await contract.methods.anyNumber().call();
-            const anyTxt = await contract.methods.anyText().call();
-            const ownNum = await contract.methods.ownerNumber().call();
-            const ownTxt = await contract.methods.ownerText().call();
-            document.getElementById('anyNumberVal').innerText = anyNum || "0";
-            document.getElementById('anyTextVal').innerText = anyTxt || "(No Data)";
-            document.getElementById('ownerNumberVal').innerText = ownNum || "0";
-            document.getElementById('ownerTextVal').innerText = ownTxt || "(No Data)";
-        } catch (e) { addLog("Fetch error.", "err"); }
-    }
-
-    async function loadHistory() {
-        if (!contract) return;
-        try {
-            const events = await contract.getPastEvents('DataUpdated', { fromBlock: 0, toBlock: 'latest' });
-            allEvents = events.reverse();
-            
-            const latestMap = {};
-            allEvents.forEach(ev => {
-                const d = ev.returnValues;
-                if (!latestMap[d.label]) {
-                    const date = new Date(d.timestamp * 1000);
-                    const timeStr = `${date.getFullYear()}/${(date.getMonth()+1).toString().padStart(2,'0')}/${date.getDate().toString().padStart(2,'0')} ${date.toLocaleTimeString()}`;
-                    const isOwnerLabel = d.label.includes("Owner");
-                    latestMap[d.label] = { 
-                        time: timeStr, 
-                        user: isOwnerLabel ? "Owner" : (d.userName || "Anonymous") 
-                    };
-                }
-            });
-
-            updateMeta('Any Number', 'anyNumberInfo', latestMap);
-            updateMeta('Any Text', 'anyTextInfo', latestMap);
-            updateMeta('Owner Number', 'ownerNumberInfo', latestMap);
-            updateMeta('Owner Text', 'ownerTextInfo', latestMap);
-
-            renderHistory();
-        } catch (e) { console.error(e); }
-    }
-
-    function updateMeta(label, id, map) {
-        const el = document.getElementById(id);
-        if (map[label]) {
-            el.style.color = "#666";
-            el.style.fontWeight = "500";
-            el.innerText = `Updated: ${map[label].time} by ${map[label].user}`;
+        async function init() {
+            if (typeof window.ethereum !== 'undefined') {
+                try {
+                    web3 = new Web3(window.ethereum);
+                    contract = new web3.eth.Contract(contractABI, contractAddress);
+                    document.getElementById('connectBtn').onclick = connectWallet;
+                    const accounts = await web3.eth.getAccounts();
+                    if (accounts.length > 0) {
+                        userAccount = accounts[0];
+                        await updateUIConnected();
+                    }
+                } catch (err) { addLog("Init failed.", "err"); }
+            } else { addLog("MetaMask not found.", "err"); }
         }
-    }
 
-    function renderHistory() {
-        const list = document.getElementById('historyList');
-        const btn = document.getElementById('loadMoreBtn');
-        list.innerHTML = "";
-        const visible = allEvents.slice(0, displayCount);
-        visible.forEach(ev => {
-            const d = ev.returnValues;
-            const date = new Date(d.timestamp * 1000);
-            const timeStr = `${date.getFullYear()}/${(date.getMonth()+1).toString().padStart(2,'0')}/${date.getDate().toString().padStart(2,'0')} ${date.toLocaleTimeString()}`;
-            const item = document.createElement('div');
-            item.className = 'history-item';
-            item.innerHTML = `
+        async function updateUIConnected() {
+            if (!userAccount) return;
+            document.getElementById('walletInfo').innerText = `CONNECTED: ${userAccount.slice(0, 6)}...${userAccount.slice(-4)}`;
+            document.querySelectorAll('.btn-write').forEach(b => b.disabled = false);
+            setTimeout(async () => {
+                await refreshAll();
+                await loadHistory();
+                addLog("Data synchronized.", "sys");
+            }, 500);
+        }
+
+        async function connectWallet() {
+            try {
+                const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+                userAccount = accounts[0];
+                await updateUIConnected();
+            } catch (e) { addLog("Connection failed.", "err"); }
+        }
+
+        async function refreshAll() {
+            if (!contract) return;
+            try {
+                const anyNum = await contract.methods.anyNumber().call();
+                const anyTxt = await contract.methods.anyText().call();
+                const ownNum = await contract.methods.ownerNumber().call();
+                const ownTxt = await contract.methods.ownerText().call();
+                document.getElementById('anyNumberVal').innerText = anyNum || "0";
+                document.getElementById('anyTextVal').innerText = anyTxt || "(No Data)";
+                document.getElementById('ownerNumberVal').innerText = ownNum || "0";
+                document.getElementById('ownerTextVal').innerText = ownTxt || "(No Data)";
+            } catch (e) { addLog("Fetch error.", "err"); }
+        }
+
+        async function loadHistory() {
+            if (!contract) return;
+            try {
+                const events = await contract.getPastEvents('DataUpdated', { fromBlock: 0, toBlock: 'latest' });
+                allEvents = events.reverse();
+
+                const latestMap = {};
+                allEvents.forEach(ev => {
+                    const d = ev.returnValues;
+                    if (!latestMap[d.label]) {
+                        const date = new Date(d.timestamp * 1000);
+                        const timeStr = `${date.getFullYear()}/${(date.getMonth() + 1).toString().padStart(2, '0')}/${date.getDate().toString().padStart(2, '0')} ${date.toLocaleTimeString()}`;
+                        const isOwnerLabel = d.label.includes("Owner");
+                        latestMap[d.label] = {
+                            time: timeStr,
+                            user: isOwnerLabel ? "Owner" : (d.userName || "Anonymous")
+                        };
+                    }
+                });
+
+                updateMeta('Any Number', 'anyNumberInfo', latestMap);
+                updateMeta('Any Text', 'anyTextInfo', latestMap);
+                updateMeta('Owner Number', 'ownerNumberInfo', latestMap);
+                updateMeta('Owner Text', 'ownerTextInfo', latestMap);
+
+                renderHistory();
+            } catch (e) { console.error(e); }
+        }
+
+        function updateMeta(label, id, map) {
+            const el = document.getElementById(id);
+            if (map[label]) {
+                el.style.color = "#666";
+                el.style.fontWeight = "500";
+                el.innerText = `Updated: ${map[label].time} by ${map[label].user}`;
+            }
+        }
+
+        function renderHistory() {
+            const list = document.getElementById('historyList');
+            const btn = document.getElementById('loadMoreBtn');
+            list.innerHTML = "";
+            const visible = allEvents.slice(0, displayCount);
+            visible.forEach(ev => {
+                const d = ev.returnValues;
+                const date = new Date(d.timestamp * 1000);
+                const timeStr = `${date.getFullYear()}/${(date.getMonth() + 1).toString().padStart(2, '0')}/${date.getDate().toString().padStart(2, '0')} ${date.toLocaleTimeString()}`;
+                const item = document.createElement('div');
+                item.className = 'history-item';
+                item.innerHTML = `
                 <div style="display:flex; justify-content:space-between; color:#999; font-size:0.75em; margin-bottom:6px;">
-                    <span>${timeStr}</span><span>${d.sender.slice(0,6)}...</span>
+                    <span>${timeStr}</span><span>${d.sender.slice(0, 6)}...</span>
                 </div>
                 <div style="display:flex; flex-direction:column; gap:4px;">
                     <span style="font-size:0.9em;">${d.label.includes('Owner') ? '<span class="tag-owner">⭐ OWNER</span>' : '👤 ' + (d.userName || 'Anonymous')}</span>
                     <span style="font-weight:bold; color:#2db883; font-size:1em; line-height:1.4;">${d.label}: ${d.newValue}</span>
                 </div>`;
-            list.appendChild(item);
-        });
-        if (allEvents.length > displayCount) {
-            btn.style.display = "block";
-            btn.onclick = () => { displayCount += 5; renderHistory(); };
-        } else { btn.style.display = "none"; }
-    }
-
-    async function updateData(methodName, inputId) {
-        const val = document.getElementById(inputId).value;
-        const name = nameField.value || "Anonymous";
-        if(!val) return;
-        const baseName = methodName.replace('set', '');
-        const card = document.getElementById(`card-${baseName}`);
-        card.classList.add('card-pending');
-        try {
-            await contract.methods[methodName](val, name).send({ from: userAccount });
-            await refreshAll();
-            await loadHistory();
-            card.classList.remove('card-pending');
-            card.classList.add('flash-neon');
-            setTimeout(() => card.classList.remove('flash-neon'), 2000);
-            addLog(`Updated ${baseName}!`, "sys");
-        } catch (e) {
-            card.classList.remove('card-pending');
-            addLog("Failed.", "err");
+                list.appendChild(item);
+            });
+            if (allEvents.length > displayCount) {
+                btn.style.display = "block";
+                btn.onclick = () => { displayCount += 5; renderHistory(); };
+            } else { btn.style.display = "none"; }
         }
-    }
 
-    function addLog(msg, type) {
-        const log = document.getElementById('log');
-        const entry = document.createElement('div');
-        entry.style.color = type === "sys" ? "#2196f3" : (type === "err" ? "#f44336" : "#ddd");
-        entry.innerText = `[${new Date().toLocaleTimeString()}] ${msg}`;
-        log.insertBefore(entry, log.firstChild);
-    }
+        async function updateData(methodName, inputId) {
+            const val = document.getElementById(inputId).value;
+            const name = nameField.value || "Anonymous";
+            if (!val) return;
+            const baseName = methodName.replace('set', '');
+            const card = document.getElementById(`card-${baseName}`);
+            card.classList.add('card-pending');
+            try {
+                await contract.methods[methodName](val, name).send({ from: userAccount });
+                await refreshAll();
+                await loadHistory();
+                card.classList.remove('card-pending');
+                card.classList.add('flash-neon');
+                setTimeout(() => card.classList.remove('flash-neon'), 2000);
+                addLog(`Updated ${baseName}!`, "sys");
+            } catch (e) {
+                card.classList.remove('card-pending');
+                addLog("Failed.", "err");
+            }
+        }
 
-    window.addEventListener('load', init);
-</script>
+        function addLog(msg, type) {
+            const log = document.getElementById('log');
+            const entry = document.createElement('div');
+            entry.style.color = type === "sys" ? "#2196f3" : (type === "err" ? "#f44336" : "#ddd");
+            entry.innerText = `[${new Date().toLocaleTimeString()}] ${msg}`;
+            log.insertBefore(entry, log.firstChild);
+        }
+
+        window.addEventListener('load', init);
+    </script>
 </body>
+
 </html>

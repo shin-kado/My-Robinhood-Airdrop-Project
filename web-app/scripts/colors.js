@@ -7,7 +7,7 @@ const COLOR_PALETTE = [
     '#9966ff', // 3: Royal Purple
     '#4bc0c0', // 4: Cyan
     '#ff6384', // 5: Soft Pink
-    '#ffcd56', // 6: Sunny Yellow
+    '#d56ffc', // 6: Sunny Yellow
     '#45aaf2', // 7: High Blue
     '#a55eea', // 8: Lavender
     '#fd9644', // 9: Orange Tag
