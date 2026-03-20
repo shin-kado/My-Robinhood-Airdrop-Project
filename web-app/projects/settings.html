@@ -540,11 +540,14 @@
         function saveAccountsOnly() { localStorage.setItem('tmp_accounts', JSON.stringify(currentAccounts)); alert("Account Memory Updated!"); }
 
         function generateFXCode() {
+            saveFXOnly();
             const exp = {};
             Object.keys(currentFX).sort((a, b) => currentFX[a].order - currentFX[b].order).forEach(k => exp[k] = currentFX[k]);
             showCode(`const FX_RATES = ${JSON.stringify(exp, null, 4)};`);
         }
+
         function generateTokenCode() {
+            saveTokensOnly();
             const exp = {};
             Object.keys(currentTokens).sort((a, b) => parseInt(a) - parseInt(b)).forEach(c => {
                 const n = currentTokens[c];
@@ -553,7 +556,11 @@
             });
             showCode(`const TOKEN_USD_RATES = ${JSON.stringify(exp, null, 4)};`);
         }
-        function generateAccountCode() { showCode(`const MASTER_ACCOUNT_LIST = ${JSON.stringify(currentAccounts, null, 4)};`); }
+
+        function generateAccountCode() {
+            saveAccountsOnly();
+            showCode(`const MASTER_ACCOUNT_LIST = ${JSON.stringify(currentAccounts, null, 4)};`);
+        }
 
         function showCode(code) {
             document.getElementById('code-content').textContent = code;
@@ -562,7 +569,17 @@
             window.scrollTo(0, document.body.scrollHeight);
         }
 
-        function allReset() { if (confirm("Reset all settings?")) { localStorage.clear(); location.reload(); } }
+        function allReset() {
+            if (confirm("Reset configuration only (Accounts, FX, Tokens)?\nDashboard transaction history will be kept.\n（設定データ（Accounts, FX, Tokens）のみをリセットしますか？\n　※Dashboardの取引データは保持されます。）")) {
+                // 特定の設定用キーだけを削除
+                localStorage.removeItem('tmp_fx');
+                localStorage.removeItem('tmp_tokens');
+                localStorage.removeItem('tmp_accounts');
+
+                alert("Settings reset successfully. Reloading page...\n（設定データをリセットしました。ページを再読み込みします。）");
+                location.reload();
+            }
+        }
 
         initData();
         renderFX();

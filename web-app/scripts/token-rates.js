@@ -43,27 +43,27 @@ const TOKEN_USD_RATES = {
             "0x5884aD2f920c162CFBbACc88C9C51AA75eC09E02": {
                 "order": 20,
                 "symbol": "AMZN",
-                "rate": 1.2
+                "rate": 0.5
             },
             "0x71178BAc73cBeb415514eB542a8995b82669778d": {
                 "order": 30,
                 "symbol": "AMD",
-                "rate": 1.4
+                "rate": 1
             },
             "0x3b8262A63d25f0477c4DDE23F83cfe22Cb768C93": {
                 "order": 40,
                 "symbol": "NFLX",
-                "rate": 1.6
+                "rate": 5
             },
             "0x1FBE1a0e46356788258385d30907A8D78330D048": {
                 "order": 50,
                 "symbol": "PLTR",
-                "rate": 1.8
+                "rate": 10
             },
             "0xC9f9c86933092BbbfFF3CCb4b105A4A94bf3Bd4E": {
                 "order": 60,
                 "symbol": "TSLA",
-                "rate": 2
+                "rate": 20
             }
         }
     }

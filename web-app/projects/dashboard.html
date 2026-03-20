@@ -355,6 +355,19 @@
             background: #bfccde;
             color: rgb(62, 62, 62);
         }
+
+        /* button:hover ではなく .btn-danger:hover に限定する */
+        .btn-danger:hover {
+            opacity: 0.85;
+            transform: translateY(-2px);
+            /* 少し浮く */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            /* 浮いた感を出してガタつきを防ぐ */
+        }
+
+        .btn-danger:active {
+            transform: translateY(0);
+        }
     </style>
 </head>
 
@@ -433,8 +446,11 @@
         <div class="card">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
                 <h2>Transaction History</h2>
-                <button onclick="clearHistory()"
-                    style="background:none; border:none; color:#ccc; font-size:0.7em; cursor:pointer;">Clear</button>
+                <button onclick="clearHistory();" class="btn-danger"
+                    style="background: #e6e5e5; color: #8e8e8e; border: none; padding: 8px 16px; border-radius: 6px; cursor: pointer; font-size: 0.7em; font-weight: bold; margin-top: 10px; transition: 0.3s;">
+                    Reset Transaction History
+                </button>
+
             </div>
             <div id="historyList"></div>
         </div>
@@ -794,7 +810,7 @@
             return acc ? acc.name : formatAddr(addr);
         }
 
-        function clearHistory() { if (confirm("Clear?")) { localStorage.removeItem('tx_history'); displayHistory(); } }
+        function clearHistory() { if (confirm("Reset all transaction history?\n（取引履歴をリセットしますか？）")) { localStorage.removeItem('tx_history'); displayHistory(); } }
 
         function updateChart(labels, data, colors) {
             const ctx = document.getElementById('assetChart').getContext('2d');

@@ -118,8 +118,7 @@
 <body>
 
     <header>
-        <h1 style="font-size: 2rem;margin-bottom: 0px; color: #28a745;">Robinhood Testnet</h1>
-
+        <h1 style="font-size: 2rem; margin-bottom: 0px; color: #28a745;">Robinhood Testnet</h1>
         <h1>Web3 Development Hub</h1>
         <p>Developer： shin-kado</p>
     </header>
@@ -152,7 +151,7 @@
         </a>
 
         <a href="projects/settings.html" class="project-card">
-            <div class="status" style="background: #eceff1; color: #607d8b;">System</div>
+            <div id="data-status" class="status" style="background: #eceff1; color: #607d8b;">System</div>
             <div class="title">⚙️ Dashboard Parameters Settings</div>
             <div class="desc">
                 FXとトークンのレート、アカウントリストの設定と更新。開発者向けのカスタムコード書き出しを行います。
@@ -174,8 +173,48 @@
                 <span class="tag">Under Dev</span>
             </div>
         </div>
+
+        <div style="margin-top: 40px; padding: 20px; border-top: 1px solid #b33838; width: 100%; 
+            display: flex; flex-direction: column; align-items: center; text-align: none;">
+
+            <p style="font-size: 0.85em; color: #777; margin-bottom: 12px; line-height: 1.6;">
+                Clear browser cache and restore default settings. Once cleared, this action cannot be undone.<br>
+                (ブラウザのキャッシュをクリアし初期設定に戻します。一度実行すると元に戻せません。)
+            </p>
+
+            <button onclick="clearAppCache();"
+                style="background: #ff4444; color: white; border: none; padding: 8px 20px; border-radius: 6px; cursor: pointer; font-size: 0.9em; font-weight: bold;">
+                Reset All Custom Settings
+            </button>
+        </div>
     </div>
 
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // localStorageにデータがあるかチェック
+            const hasCustomData = localStorage.getItem('tmp_accounts') ||
+                localStorage.getItem('tmp_fx') ||
+                localStorage.getItem('tmp_tokens');
+
+            if (hasCustomData) {
+                const statusTag = document.getElementById('data-status');
+                if (statusTag) {
+                    statusTag.textContent = "Customized Data";
+                    statusTag.style.background = "#00c805"; // Robinhoodグリーン
+                    statusTag.style.color = "#fff";
+                }
+            }
+        });
+
+        // リセット機能（1つの関数に集約）
+        function clearAppCache() {
+            if (confirm("Clear ALL custom settings and restore defaults?\nThis will wipe ALL data stored in this browser.\n（ブラウザに保存されたカスタム設定（localStorage）をすべて消去し\n初期状態（JSファイルの設定）に戻しますか？）")) {
+                localStorage.clear();
+                alert("All data cleared.Refreshing page...\n（キャッシュをリセットしました。ページを再読み込みします。）");
+                location.reload();
+            }
+        }
+    </script>
 </body>
 
 </html>
