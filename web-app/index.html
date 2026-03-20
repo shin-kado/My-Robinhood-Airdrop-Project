@@ -117,10 +117,33 @@
 
 <body>
 
-    <header>
-        <h1 style="font-size: 2rem; margin-bottom: 0px; color: #28a745;">Robinhood Testnet</h1>
-        <h1>Web3 Development Hub</h1>
-        <p>Developer： shin-kado</p>
+    <header style="max-width: 800px; margin: 0 auto 30px auto; text-align: left; padding: 0 20px;">
+        <h1 style="font-size: 2.5rem; margin-bottom: 0px; color: #28a745; font-weight: 800;">Robinhood Testnet</h1>
+        <h2 style="font-size: 1.5rem; margin-top: 0px; color: #333; font-weight: 600;">Web3 Development Hub</h2>
+        <p style="margin-top: -5px; color: #666; font-size: 0.9rem;">Developer: shin-kado</p>
+
+        <div
+            style="background-color: #fff; border-left: 4px solid #28a745; padding: 20px; margin-top: 25px; border-radius: 0 12px 12px 0; box-shadow: 0 4px 15px rgba(0,0,0,0.05);">
+            <h3 style="margin: 0 0 10px 0; font-size: 1.1rem; color: #28a745; letter-spacing: 0.05em;">Concept： Flexible
+                & Secure Playground</h3>
+
+            <p style="margin: 0 0 12px 0; font-size: 0.95rem; line-height: 1.6; color: #444; font-style: italic;">
+                This system is designed as a "Playground" for users to enjoy personalizing exchange rates and master
+                Web3 operations. By utilizing LocalStorage, it allows for deep customization without modifying the
+                source code. While the system supports actual transactions, it is equipped with strict validation logic
+                to prevent human error.
+            </p>
+
+            <p style="margin: 0; font-size: 0.85rem; line-height: 1.7; color: #666;">
+                <strong>コンセプト：柔軟なカスタマイズと安全性を両立した「実験場」</strong><br>
+                本システムは、利用者が独自の為替レート設定を楽しみながら、Web3の操作に習熟するための「実験場（Playground）」として設計されています。LocalStorageを活用したアーキテクチャにより、ソースコードを直接書き換えることなく、深いレベルでのカスタマイズが可能です。また、実際の送金が可能な環境であることを考慮し、ヒューマンエラーを未然に防ぐための厳格な検証ロジックを搭載しています。
+            </p>
+
+            <p style="margin-top: 10px; font-size: 0.75rem; color: #999;">
+                ※ Note: Please refer to the manual regarding the nature of data resets in LocalStorage.<br>
+                （※注：LocalStorageの特性上、設定がリセットされる場合があります。詳細はマニュアルをご確認ください。）
+            </p>
+        </div>
     </header>
 
     <div class="container">
@@ -128,8 +151,8 @@
             <div class="status status-done">Completed</div>
             <div class="title">Advanced On-chain Multi-Data Permissioned Registry</div>
             <div class="desc">
-                オーナー権限管理とリアルタイム通知（Event Listening）を搭載した高度なデータ管理システム。
-                処理中の状態（Pending）を視覚化するUIを採用。
+                Strict data registration with owner-based access control and event listening<br>
+                （厳格な権限管理とリアルタイム通知を備えた、ブロックチェーン上のデータ登録台帳）
             </div>
             <div class="tech-stack">
                 <span class="tag">Solidity</span>
@@ -142,7 +165,8 @@
             <div class="status status-done">Completed</div>
             <div class="title">Asset & Token Distribution Dashboard</div>
             <div class="desc">
-                MetaMaskと連携し資産やトークン配布を視覚的に管理するダッシュボード。
+                Visualizes asset status and token distribution via MetaMask integration<br>
+                （MetaMaskと連携し、資産状況やトークン配布を直感的に可視化・管理）
             </div>
             <div class="tech-stack">
                 <span class="tag">MetaMask</span>
@@ -154,7 +178,8 @@
             <div id="data-status" class="status" style="background: #eceff1; color: #607d8b;">System</div>
             <div class="title">⚙️ Dashboard Parameters Settings</div>
             <div class="desc">
-                FXとトークンのレート、アカウントリストの設定と更新。開発者向けのカスタムコード書き出しを行います。
+                Centralized management of master data and system-wide calculation logic<br>
+                （為替やアカウント等のマスターデータを一括管理し、計算ロジックを制御）
             </div>
             <div class="tech-stack">
                 <span class="tag">Configuration</span>

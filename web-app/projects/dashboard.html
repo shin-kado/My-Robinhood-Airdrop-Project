@@ -774,34 +774,70 @@
             } catch (e) { showToast("Failed", true); } finally { btn.disabled = false; btn.innerText = "Confirm Transfer"; }
         }
 
+        // --- 履歴の保存 ---
         function saveHistory(from, to, amount, symbol, rate, fxRate, fxSymbol) {
             const history = JSON.parse(localStorage.getItem('tx_history') || '[]');
-            history.unshift({ from, to, date: new Date().toLocaleString(), amount, symbol, rateAtTx: rate, fxRateAtTx: fxRate, fxSymbolAtTx: fxSymbol });
-            localStorage.setItem('tx_history', JSON.stringify(history.slice(0, 10)));
+
+            // 取引時の状態をスナップショットとして保存
+            const newRecord = {
+                from,
+                to,
+                date: new Date().toLocaleString(),
+                amount,
+                symbol,
+                rateAtTx: rate, // 取引時のトークンのUSD価格
+                // 取引時点の全為替レート(FX_RATES)をディープコピーして保存
+                fxSnapshot: JSON.parse(JSON.stringify(currentFX))
+            };
+
+            history.unshift(newRecord);
+            // 直近5件のみ保持
+            localStorage.setItem('tx_history', JSON.stringify(history.slice(0, 30)));
             displayHistory();
         }
 
+        // --- 履歴の表示 ---
         function displayHistory() {
             const history = JSON.parse(localStorage.getItem('tx_history') || '[]');
             const div = document.getElementById('historyList');
-            if (history.length === 0) { div.innerHTML = '<p style="text-align:center;color:#999;font-size:0.8em;">No history.</p>'; return; }
 
-            const currency = getActiveCurrency();
+            if (history.length === 0) {
+                div.innerHTML = '<p style="text-align:center;color:#999;font-size:0.8em;">No history.</p>';
+                return;
+            }
 
             div.innerHTML = history.map(tx => {
-                // 保存時のレートを使用して、現在の選択通貨に換算
-                const converted = tx.amount * tx.rateAtTx * currency.rate;
+                // 1. 保存されたスナップショットから、現在選択中の通貨(currentCurrencyKey)を探す
+                let txFx = tx.fxSnapshot ? tx.fxSnapshot[currentCurrencyKey] : null;
+                let isHistorical = true;
+
+                // 2. もしスナップショットにない(取引後に新しく追加された通貨)場合、現在の最新レートで補完
+                if (!txFx) {
+                    txFx = currentFX[currentCurrencyKey] || { symbol: "$", rate: 1 };
+                    isHistorical = false; // 補完されたデータであることを識別可能（必要に応じてUI表示に使用）
+                }
+
+                // 3. 換算額の計算
+                // 「取引時のトークンUSD価格」×「保存された(または最新の)通貨レート」
+                const converted = tx.amount * tx.rateAtTx * txFx.rate;
+
                 return `
-                <div class="hist-item">
-                    <div class="hist-info">
-                        <div class="hist-flow">${getName(tx.from)} → ${getName(tx.to)}</div>
-                        <div class="hist-date">${tx.date}</div>
-                    </div>
-                    <div style="text-align:right;">
-                        <div class="hist-amt">-${tx.amount} ${tx.symbol}</div>
-                        <div style="font-size:0.75em; color:#00c805; font-weight:bold;">${currency.symbol} ${converted.toLocaleString(undefined, { maximumFractionDigits: currency.rate > 10 ? 0 : 2 })}</div>
-                    </div>
-                </div>`;
+        <div class="hist-item">
+            <div class="hist-info">
+                <div class="hist-flow">${getName(tx.from)} → ${getName(tx.to)}</div>
+                <div class="hist-date">
+                    ${tx.date} ${!isHistorical ? '<small style="color:#f39c12; font-size:0.7em;">(New FX)</small>' : ''}
+                </div>
+            </div>
+            <div style="text-align:right;">
+                <div class="hist-amt">-${tx.amount} ${tx.symbol}</div>
+                <div style="font-size:0.75em; color:#00c805; font-weight:bold;">
+                    ${txFx.symbol} ${converted.toLocaleString(undefined, {
+                    maximumFractionDigits: txFx.rate > 10 ? 0 : 2
+                })}
+                </div>
+            </div>
+        </div>`;
             }).join('');
         }
 

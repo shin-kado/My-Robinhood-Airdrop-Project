@@ -408,14 +408,18 @@
             const sortedKeys = Object.keys(currentFX).sort((a, b) => currentFX[a].order - currentFX[b].order);
             sortedKeys.forEach(id => {
                 const item = currentFX[id];
+                // USDの場合は書き換え不可にするための属性を設定
+                const isUSD = (id === 'USD');
+                const readonlyAttr = isUSD ? 'readonly style="background-color: #f0f0f0; color: #666;"' : '';
+
                 container.innerHTML += `
-                <tr>
-                    <td><input type="number" class="fx-order-input" value="${item.order}" oninput="checkAllValidation()" onchange="updateFX('${id}','order',this.value)"></td>
-                    <td><input type="text" value="${id}" readonly></td>
-                    <td><input type="text" value="${item.symbol}" onchange="updateFX('${id}','symbol',this.value)"></td>
-                    <td><input type="number" step="0.01" value="${item.rate}" onchange="updateFX('${id}','rate',this.value)"></td>
-                    <td><button class="btn btn-danger" onclick="deleteFX('${id}')">Del</button></td>
-                </tr>`;
+        <tr>
+            <td><input type="number" class="fx-order-input" value="${item.order}" oninput="checkAllValidation()" onchange="updateFX('${id}','order',this.value)"></td>
+            <td><input type="text" value="${id}" readonly></td>
+            <td><input type="text" value="${item.symbol}" onchange="updateFX('${id}','symbol',this.value)"></td>
+            <td><input type="number" step="0.01" value="${item.rate}" ${readonlyAttr} onchange="updateFX('${id}','rate',this.value)"></td>
+            <td>${isUSD ? '-' : `<button class="btn btn-danger" onclick="deleteFX('${id}')">Del</button>`}</td>
+        </tr>`;
             });
             checkAllValidation();
         }
