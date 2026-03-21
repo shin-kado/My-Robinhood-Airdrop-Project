@@ -544,24 +544,35 @@
         }
 
         function initNetworkSelector() {
-            const sel = document.getElementById('accountSelector');
-            sel.innerHTML = '';
+            // ネットワーク選択用のプルダウン要素を取得
+            const selector = document.getElementById('targetNetworkSelector');
+            if (!selector) return;
 
-            // 【修正ポイント】order プロパティで昇順にソートする
-            const sortedAccounts = [...MASTER_ACCOUNT_LIST].sort((a, b) => {
-                return (a.order || 0) - (b.order || 0);
+            // 1. データの取得 (LocalStorage優先、無ければJSファイルのTOKEN_USD_RATES)
+            const storedTokens = localStorage.getItem('tmp_tokens');
+            const networks = storedTokens ? JSON.parse(storedTokens) : TOKEN_USD_RATES;
+
+            // 2. 既存の選択肢をクリア
+            selector.innerHTML = '';
+
+            // 3. Chain ID (キー) を数値として昇順にソート
+            const sortedChainIds = Object.keys(networks).sort((a, b) => {
+                return parseInt(a) - parseInt(b);
             });
 
-            sortedAccounts.forEach(acc => {
+            // 4. ソートされた順に option を作成して追加
+            sortedChainIds.forEach(chainId => {
+                const net = networks[chainId];
                 const opt = document.createElement('option');
-                opt.value = acc.address;
-                opt.innerText = `${acc.name} (${acc.address.slice(0, 6)}...)`;
-                sel.appendChild(opt);
+                opt.value = chainId;
+                // ネットワーク名を表示、無い場合は Chain ID を表示
+                opt.innerText = net.networkName || `Chain ID: ${chainId}`;
+                selector.appendChild(opt);
             });
 
-            // 初期値としてリストの一番上（最も小さいorder）のアカウントを選択状態にする
-            if (sortedAccounts.length > 0) {
-                sel.value = sortedAccounts[0].address;
+            // 初期選択状態の更新 (currentNetIdがあればそれを選択)
+            if (typeof currentNetId !== 'undefined' && networks[currentNetId]) {
+                selector.value = currentNetId;
             }
         }
 
@@ -905,6 +916,8 @@
             initNetworkSelector();
             sync();
         };
+
+
         if (window.ethereum) {
             window.ethereum.on('chainChanged', () => sync());
             window.ethereum.on('accountsChanged', () => sync());
