@@ -239,6 +239,18 @@
             background: #ff9800;
             color: white;
         }
+
+        /* <style> セクション内に追加 */
+        .network-card table td input {
+            padding: 8px 5px;
+            /* 左右の余白を少し詰める */
+        }
+
+        /* アドレス欄など、読み取り専用の文字が切れないように調整 */
+        input[readonly] {
+            text-overflow: ellipsis;
+            /* 万が一入り切らない場合は末尾を...にする（保険） */
+        }
     </style>
 </head>
 
@@ -255,8 +267,8 @@
 
         <h2>1. Global FX Rates (USD Base)</h2>
         <div class="card">
-            <div id="fx-error" class="error-msg">⚠️ Duplicate or Empty Order found in FX
-                Rates!（FX設定に重複または未入力があります！）</div>
+            <div id="fx-error" class="error-msg">⚠️ Duplicate or Empty Order or Symbol found in FX
+                Rates!<br>（FX設定に重複または未入力があります！）</div>
             <table>
                 <thead>
                     <tr>
@@ -286,18 +298,12 @@
 
         <h2>3. Master Account List</h2>
         <div class="card">
-            <div id="accounts-error" class="error-msg">⚠️ Duplicate or Empty Name/Address found in Account
-                List!<br>（アカウント設定（Name または Address）に重複または未入力があります！）</div>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Account Name</th>
-                        <th>Address</th>
-                        <th style="width:60px; text-align:center;">Action</th>
-                    </tr>
-                </thead>
-                <tbody id="accounts-container"></tbody>
-            </table>
+            <div id="accounts-error" class="error-msg">
+                ⚠️ Duplicate or Empty Order, Name, or Address found in Account List!<br>
+                （アカウント設定に重複または未入力があります！）
+            </div>
+            <div id="accounts-container"></div>
+
             <div class="btn-group">
                 <button class="btn btn-secondary" onclick="addAccount()">+ Add New Account</button>
                 <button id="btn-save-accounts" class="btn btn-update" onclick="saveAccountsOnly()">Update Account
@@ -376,22 +382,28 @@
             return hasError;
         }
 
+        // --- 2. バリデーション (Symbol重複チェックの追加) ---
         function checkAllValidation() {
-            const fxInvalid = checkValidity(document.querySelectorAll('.fx-order-input'));
+            const fxOrderInvalid = checkValidity(document.querySelectorAll('.fx-order-input'));
+            const fxSymbolInvalid = checkValidity(document.querySelectorAll('.fx-symbol-input'));
+            const fxInvalid = fxOrderInvalid || fxSymbolInvalid;
             document.getElementById('fx-error').style.display = fxInvalid ? 'block' : 'none';
 
             let tokensInvalid = false;
             for (let chainId in currentTokens) {
                 const orderInputs = document.querySelectorAll(`.order-input-${chainId}`);
-                const netError = checkValidity(orderInputs);
+                const symbolInputs = document.querySelectorAll(`.symbol-input-${chainId}`);
+                const netOrderError = checkValidity(orderInputs);
+                const netSymbolError = checkValidity(symbolInputs);
                 const errorDiv = document.getElementById(`error-${chainId}`);
-                if (errorDiv) errorDiv.style.display = netError ? 'block' : 'none';
-                if (netError) tokensInvalid = true;
+                if (errorDiv) errorDiv.style.display = (netOrderError || netSymbolError) ? 'block' : 'none';
+                if (netOrderError || netSymbolError) tokensInvalid = true;
             }
 
+            const accOrderInvalid = checkValidity(document.querySelectorAll('.acc-order-input'));
             const nameInvalid = checkValidity(document.querySelectorAll('.acc-name-input'));
             const addrInvalid = checkValidity(document.querySelectorAll('.acc-addr-input'));
-            const accountsInvalid = nameInvalid || addrInvalid;
+            const accountsInvalid = accOrderInvalid || nameInvalid || addrInvalid;
             document.getElementById('accounts-error').style.display = accountsInvalid ? 'block' : 'none';
 
             const anyError = fxInvalid || tokensInvalid || accountsInvalid;
@@ -401,25 +413,24 @@
             });
         }
 
-        // --- Render ---
+        // --- 1. Render関数 (Symbol重複チェック用のクラス付与と、幅の調整) ---
         function renderFX() {
             const container = document.getElementById('fx-container');
             container.innerHTML = '';
             const sortedKeys = Object.keys(currentFX).sort((a, b) => currentFX[a].order - currentFX[b].order);
             sortedKeys.forEach(id => {
                 const item = currentFX[id];
-                // USDの場合は書き換え不可にするための属性を設定
                 const isUSD = (id === 'USD');
                 const readonlyAttr = isUSD ? 'readonly style="background-color: #f0f0f0; color: #666;"' : '';
 
                 container.innerHTML += `
-        <tr>
-            <td><input type="number" class="fx-order-input" value="${item.order}" oninput="checkAllValidation()" onchange="updateFX('${id}','order',this.value)"></td>
-            <td><input type="text" value="${id}" readonly></td>
-            <td><input type="text" value="${item.symbol}" onchange="updateFX('${id}','symbol',this.value)"></td>
-            <td><input type="number" step="0.01" value="${item.rate}" ${readonlyAttr} onchange="updateFX('${id}','rate',this.value)"></td>
-            <td>${isUSD ? '-' : `<button class="btn btn-danger" onclick="deleteFX('${id}')">Del</button>`}</td>
-        </tr>`;
+                <tr>
+                    <td><input type="number" class="fx-order-input" value="${item.order}" oninput="checkAllValidation()" onchange="updateFX('${id}','order',this.value)"></td>
+                    <td><input type="text" value="${id}" readonly></td>
+                    <td><input type="text" class="fx-symbol-input" value="${item.symbol}" oninput="checkAllValidation()" onchange="updateFX('${id}','symbol',this.value)"></td>
+                    <td><input type="number" step="0.01" value="${item.rate}" ${readonlyAttr} onchange="updateFX('${id}','rate',this.value)"></td>
+                    <td>${isUSD ? '-' : `<button class="btn btn-danger" onclick="deleteFX('${id}')">Del</button>`}</td>
+                </tr>`;
             });
             checkAllValidation();
         }
@@ -438,8 +449,8 @@
                     rows += `
                     <tr>
                         <td><input type="number" class="order-input-${chainId}" value="${token.order}" oninput="checkAllValidation()" onchange="updateToken('${chainId}','${addr}','order',this.value)"></td>
-                        <td><input type="text" value="${addr}" readonly></td>
-                        <td><input type="text" value="${token.symbol}" readonly></td>
+                        <td><input type="text" value="${addr}" readonly style="width: 100%;"></td>
+                        <td><input type="text" class="symbol-input-${chainId}" value="${token.symbol}" oninput="checkAllValidation()" onchange="updateToken('${chainId}','${addr}','symbol',this.value)"></td>
                         <td><input type="number" step="0.000001" value="${token.rate}" onchange="updateToken('${chainId}','${addr}','rate',this.value)"></td>
                         <td style="text-align:center;">${isNative ? '-' : `<button class="btn btn-danger" onclick="deleteToken('${chainId}','${addr}')">Del</button>`}</td>
                     </tr>`;
@@ -454,116 +465,313 @@
                         </div>
                         <button class="btn btn-danger" onclick="deleteNetwork('${chainId}')">Delete Network</button>
                     </div>
-                    <div id="error-${chainId}" class="error-msg">⚠️ Duplicate or Empty Token Order!（トークンのOrderが重複または未入力です！）</div>
-                    <table><thead><tr><th style="width:80px;">Order</th><th>Address (Fixed)</th><th style="width:100px;">Symbol</th><th>Rate (USD)</th><th style="width:60px;">Action</th></tr></thead><tbody>${rows}</tbody></table>
+                    <div id="error-${chainId}" class="error-msg">⚠️ Duplicate or Empty Token Order or Symbol!<br>（ネットワーク＆トークン設定に重複または未入力があります！）</div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th style="width:70px;">Order</th>
+                                <th>Address (Fixed)</th>
+                                <th style="width:90px;">Symbol</th>
+                                <th style="width:125px;">Rate (USD)</th>
+                                <th style="width:60px;">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>${rows}</tbody>
+                    </table>
                     <button class="btn btn-secondary" style="font-size:0.8em;" onclick="addToken('${chainId}')">+ Add Token</button>
                 </div>`;
             });
             checkAllValidation();
         }
 
+        // --- renderAccounts 関数内の innerHTML 部分を修正 ---
         function renderAccounts() {
             const container = document.getElementById('accounts-container');
             container.innerHTML = '';
-            currentAccounts.forEach((acc, idx) => {
-                container.innerHTML += `
+
+            // テーブルのヘッダーで幅を固定・拡張設定します
+            let tableHtml = `
+            <table>
+                <thead>
+                    <tr>
+                        <th style="width:70px;">Order</th>
+                        <th style="width:250px;">Account Name</th> <th>Address</th> <th style="width:60px; text-align:center;">Action</th>
+                    </tr>
+                </thead>
+                <tbody>`;
+
+            // Order順にソートして表示
+            const sortedAccounts = [...currentAccounts].sort((a, b) => (a.order || 0) - (b.order || 0));
+
+            sortedAccounts.forEach((acc) => {
+                // 元の配列でのインデックスを特定（更新・削除用）
+                const originalIdx = currentAccounts.findIndex(a => a === acc);
+                tableHtml += `
                 <tr>
-                    <td><input type="text" class="acc-name-input" value="${acc.name}" oninput="checkAllValidation()" onchange="updateAcc(${idx},'name',this.value)"></td>
-                    <td><input type="text" class="acc-addr-input" value="${acc.address}" oninput="checkAllValidation()" onchange="updateAcc(${idx},'address',this.value)"></td>
-                    <td style="text-align:center;"><button class="btn btn-danger" onclick="deleteAcc(${idx})">Del</button></td>
+                    <td><input type="number" class="acc-order-input" value="${acc.order || 0}" oninput="checkAllValidation()" onchange="updateAcc(${originalIdx},'order',this.value)"></td>
+                    <td><input type="text" class="acc-name-input" value="${acc.name}" oninput="checkAllValidation()" onchange="updateAcc(${originalIdx},'name',this.value)"></td>
+                    <td><input type="text" class="acc-addr-input" value="${acc.address}" oninput="checkAllValidation()" onchange="updateAcc(${originalIdx},'address',this.value)"></td>
+                    <td style="text-align:center;"><button class="btn btn-danger" onclick="deleteAcc(${originalIdx})">Del</button></td>
                 </tr>`;
             });
+
+            tableHtml += `</tbody></table>`;
+            container.innerHTML = tableHtml;
             checkAllValidation();
         }
 
-        // --- Add Functions (重複チェック復元版) ---
+        // --- Helper: 入力ガード & 空白除去 ---
+        // 空文字、または空白のみ（全角含む）の場合は null を返し、それ以外は trim して返す
+        // --- Helper: 文字列の正規化（全角半角スペース除去） ---
+        function normalizeString(str) {
+            if (!str) return "";
+            return str.replace(/[\s　]+/g, ' ').trim();
+        }
+
+        // --- Helper: 入力ガード & 空白除去 (ポップアップ用) ---
+        function getValidInput(msg, defaultVal = "") {
+            const val = prompt(msg, defaultVal);
+            if (val === null) return null;
+            const trimmed = normalizeString(val);
+            if (trimmed === "") {
+                alert("Input cannot be empty.\n（入力は必須です。空白のみの登録もできません。）");
+                return null;
+            }
+            return trimmed;
+        }
+
+        // --- Add Functions (バリデーション強化版) ---
+        // --- Add Functions (仮追加のみ行い、即時保存しない) ---
         function addFXRate() {
-            const id = prompt("Currency ID (e.g., EUR, BTC):");
-            if (!id) return;
-            const upperId = id.toUpperCase();
-            if (currentFX[upperId]) return alert("Error: This ID already exists.\n（IDは既に登録済です。）");
-            const sym = prompt("Symbol:", upperId);
+            const rawId = getValidInput("Currency ID (e.g., EUR, BTC):");
+            if (!rawId) return;
+            const upperId = rawId.toUpperCase();
+
+            if (currentFX[upperId]) return alert(`Error: This ID "${upperId}" already exists.\n（入力された通貨IDは既に登録済です）`);
+
+            const sym = getValidInput("Symbol:", upperId);
+            if (!sym) return;
+
             const next = getNextOrder(currentFX);
+            // メモリに追加するだけで保存はしない
             currentFX[upperId] = { order: next, symbol: sym, rate: 1.0 };
             renderFX();
+            checkAllValidation(); // ボタンの活性状態を更新
         }
 
         function addNewNetwork() {
-            const id = prompt("Chain ID (Number):");
+            const id = getValidInput("Chain ID (Number):");
             if (!id) return;
-            if (currentTokens[id]) return alert(`Warning: Chain ID "${id}" already exists.\n（Chain IDは既に登録済です。）`);
-            const name = prompt("Network Name (e.g., BNB Smart Chain):");
+            if (currentTokens[id]) return alert(`Warning: Chain ID "${id}" already exists.\n（入力されたChain IDは既に登録済です）`);
+
+            const name = getValidInput("Network Name:");
             if (!name) return;
-            const nativeSym = prompt("Native Token Symbol (e.g., BNB, MATIC, ETH):", "ETH");
+
+            const nativeSym = getValidInput("Native Token Symbol:", "ETH");
             if (!nativeSym) return;
 
             currentTokens[id] = {
                 networkName: name,
                 gasFee: 0,
-                tokens: { "0x0000000000000000000000000000000000000000": { order: 0, symbol: nativeSym.toUpperCase(), rate: 0 } }
+                tokens: {
+                    "0x0000000000000000000000000000000000000000": {
+                        order: 0,
+                        symbol: nativeSym.toUpperCase(),
+                        rate: 0
+                    }
+                }
             };
             renderNetworks();
+            checkAllValidation();
         }
 
+        // --- 3. AddToken (大文字小文字を維持し、重複チェックだけ小文字で行う) ---
         function addToken(cid) {
-            const addr = prompt("Token Address (0x...):");
+            const addr = getValidInput("Token Address (0x...):");
             if (!addr) return;
-            const lowerInputAddr = addr.toLowerCase();
-            const networkTokens = currentTokens[cid].tokens;
-            if (Object.keys(networkTokens).some(k => k.toLowerCase() === lowerInputAddr)) return alert("Error: This address already exists in this network.\n（このアドレスは既にこのネットワークに登録されています。）");
 
-            const sym = prompt("Token Symbol:");
+            // 重複チェックは小文字に統一して判定
+            const existingAddrs = Object.keys(currentTokens[cid].tokens).map(a => a.toLowerCase());
+            if (existingAddrs.includes(addr.toLowerCase())) {
+                return alert(`Error: This address "${addr}" already exists.\n（このトークンのアドレスは登録済です）`);
+            }
+
+            const sym = getValidInput("Token Symbol:");
             if (!sym) return;
-            const upperInputSym = sym.toUpperCase();
-            if (Object.values(networkTokens).some(t => t.symbol.toUpperCase() === upperInputSym)) return alert(`Error: Symbol "${upperInputSym}" already exists in this network.\n（シンボルは既にこのネットワークに登録されています。）`);
 
-            const next = getNextOrder(networkTokens);
-            currentTokens[cid].tokens[lowerInputAddr] = { order: next, symbol: upperInputSym, rate: 0 };
+            const next = getNextOrder(currentTokens[cid].tokens);
+            // 入力時のアドレス（ケース維持）をキーにする
+            currentTokens[cid].tokens[addr] = { order: next, symbol: sym.toUpperCase(), rate: 0 };
             renderNetworks();
+            checkAllValidation();
         }
 
+        // --- Add Account (自動Order採番) ---
         function addAccount() {
-            currentAccounts.push({ name: "New Account", address: "0x..." });
+            const next = getNextOrder(currentAccounts);
+            currentAccounts.push({
+                name: "New Account",
+                address: "0x...",
+                order: next
+            });
             renderAccounts();
         }
 
         // --- Data Updates ---
-        function updateFX(id, f, v) { currentFX[id][f] = (f === 'order' || f === 'rate') ? parseFloat(v) : v; }
-        function updateNet(c, f, v) { currentTokens[c][f] = f === 'gasFee' ? parseFloat(v) : v; }
-        function updateToken(c, a, f, v) { currentTokens[c].tokens[a][f] = (f === 'order' || f === 'rate') ? parseFloat(v) : v; }
-        function updateAcc(idx, f, v) { currentAccounts[idx][f] = v; }
+        // --- Data Updates (画面入力時のガードを強化) ---
+        // --- Data Updates (入力中の即時アラートを廃止し、値を保持するだけに) ---
+        function updateFX(id, f, v) {
+            // 数値項目はparseFloat、文字列はtrim
+            currentFX[id][f] = (f === 'order' || f === 'rate') ? parseFloat(v) : v.trim();
+            checkAllValidation(); // 赤枠チェックのみ行う
+        }
+
+        function updateNet(c, f, v) {
+            currentTokens[c][f] = (f === 'gasFee') ? parseFloat(v) : v.trim();
+            checkAllValidation();
+        }
+
+        function updateToken(c, a, f, v) {
+            currentTokens[c].tokens[a][f] = (f === 'order' || f === 'rate') ? parseFloat(v) : v.trim();
+            checkAllValidation();
+        }
+
+        function updateAcc(idx, f, v) {
+            currentAccounts[idx][f] = (f === 'order') ? parseFloat(v) : v.trim();
+            checkAllValidation();
+        }
 
         function deleteFX(id) { if (confirm("Delete " + id + "?")) { delete currentFX[id]; renderFX(); } }
         function deleteNetwork(c) { if (confirm("Delete Network " + c + "?")) { delete currentTokens[c]; renderNetworks(); } }
         function deleteToken(c, a) { if (confirm("Delete Token?")) { delete currentTokens[c].tokens[a]; renderNetworks(); } }
         function deleteAcc(idx) { if (confirm("Delete Account?")) { currentAccounts.splice(idx, 1); renderAccounts(); } }
 
-        // --- Save & Generate ---
-        function saveFXOnly() { localStorage.setItem('tmp_fx', JSON.stringify(currentFX)); alert("FX Memory Updated!"); }
-        function saveTokensOnly() { localStorage.setItem('tmp_tokens', JSON.stringify(currentTokens)); alert("Token Memory Updated!"); }
-        function saveAccountsOnly() { localStorage.setItem('tmp_accounts', JSON.stringify(currentAccounts)); alert("Account Memory Updated!"); }
+        // --- Save Functions (保存時に最終ソートと数値化を担保) ---
+        // --- Save Functions (ここで初めてバリデーション、数値化、ソートを確定) ---
+        // --- Save Functions (バリデーション、数値化、ソート、成否判定) ---
 
+        function saveFXOnly() {
+            // 空欄チェック
+            for (let id in currentFX) {
+                if (!currentFX[id].symbol || currentFX[id].symbol.trim() === "") {
+                    alert("Error: FX Symbol is empty.\n（FXシンボルが空欄です。）");
+                    return false;
+                }
+            }
+
+            const sortedFX = {};
+            Object.keys(currentFX)
+                .sort((a, b) => (Number(currentFX[a].order) || 0) - (Number(currentFX[b].order) || 0))
+                .forEach(key => {
+                    const item = currentFX[key];
+                    item.order = Number(item.order) || 0;
+                    item.rate = Number(item.rate) || 0;
+                    item.symbol = item.symbol.trim();
+                    sortedFX[key] = item;
+                });
+
+            currentFX = sortedFX;
+            localStorage.setItem('tmp_fx', JSON.stringify(currentFX));
+            renderFX();
+            alert("FX Memory Updated & Sorted!"); // アラートを復活
+            return true;
+        }
+
+        function saveTokensOnly() {
+            // 空欄チェック
+            for (let c in currentTokens) {
+                if (!currentTokens[c].networkName.trim()) {
+                    alert("Error: Network Name is empty.\n（ネットワーク名が空欄です。）");
+                    return false;
+                }
+                for (let a in currentTokens[c].tokens) {
+                    if (!currentTokens[c].tokens[a].symbol.trim()) {
+                        alert("Error: Token Symbol is empty.\n（トークンのシンボルが空欄です。）");
+                        return false;
+                    }
+                }
+            }
+
+            const sortedTokens = {};
+            const sortedChainIds = Object.keys(currentTokens).sort((a, b) => Number(a) - Number(b));
+            sortedChainIds.forEach(chainId => {
+                const net = currentTokens[chainId];
+                const sortedNet = {
+                    networkName: net.networkName.trim(),
+                    gasFee: Number(net.gasFee) || 0,
+                    tokens: {}
+                };
+                Object.keys(net.tokens)
+                    .sort((a, b) => (Number(net.tokens[a].order) || 0) - (Number(net.tokens[b].order) || 0))
+                    .forEach(addr => {
+                        const token = net.tokens[addr];
+                        token.order = Number(token.order) || 0;
+                        token.rate = Number(token.rate) || 0;
+                        token.symbol = token.symbol.trim();
+                        sortedNet.tokens[addr] = token;
+                    });
+                sortedTokens[chainId] = sortedNet;
+            });
+
+            currentTokens = sortedTokens;
+            localStorage.setItem('tmp_tokens', JSON.stringify(currentTokens));
+            renderNetworks();
+            alert("Token Memory Updated & Sorted!"); // アラートを復活
+            return true;
+        }
+
+        function saveAccountsOnly() {
+            // 空欄チェック
+            for (let acc of currentAccounts) {
+                if (!acc.name.trim() || !acc.address.trim()) {
+                    alert("Error: Account Name or Address is empty.\n（アカウント名またはアドレスが空欄です。）");
+                    return false;
+                }
+            }
+
+            currentAccounts.forEach(acc => {
+                acc.order = Number(acc.order) || 0;
+                acc.name = acc.name.trim();
+                acc.address = acc.address.trim();
+            });
+            currentAccounts.sort((a, b) => a.order - b.order);
+
+            localStorage.setItem('tmp_accounts', JSON.stringify(currentAccounts));
+            renderAccounts();
+            alert("Account Memory Updated & Sorted!"); // アラートを復活
+            return true;
+        }
+
+        // --- Generate Functions (保存に成功した時だけ実行) ---
+
+        // --- 4. Generate関数 (出力直前にソートを確定させる) ---
         function generateFXCode() {
-            saveFXOnly();
-            const exp = {};
-            Object.keys(currentFX).sort((a, b) => currentFX[a].order - currentFX[b].order).forEach(k => exp[k] = currentFX[k]);
-            showCode(`const FX_RATES = ${JSON.stringify(exp, null, 4)};`);
+            if (saveFXOnly()) {
+                const exp = {};
+                Object.keys(currentFX).sort((a, b) => currentFX[a].order - currentFX[b].order)
+                    .forEach(k => exp[k] = currentFX[k]);
+                showCode(`const FX_RATES = ${JSON.stringify(exp, null, 4)};`);
+            }
         }
 
         function generateTokenCode() {
-            saveTokensOnly();
-            const exp = {};
-            Object.keys(currentTokens).sort((a, b) => parseInt(a) - parseInt(b)).forEach(c => {
-                const n = currentTokens[c];
-                exp[c] = { networkName: n.networkName, gasFee: n.gasFee, tokens: {} };
-                Object.keys(n.tokens).sort((a, b) => n.tokens[a].order - n.tokens[b].order).forEach(a => exp[c].tokens[a] = n.tokens[a]);
-            });
-            showCode(`const TOKEN_USD_RATES = ${JSON.stringify(exp, null, 4)};`);
+            if (saveTokensOnly()) {
+                const exp = {};
+                Object.keys(currentTokens).sort((a, b) => Number(a) - Number(b)).forEach(cid => {
+                    const net = currentTokens[cid];
+                    exp[cid] = { networkName: net.networkName, gasFee: net.gasFee, tokens: {} };
+                    Object.keys(net.tokens).sort((a, b) => net.tokens[a].order - net.tokens[b].order)
+                        .forEach(addr => exp[cid].tokens[addr] = net.tokens[addr]);
+                });
+                showCode(`const TOKEN_USD_RATES = ${JSON.stringify(exp, null, 4)};`);
+            }
         }
 
         function generateAccountCode() {
-            saveAccountsOnly();
-            showCode(`const MASTER_ACCOUNT_LIST = ${JSON.stringify(currentAccounts, null, 4)};`);
+            if (saveAccountsOnly()) {
+                const sorted = [...currentAccounts].sort((a, b) => (a.order || 0) - (b.order || 0));
+                showCode(`const MASTER_ACCOUNT_LIST = ${JSON.stringify(sorted, null, 4)};`);
+            }
         }
 
         function showCode(code) {

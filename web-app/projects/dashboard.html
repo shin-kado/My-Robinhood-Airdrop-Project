@@ -530,14 +530,24 @@
         }
 
         function initNetworkSelector() {
-            const selector = document.getElementById('targetNetworkSelector');
-            if (!selector) return;
-            selector.innerHTML = "";
-            for (const chainId in currentTokens) {
-                const option = document.createElement('option');
-                option.value = chainId;
-                option.text = currentTokens[chainId].networkName || `Chain ID: ${chainId}`;
-                selector.appendChild(option);
+            const sel = document.getElementById('accountSelector');
+            sel.innerHTML = '';
+
+            // 【修正ポイント】order プロパティで昇順にソートする
+            const sortedAccounts = [...MASTER_ACCOUNT_LIST].sort((a, b) => {
+                return (a.order || 0) - (b.order || 0);
+            });
+
+            sortedAccounts.forEach(acc => {
+                const opt = document.createElement('option');
+                opt.value = acc.address;
+                opt.innerText = `${acc.name} (${acc.address.slice(0, 6)}...)`;
+                sel.appendChild(opt);
+            });
+
+            // 初期値としてリストの一番上（最も小さいorder）のアカウントを選択状態にする
+            if (sortedAccounts.length > 0) {
+                sel.value = sortedAccounts[0].address;
             }
         }
 
