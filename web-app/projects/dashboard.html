@@ -368,6 +368,20 @@
         .btn-danger:active {
             transform: translateY(0);
         }
+
+        /* LIVEバッジのスタイル */
+        .badge-live {
+            background-color: #ff9800;
+            color: white;
+            font-size: 0.65em;
+            padding: 2px 6px;
+            border-radius: 4px;
+            margin-right: 5px;
+            vertical-align: middle;
+            font-weight: 800;
+            display: inline-block;
+            line-height: 1.2;
+        }
     </style>
 </head>
 
@@ -817,34 +831,32 @@
             }
 
             div.innerHTML = history.map(tx => {
-                // 1. 保存されたスナップショットから、現在選択中の通貨(currentCurrencyKey)を探す
+                // 1. スナップショットから現在選択中の通貨を探す
                 let txFx = tx.fxSnapshot ? tx.fxSnapshot[currentCurrencyKey] : null;
-                let isHistorical = true;
+                let isLive = false;
 
-                // 2. もしスナップショットにない(取引後に新しく追加された通貨)場合、現在の最新レートで補完
+                // 2. スナップショットにない場合は最新レートを使用し、LIVEフラグを立てる
                 if (!txFx) {
                     txFx = currentFX[currentCurrencyKey] || { symbol: "$", rate: 1 };
-                    isHistorical = false; // 補完されたデータであることを識別可能（必要に応じてUI表示に使用）
+                    isLive = true;
                 }
 
                 // 3. 換算額の計算
-                // 「取引時のトークンUSD価格」×「保存された(または最新の)通貨レート」
                 const converted = tx.amount * tx.rateAtTx * txFx.rate;
 
                 return `
         <div class="hist-item">
             <div class="hist-info">
                 <div class="hist-flow">${getName(tx.from)} → ${getName(tx.to)}</div>
-                <div class="hist-date">
-                    ${tx.date} ${!isHistorical ? '<small style="color:#f39c12; font-size:0.7em;">(New FX)</small>' : ''}
-                </div>
+                <div class="hist-date">${tx.date}</div>
             </div>
             <div style="text-align:right;">
                 <div class="hist-amt">-${tx.amount} ${tx.symbol}</div>
-                <div style="font-size:0.75em; color:#00c805; font-weight:bold;">
-                    ${txFx.symbol} ${converted.toLocaleString(undefined, {
+                <div style="font-size:0.75em; color:#00c805; font-weight:bold; display: flex; align-items: center; justify-content: flex-end; margin-top: 2px;">
+                    ${isLive ? '<span class="badge-live">LIVE</span>' : ''}
+                    <span>${txFx.symbol} ${converted.toLocaleString(undefined, {
                     maximumFractionDigits: txFx.rate > 10 ? 0 : 2
-                })}
+                })}</span>
                 </div>
             </div>
         </div>`;
