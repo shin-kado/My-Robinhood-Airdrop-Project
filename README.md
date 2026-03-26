@@ -12,7 +12,7 @@ This repository documents my journey and technical achievements as an individual
 <br>
 
 <div align="center">
-  <img src="https://github.com/shin-kado/My-Robinhood-Airdrop-Project/blob/main/images/ScreenStot_My-Robinhood-Airdrop-Project_web-portal2.png?raw=true" width="600">
+  <img src="https://github.com/shin-kado/My-Robinhood-Airdrop-Project/blob/main/images/ScreenStot_My-Robinhood-Airdrop-Project_web-portal.png?raw=true" width="600">
   <p>App Portal（アプリポータル）</p>
 </div>
 
