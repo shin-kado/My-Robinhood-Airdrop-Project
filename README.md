@@ -98,7 +98,7 @@ I utilize a professional hybrid workflow for developing and deploying secure sma
 | **Project Token** | ERC-20 | Standard utility token with minting<br>ミント機能付き標準ユーティリティトークン | [View on Explorer](https://explorer.testnet.chain.robinhood.com/address/0x196eCa072F41571233E4F6D215F89A3446DD569b) |
 | **Timed Voting** | Governance | On-chain voting with time constraints<br>制限時間付きオンチェーン投票システム | [View on Explorer](https://explorer.testnet.chain.robinhood.com/address/0x52798A5079e9BCf4409D7287a88bA05b1d72D6a0) |
 | **Batch Airdrop** | Utility | Multi-address token distribution<br>複数アドレスへのトークン一括配布 | [View on Explorer](https://explorer.testnet.chain.robinhood.com/address/0xa547a0B7c0CA10fcf9E904eB9656942E3578e1D7) |
-| *(Other 6 contracts)* | Various | See Deployment Ledger for full list<br>詳細はデプロイ台帳を参照 | [View Ledger](./docs/My_Robinhood_Airdrop_Project_Deployment_Ledger.pdf) |
+| *(Other contracts)* | Various | See Deployment Ledger for full list<br>詳細はデプロイ台帳を参照 | [View Ledger](./docs/My_Robinhood_Airdrop_Project_Deployment_Ledger.pdf) |
 
 > **Note on NFT Metadata / NFTメタデータに関する注意** >  
 >　　Due to the current testnet environment, the NFT image may appear blank in some wallets.  
