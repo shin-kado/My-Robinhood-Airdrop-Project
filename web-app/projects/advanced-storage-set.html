@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Advanced On-chain Multi-Data Permissioned Registry | Robinhood Testnet</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: #f0f2f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        .page-main-title {
+            text-align: center;
+            color: #333;
+            margin-bottom: -10px;
+            font-size: 1.8em;
+            font-weight: bold;
+            line-height: 1.2;
+        }
+
+        .container {
+            background: white;
+            padding: 40px;
+            border-radius: 24px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            width: 500px;
+            text-align: center;
+            margin-top: 5px;
+        }
+
+        h1 {
+            color: #333;
+            font-size: 1.5em;
+            margin-bottom: 20px;
+        }
+
+        .instruction-box {
+            background: #fff3cd;
+            border: 1px solid #ffeeba;
+            padding: 20px;
+            border-radius: 16px;
+            margin-bottom: 30px;
+            text-align: left;
+            color: #856404;
+            line-height: 1.6;
+        }
+
+        .btn-next {
+            display: block;
+            width: 100%;
+            padding: 18px;
+            background: #00bfa5;
+            color: white;
+            text-decoration: none;
+            border-radius: 12px;
+            font-weight: bold;
+            font-size: 1.2em;
+            transition: 0.3s;
+            box-shadow: 0 4px 15px rgba(0, 191, 165, 0.2);
+            margin-bottom: 20px;
+            box-sizing: border-box;
+        }
+
+        .btn-next:hover {
+            background: #009688;
+            transform: translateY(-2px);
+        }
+
+        .btn-back {
+            display: inline-block;
+            color: #666;
+            text-decoration: none;
+            font-size: 0.9em;
+            border: 1px solid #ccc;
+            padding: 10px 20px;
+            border-radius: 10px;
+            background: #f8f9fa;
+            transition: 0.2s;
+        }
+
+        .btn-back:hover {
+            background: #eee;
+        }
+
+        .compatibility-info {
+            text-align: center;
+            font-size: 20px;
+            color: #ad1313;
+            margin-bottom: 12px;
+            font-weight: 500;
+            opacity: 0.8;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1 style="text-align: center; font-size: 1rem;margin-top: -20px; margin-bottom: -10px; color: #28a745;">
+            Robinhood
+            Testnet</h1>
+        <h1 class="page-main-title">Advanced On-chain Multi-Data Permissioned Registry</h1>
+        <h1 style="text-align: center; font-size: 2rem; color:#d4af37; margin-bottom: 5px;">Network Setup &
+            Guide
+        </h1>
+
+        <!-- 対応ネットワークの表示 -->
+        <div class="compatibility-info">
+            <span>ⓘ</span> Non-EVM Not Supported<br>（非EVMチェーンはサポート外です）
+        </div>
+
+        <div
+            style="background: #e8f5e9; border: 1px solid #c8e6c9; padding: 15px; border-radius: 16px; margin-bottom: 20px; text-align: left; font-size: 0.85em;">
+            <strong
+                style="color: #2e7d32; display: block; margin-bottom: 5px; border-bottom: 1px solid #c8e6c9; padding-bottom: 3px;">
+                Compatible Networks / 対応ネットワーク
+            </strong>
+            <ul style="margin: 0; padding-left: 20px; color: #2e7d32; list-style-type: square; line-height: 1.4;">
+                <li><strong>Robinhood Chain Testnet</strong> (Chain ID: 46630)</li>
+                <li><strong>Ethereum Mainnet</strong> (Chain ID: 1)</li>
+                <li><strong>BNB Smart Chain</strong> (Chain ID: 56)</li>
+                <li><strong>Polygon Mainnet</strong> (Chain ID: 137)</li>
+                <li><strong>Other EVM Compatible Chains</strong> (Base, Arbitrum, etc.)</li>
+            </ul>
+        </div>
+
+        <div class="instruction-box">
+            <strong>【 How to Use 】</strong><br>
+            1. <STRONG>Select Network</STRONG> in your wallet.<br>
+            2. <STRONG>Disconnect</STRONG> the current Network in your wallet.<br>
+            3. Move to Update Page and <strong>connect</strong> Network in your wallet.<br>
+            　※ Do not <strong>switch Wallet Networks</strong> after moving！</strong><br><br>
+
+            <strong>【 使用方法 】</strong><br>
+            1. ウォレットを開き使用したい<strong>ネットワークを選択</strong><br>
+            2. ウォレットで接続中のネットワークを<strong>接続解除</strong><br>
+            3. 次の更新ページに移動後、ウォレットでネットワークを<strong>接続</strong><br>
+            　※ 次の更新ページでは<strong>ネットワークを切替えない事</strong>
+        </div>
+
+        <a href="advanced-storage-update.html" class="btn-next">NEXT (Go to Update Page) →</a>
+        <a href="../index.html" class="btn-back">← BACK TO HOME (index.html)</a>
+    </div>
+</body>
+
+</html>

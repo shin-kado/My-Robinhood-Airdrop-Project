@@ -10,6 +10,17 @@ const TOKEN_USD_RATES = {
             }
         }
     },
+    "10": {
+        "networkName": "OP Mainnet",
+        "gasFee": 0.00005,
+        "tokens": {
+            "0x0000000000000000000000000000000000000000": {
+                "order": 0,
+                "symbol": "ETH",
+                "rate": 3500
+            }
+        }
+    },
     "56": {
         "networkName": "BNB Smart Chain",
         "gasFee": 0.0003,
@@ -23,6 +34,50 @@ const TOKEN_USD_RATES = {
                 "order": 10,
                 "symbol": "USDT",
                 "rate": 1
+            }
+        }
+    },
+    "137": {
+        "networkName": "Polygon POS",
+        "gasFee": 0.015,
+        "tokens": {
+            "0x0000000000000000000000000000000000000000": {
+                "order": 0,
+                "symbol": "POL",
+                "rate": 1
+            }
+        }
+    },
+    "8453": {
+        "networkName": "Base",
+        "gasFee": 0.00001,
+        "tokens": {
+            "0x0000000000000000000000000000000000000000": {
+                "order": 0,
+                "symbol": "ETH",
+                "rate": 3500
+            }
+        }
+    },
+    "42161": {
+        "networkName": "Arbitrum One",
+        "gasFee": 0.00005,
+        "tokens": {
+            "0x0000000000000000000000000000000000000000": {
+                "order": 0,
+                "symbol": "ETH",
+                "rate": 3500
+            }
+        }
+    },
+    "43114": {
+        "networkName": "Avalanche C-Chain",
+        "gasFee": 0.01,
+        "tokens": {
+            "0x0000000000000000000000000000000000000000": {
+                "order": 0,
+                "symbol": "AVAX",
+                "rate": 50
             }
         }
     },

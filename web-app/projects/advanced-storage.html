@@ -56,12 +56,18 @@
         #connectBtn {
             background: var(--connect-color);
             color: white;
-            padding: 10px 24px;
-            border-radius: 12px;
+            padding: 15px 24px;
+            /* 上下の余白を増やして大きく */
+            border-radius: 16px;
+            /* 角を少し丸く */
             border: none;
+            font-size: 1.2em;
+            /* 文字を大きく */
             font-weight: bold;
             cursor: pointer;
             transition: 0.3s;
+            box-shadow: 0 4px 15px rgba(0, 191, 165, 0.2);
+            /* 少し浮かせる */
         }
 
         #connectBtn:hover {
@@ -291,6 +297,19 @@
             background: #bfccde;
             color: rgb(62, 62, 62);
         }
+
+        .compatibility-info {
+            text-align: RIGHT;
+            font-size: 15px;
+            color: #ad1313;
+            margin-bottom: 12px;
+            font-weight: 500;
+            opacity: 0.8;
+        }
+
+        .compatibility-info span {
+            margin-right: 4px;
+        }
     </style>
 </head>
 
@@ -303,12 +322,24 @@
         <h1 style="text-align: center; font-size: 1rem;margin-bottom: -20px; color: #28a745;">Robinhood Testnet</h1>
         <h1 class="page-main-title">Advanced On-chain Multi-Data Permissioned Registry</h1>
 
-        <div class="header">
-            <div>
-                <h2 style="margin:0; color: #333;">Dashboard</h2>
-                <p id="walletInfo" style="font-size: 0.7em; color: #888;">Not Connected</p>
+        <div class="compatibility-info">
+            <span>&#9432;</span> Non-EVM Not Supported<br>　（非EVMチェーンはサポート外です）
+        </div>
+
+        <script src="../scripts/token-rates.js"></script>
+
+        <div class="header" style="flex-direction: column; gap: 10px;">
+
+            <button id="connectBtn" style="width: 100%; padding: 15px; font-size: 1.2em;">Connect Wallet</button>
+            <div id="networkDisplayName"
+                style="font-size: 2.5em; font-weight: bold; color: #28a745; margin-top: 0px; margin-bottom: 0px; letter-spacing: 0.5px;">
+                Checking Network...
             </div>
-            <button id="connectBtn">Connect Wallet</button>
+
+            <div style="text-align: center; width: 100%;">
+                <p id="walletInfo" style="font-size: 1.8em; color: #ad1313; margin: 0px 0; word-break: break-all;">Not
+                    Connected</p>
+            </div>
         </div>
 
         <div class="name-setting">
@@ -363,49 +394,191 @@
     </div>
 
     <script>
-        const contractAddress = "0x719D976CA63f1491F616a1bC11784c0372CD6262";
+        const CONTRACT_ADDRESSES = {
+            "46630": "0x719D976CA63f1491F616a1bC11784c0372CD6262", // Robinhood Testnet
+            "1": "0xA0b0fD4e32CE94329Ef394f1Cd83d350Bfb3AFb0", // Ethereum Mainnet
+            "56": "0xa295bbD985Fb6f5F6269C7EF28509152FfE42BA8", // BNB Smart Chain
+            "137": "0x90cAc283d44F577d1A5010BCc09097C9B1d466c7", // Polygon POS
+            "42161": "0x90cAc283d44F577d1A5010BCc09097C9B1d466c7", // Arbitrum One
+            "10": "0x90cAc283d44F577d1A5010BCc09097C9B1d466c7", // OP Mainnet
+            "8453": "0x90cAc283d44F577d1A5010BCc09097C9B1d466c7", // Base
+            "43114": "0x90cAc283d44F577d1A5010BCc09097C9B1d466c7", // Avalanche C-Chain
+
+            // "56": "0x...", // 必要に応じて他のネットワークIDとアドレスを追加可能
+            // "1": "0x...",
+
+
+        };
+
         const contractABI = [{ "anonymous": false, "inputs": [{ "indexed": true, "internalType": "address", "name": "sender", "type": "address" }, { "indexed": false, "internalType": "string", "name": "userName", "type": "string" }, { "indexed": false, "internalType": "string", "name": "label", "type": "string" }, { "indexed": false, "internalType": "string", "name": "newValue", "type": "string" }, { "indexed": false, "internalType": "uint256", "name": "timestamp", "type": "uint256" }], "name": "DataUpdated", "type": "event" }, { "inputs": [], "name": "anyNumber", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "anyText", "outputs": [{ "internalType": "string", "name": "", "type": "string" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "owner", "outputs": [{ "internalType": "address", "name": "", "type": "address" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "ownerNumber", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "ownerText", "outputs": [{ "internalType": "string", "name": "", "type": "string" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "uint256", "name": "_num", "type": "uint256" }, { "internalType": "string", "name": "_userName", "type": "string" }], "name": "setAnyNumber", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [{ "internalType": "string", "name": "_text", "type": "string" }, { "internalType": "string", "name": "_userName", "type": "string" }], "name": "setAnyText", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [{ "internalType": "uint256", "name": "_num", "type": "uint256" }, { "internalType": "string", "name": "_userName", "type": "string" }], "name": "setOwnerNumber", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [{ "internalType": "string", "name": "_text", "type": "string" }, { "internalType": "string", "name": "_userName", "type": "string" }], "name": "setOwnerText", "outputs": [], "stateMutability": "nonpayable", "type": "function" }];
 
-        let web3, contract, userAccount;
+
+        let web3, contract, userAccount, currentChainId;
         let allEvents = [];
         let displayCount = 5;
+        let lastChainId = null;
 
         const nameField = document.getElementById('userNameInput');
         nameField.value = localStorage.getItem('web3Name') || "";
         nameField.oninput = () => localStorage.setItem('web3Name', nameField.value);
 
         async function init() {
-            if (typeof window.ethereum !== 'undefined') {
-                try {
-                    web3 = new Web3(window.ethereum);
-                    contract = new web3.eth.Contract(contractABI, contractAddress);
-                    document.getElementById('connectBtn').onclick = connectWallet;
-                    const accounts = await web3.eth.getAccounts();
-                    if (accounts.length > 0) {
-                        userAccount = accounts[0];
-                        await updateUIConnected();
+            const connectBtn = document.getElementById('connectBtn');
+            if (connectBtn) {
+                connectBtn.onclick = async () => {
+                    if (!window.ethereum) return;
+                    try {
+                        await window.ethereum.request({ method: 'eth_requestAccounts' });
+                        await setupNetworkAndContract();
+                    } catch (e) {
+                        console.error("Connection failed", e);
                     }
-                } catch (err) { addLog("Init failed.", "err"); }
-            } else { addLog("MetaMask not found.", "err"); }
+                };
+            }
+
+            if (window.ethereum) {
+                window.ethereum.on('chainChanged', () => {
+                    console.log("Network changed");
+                    setupNetworkAndContract();
+                });
+                window.ethereum.on('accountsChanged', () => {
+                    console.log("Account changed");
+                    setupNetworkAndContract();
+                });
+            }
+
+            await setupNetworkAndContract();
         }
 
-        async function updateUIConnected() {
-            if (!userAccount) return;
-            document.getElementById('walletInfo').innerText = `CONNECTED: ${userAccount.slice(0, 6)}...${userAccount.slice(-4)}`;
-            document.querySelectorAll('.btn-write').forEach(b => b.disabled = false);
-            setTimeout(async () => {
-                await refreshAll();
-                await loadHistory();
-                addLog("Data synchronized.", "sys");
-            }, 500);
-        }
-
-        async function connectWallet() {
+        async function setupNetworkAndContract() {
+            if (!window.ethereum) return;
             try {
-                const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
-                userAccount = accounts[0];
-                await updateUIConnected();
-            } catch (e) { addLog("Connection failed.", "err"); }
+                const accounts = await window.ethereum.request({ method: 'eth_accounts' });
+                const chainIdHex = await window.ethereum.request({ method: 'eth_chainId' });
+                const activeAddr = (accounts && accounts.length > 0) ? accounts[0] : null;
+
+                if (!activeAddr) {
+                    handleDisconnect();
+                    return;
+                }
+
+                const activeChain = parseInt(chainIdHex, 16).toString();
+
+                if (activeAddr !== userAccount || activeChain !== lastChainId || contract === null) {
+                    userAccount = activeAddr;
+                    lastChainId = activeChain;
+                    web3 = new Web3(window.ethereum);
+
+                    const networkInfo = TOKEN_USD_RATES[activeChain];
+                    const targetAddr = CONTRACT_ADDRESSES[activeChain];
+                    const netDisplay = document.getElementById('networkDisplayName');
+                    const walletInfo = document.getElementById('walletInfo');
+
+                    if (networkInfo && targetAddr) {
+                        contract = new web3.eth.Contract(contractABI, targetAddr);
+                        netDisplay.innerText = networkInfo.networkName;
+                        netDisplay.style.color = "#d4af37";
+                    }
+                    else if (networkInfo && !targetAddr) {
+                        contract = null;
+                        netDisplay.innerText = networkInfo.networkName;
+                        netDisplay.style.color = "#d4af37";
+                        walletInfo.innerText = "UNSUPPORTED NETWORK";
+                        walletInfo.style.color = "#ad1313";
+                    }
+                    else {
+                        contract = null;
+                        netDisplay.innerText = "";
+                        walletInfo.innerText = "UNKNOWN NETWORK (ID: " + activeChain + ")";
+                        walletInfo.style.color = "#ad1313";
+                    }
+
+                    await updateUIState();
+                }
+            } catch (e) {
+                console.error("Setup failed", e);
+                handleDisconnect();
+            }
+        }
+
+        function handleDisconnect() {
+            userAccount = null;
+            contract = null;
+            lastChainId = null;
+            const netDisplay = document.getElementById('networkDisplayName');
+            if (netDisplay) {
+                netDisplay.innerText = "NOT CONNECTED";
+                netDisplay.style.color = "#666";
+            }
+            updateUIState();
+        }
+
+        async function updateUIState() {
+            const connectBtn = document.getElementById('connectBtn');
+            const walletInfo = document.getElementById('walletInfo');
+            const writeButtons = document.querySelectorAll('.btn-write');
+
+            if (userAccount && contract) {
+                if (connectBtn) {
+                    connectBtn.innerText = "Connected";
+                    connectBtn.disabled = true;
+                }
+                if (walletInfo) {
+                    walletInfo.innerText = userAccount.substring(0, 6) + "..." + userAccount.substring(userAccount.length - 4);
+                    walletInfo.style.color = "#ad1313";
+                }
+                writeButtons.forEach(b => b.disabled = false);
+
+                try {
+                    await refreshAll();
+                    await loadHistory();
+                } catch (e) {
+                    console.warn("Data fetch failed", e);
+                }
+            } else {
+                if (connectBtn) {
+                    connectBtn.innerText = "Connect Wallet";
+                    connectBtn.disabled = false;
+                }
+                writeButtons.forEach(b => b.disabled = true);
+                clearDisplayData();
+            }
+        }
+
+        function clearDisplayData() {
+            const valFields = ['anyNumberVal', 'ownerNumberVal', 'anyTextVal', 'ownerTextVal'];
+            valFields.forEach(id => {
+                const el = document.getElementById(id);
+                if (el) el.innerText = "---";
+            });
+
+            const infoFields = ['anyNumberInfo', 'ownerNumberInfo', 'anyTextInfo', 'ownerTextInfo'];
+            infoFields.forEach(id => {
+                const el = document.getElementById(id);
+                if (el) el.innerText = "Updated: --";
+            });
+
+            // ネットワーク切り替え時の入力欄クリア（YOUR NAME以外）
+            const inputFields = ['anyNumberInput', 'anyTextInput', 'ownerNumberInput', 'ownerTextInput'];
+            inputFields.forEach(id => {
+                const el = document.getElementById(id);
+                if (el) el.value = "";
+            });
+
+            const historyList = document.getElementById('historyList');
+            if (historyList) {
+                historyList.innerHTML = "";
+            }
+
+            const loadMoreBtn = document.getElementById('loadMoreBtn');
+            if (loadMoreBtn) {
+                loadMoreBtn.style.display = "none";
+            }
+
+            const log = document.getElementById('log');
+            if (log) {
+                log.innerHTML = '<div style="color: #f44336;">[System] Current network is not supported. Data cleared.</div>';
+            }
         }
 
         async function refreshAll() {
@@ -472,11 +645,12 @@
                 const item = document.createElement('div');
                 item.className = 'history-item';
                 item.innerHTML = `
-                <div style="display:flex; justify-content:space-between; color:#999; font-size:0.75em; margin-bottom:6px;">
-                    <span>${timeStr}</span><span>${d.sender.slice(0, 6)}...</span>
+                <div style="display:flex; justify-content:space-between; color:#999; font-size:1em; margin-bottom:1px;">
+                    <span>${timeStr}</span>
+                    <span>${d.sender.slice(0, 6)}...${d.sender.slice(-4)}</span>
                 </div>
-                <div style="display:flex; flex-direction:column; gap:4px;">
-                    <span style="font-size:0.9em;">${d.label.includes('Owner') ? '<span class="tag-owner">⭐ OWNER</span>' : '👤 ' + (d.userName || 'Anonymous')}</span>
+                <div style="display:flex; flex-direction:column; gap:1px;">
+                    <span style="font-size:1em;">${d.label.includes('Owner') ? '<span class="tag-owner">⭐ OWNER</span>' : '👤 ' + (d.userName || 'Anonymous')}</span>
                     <span style="font-weight:bold; color:#2db883; font-size:1em; line-height:1.4;">${d.label}: ${d.newValue}</span>
                 </div>`;
                 list.appendChild(item);
@@ -489,22 +663,29 @@
 
         async function updateData(methodName, inputId) {
             const val = document.getElementById(inputId).value;
-            const name = nameField.value || "Anonymous";
-            if (!val) return;
+            const name = document.getElementById('userNameInput').value || "Anonymous";
+            if (!val || !contract) return;
+
             const baseName = methodName.replace('set', '');
             const card = document.getElementById(`card-${baseName}`);
             card.classList.add('card-pending');
+
             try {
                 await contract.methods[methodName](val, name).send({ from: userAccount });
+
+                // 更新成功後、特定の入力欄のみを空にする
+                document.getElementById(inputId).value = "";
+
                 await refreshAll();
                 await loadHistory();
+
                 card.classList.remove('card-pending');
                 card.classList.add('flash-neon');
                 setTimeout(() => card.classList.remove('flash-neon'), 2000);
                 addLog(`Updated ${baseName}!`, "sys");
             } catch (e) {
                 card.classList.remove('card-pending');
-                addLog("Failed.", "err");
+                addLog("Transaction failed or rejected.", "err");
             }
         }
 
@@ -517,6 +698,7 @@
         }
 
         window.addEventListener('load', init);
+
     </script>
 </body>
 
