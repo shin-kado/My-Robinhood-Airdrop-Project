@@ -110,7 +110,7 @@ const TOKEN_USD_RATES = {
                 "symbol": "NFLX",
                 "rate": 5
             },
-            "0x1FBE1a0e46356788258385d30907A8D78330D048": {
+            "0x1FBE1a0e43594b3455993B5dE5Fd0A7A266298d0": {
                 "order": 50,
                 "symbol": "PLTR",
                 "rate": 10
