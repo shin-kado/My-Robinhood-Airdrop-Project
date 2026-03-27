@@ -6,6 +6,12 @@ This repository documents my journey and technical achievements as an individual
 （このリポジトリは、Robinhood Chain Testnetにおける個人開発者としての私の歩みと技術的成果を記録したものです。これまでに独自のERC-20トークンを中心に構築された様々なタイプのスマートコントラクトのデプロイに成功しただけでなく、対話的なWeb3アプリケーションの開発を行い、開発者コミュニティのための包括的なガイドを作成しました。）  
 <br>
 
+## 🎯 Concept / コンセプト  
+### Flexible & Secure Playground / 柔軟なカスタマイズと安全性を両立した「実験場」  
+This system is designed as a "Playground" for users to enjoy personalizing exchange rates and master Web3 operations. By utilizing LocalStorage, it allows for deep customization without modifying the source code. While the system supports actual transactions, it is equipped with strict validation logic to prevent human error.  
+（本システムは、利用者が独自の為替レート設定を楽しみながらWeb3の操作に習熟するための「実験場（Playground）」として設計されています。LocalStorageを活用したアーキテクチャによりソースコードを直接書き換えることなく深いレベルでのカスタマイズが可能です。また、実際の送金が可能な環境であることを考慮しヒューマンエラーを未然に防ぐための厳格な検証ロジックを搭載しています。  
+<br>
+
 ## 🌐 Live Web Applications / 公開中のWebアプリ  
 　　I have developed and hosted web-based tools to interact with the Robinhood Chain ecosystem.  
 　　（Robinhood Chainエコシステムと連携するWebベースのツールを開発・公開しています。）  
