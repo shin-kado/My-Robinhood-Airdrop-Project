@@ -96,11 +96,32 @@
             font-weight: 500;
             opacity: 0.8;
         }
+
+        .top-nav {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+
+
+        .btn-nav {
+            padding: 8px 18px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: bold;
+            background: #bfccde;
+            color: #3e3e3e;
+        }
     </style>
 </head>
 
 <body>
     <div class="container">
+        <div class="top-nav">
+            <a href="../index.html" class="btn-nav">← Return To Home Page</a>
+        </div>
+
         <h1 style="text-align: center; font-size: 1rem;margin-top: -20px; margin-bottom: -10px; color: #28a745;">
             Robinhood
             Testnet</h1>
@@ -144,7 +165,7 @@
         </div>
 
         <a href="advanced-storage-update.html" class="btn-next">NEXT (Go to Update Page) →</a>
-        <a href="../index.html" class="btn-back">← BACK TO HOME (index.html)</a>
+        <a href="../index.html" class="btn-back">← Return To Home Page</a>
     </div>
 </body>
 
