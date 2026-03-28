@@ -157,6 +157,5 @@ For more details on the development process and step-by-step guides,
 　　please visit the [Project Wiki / プロジェクトWiki](https://github.com/shin-kado/My-Robinhood-Airdrop-Project/wiki)  
 <br>
 
-## License
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
+### License  
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.  
