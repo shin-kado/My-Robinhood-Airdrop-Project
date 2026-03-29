@@ -139,18 +139,19 @@
 
         // --- 動作確認テスト関数 ---
         async function runSignerTest() {
+            alert("Renderサーバーへ通信開始...");
             try {
-                console.log("Renderサーバーへ通信開始...");
-
-                // テスト用のダミーデータ
-                const testData = {
-                    userAddress: "0x81f37eB796791409395D345097B160530D2981f3", // あなたのアドレス
-                    fromToken: "0x71178BAc73cBeb415514eB542a8995b82669778d", // AMDアドレス
-                    toToken: "0x196eCa072F41571233E4F6D215F89A3446DD569b",   // MRTアドレス
-                    fromAmount: "1000000000000000000", // 1.0相当
-                    nonce: Date.now()
-                };
-
+                const response = await fetch("https://robinhood-signer.onrender.com/get-signature", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                        userAddress: userAddr,
+                        fromToken: "0x71178BAc73cBeb415514eB542a8995b82669778d", // AMD
+                        toToken: "0x196eCa072F41571233E4F6D215F89A3446DD569b",   // MRT
+                        fromAmount: ethers.parseUnits("10", 18).toString(),
+                        nonce: Date.now()
+                    })
+                });
                 const response = await fetch(`${SIGNER_URL}/get-signature`, {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
@@ -169,6 +170,71 @@
             } catch (err) {
                 console.error("ネットワークエラー:", err);
                 alert("Renderサーバーに繋がらないか、CORSエラーが発生しています。");
+            }
+        }
+
+        // --- 本物のスワップ実行テスト ---
+        async function executeRealSwapTest() {
+            try {
+                const provider = new ethers.BrowserProvider(window.ethereum);
+                const signer = await provider.getSigner();
+                const userAddress = await signer.getAddress();
+
+                // 1. コントラクトの設定
+                const contractAddress = "0x2480Bce6825d3D402a5Fe89948571aeF14f1974A";
+                const abi = [
+                    "function swap(address _fromToken, address _toToken, uint256 _fromAmount, uint256 _toAmount, uint256 _nonce, bytes calldata _signature) external",
+                    "function nonces(address) public view returns (uint256)",
+                    "function isSupported(address) public view returns (bool)"
+                ];
+                const swapContract = new ethers.Contract(contractAddress, abi, signer);
+
+                // 2. テスト用データ設定 (AMD -> MRT の例)
+                const fromToken = "0x71178BAc73cBeb415514eB542a8995b82669778d"; // AMD
+                const toToken = "0x196eCa072F41571233E4F6D215F89A3446DD569b";   // MRT
+                const fromAmount = ethers.parseUnits("1.0", 18); // 1枚売る
+                const currentNonce = await swapContract.nonces(userAddress); // 最新のNonceを取得
+
+                console.log("1. Renderサーバーに署名を依頼中...");
+
+                // 3. Renderサーバーから署名とtoAmountを取得
+                const response = await fetch(`${SIGNER_URL}/get-signature`, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                        userAddress,
+                        fromToken,
+                        toToken,
+                        fromAmount: fromAmount.toString(),
+                        nonce: currentNonce.toString()
+                    })
+                });
+
+                const { toAmount, signature, error } = await response.json();
+                if (error) throw new Error(error);
+
+                console.log("2. 署名取得成功。コントラクト実行準備中...");
+
+                // 4. コントラクトのスワップ関数を呼び出す
+                // ※事前にトークンの「Approve」が済んでいる必要があります
+                const tx = await swapContract.swap(
+                    fromToken,
+                    toToken,
+                    fromAmount,
+                    toAmount,
+                    currentNonce,
+                    signature
+                );
+
+                console.log("3. トランザクション送信完了！ハッシュ:", tx.hash);
+                alert("スワップ送信完了！反映をお待ちください。\nHash: " + tx.hash);
+
+                await tx.wait();
+                alert("✅ スワップが完全に完了しました！");
+
+            } catch (err) {
+                console.error("エラー:", err);
+                alert("テスト失敗: " + err.message);
             }
         }
 
@@ -246,6 +312,31 @@
             <span>$ ${rate.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 4 })}</span>
         `;
                 rateDiv.appendChild(rateRow);
+            }
+        }
+
+        // --- コントラクトからトークンを回収（引き出し）する関数 ---
+        async function withdraw(tokenAddress) {
+            try {
+                const amountStr = prompt("回収する数量を入力してください（例: 100）");
+                if (!amountStr) return;
+
+                // 入力された値を 18桁（Ether単位）に変換
+                const amount = ethers.parseUnits(amountStr, 18);
+
+                console.log(`${tokenAddress} を ${amountStr} 枚回収します...`);
+
+                // スマートコントラクトの withdrawToken 関数を呼び出す
+                const tx = await contract.withdrawToken(tokenAddress, amount);
+
+                alert("トランザクションを送信しました。反映を待っています...");
+                await tx.wait(); // 完了を待機
+
+                alert("✅ 回収が完了しました！");
+                loadInventory(); // 在庫表示を更新
+            } catch (err) {
+                console.error("回収エラー:", err);
+                alert("エラーが発生しました: " + err.message);
             }
         }
 
