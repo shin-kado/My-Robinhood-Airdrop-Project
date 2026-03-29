@@ -112,9 +112,18 @@
         </div>
     </div>
 
+    <div style="text-align: center; margin-top: 30px; border-top: 1px solid #333; padding-top: 20px;">
+        <h3>System Test</h3>
+        <button onclick="runSignerTest()"
+            style="padding: 10px 20px; background: #4CAF50; color: white; border: none; border-radius: 8px; cursor: pointer;">
+            Render署名サーバー通信テスト実行
+        </button>
+    </div>
+
+
     <script>
-        // admin.html の script 内
-        const SIGNER_URL = "https://robinhood-signer.onrender.com"; // あなたのRender URL
+        // --- 署名サーバー設定 ---
+        const SIGNER_URL = "https://robinhood-signer.onrender.com";
 
         const CONTRACT_ADDR = "0x2480Bce6825d3D402a5Fe89948571aeF14f1974A";
         const OWNER_ADDR = "0x0799F37F871E0280f3149Ca7e4868BEef06f749a";
@@ -128,31 +137,38 @@
 
         let provider, signer, contract;
 
-        async function testSwap() {
+        // --- 動作確認テスト関数 ---
+        async function runSignerTest() {
             try {
-                console.log("署名リクエスト中...");
+                console.log("Renderサーバーへ通信開始...");
 
-                // 1. Renderサーバーに署名を依頼
+                // テスト用のダミーデータ
+                const testData = {
+                    userAddress: "0x81f37eB796791409395D345097B160530D2981f3", // あなたのアドレス
+                    fromToken: "0x71178BAc73cBeb415514eB542a8995b82669778d", // AMDアドレス
+                    toToken: "0x196eCa072F41571233E4F6D215F89A3446DD569b",   // MRTアドレス
+                    fromAmount: "1000000000000000000", // 1.0相当
+                    nonce: Date.now()
+                };
+
                 const response = await fetch(`${SIGNER_URL}/get-signature`, {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({
-                        userAddress: "あなたのテスト用ウォレットアドレス",
-                        fromToken: "0x...", // 支払うトークンアドレス
-                        toToken: "0x...",   // 受け取るトークンアドレス
-                        fromAmount: "1000000000000000000", // 1 ETH分
-                        nonce: Date.now()   // 重複防止用
-                    })
+                    body: JSON.stringify(testData)
                 });
 
-                const data = await response.json();
-                console.log("署名を取得しました:", data.signature);
+                const result = await response.json();
 
-                // 2. この署名を使ってコントラクトを実行する処理をここに書く
-                // (まだコントラクト側の準備ができていなければ、まずはログが出るか確認！)
-
+                if (result.signature) {
+                    console.log("✅ サーバー接続成功！署名:", result.signature);
+                    alert("成功！署名を取得しました:\n" + result.signature);
+                } else {
+                    console.error("❌ サーバーエラー:", result.error);
+                    alert("サーバーがエラーを返しました: " + result.error);
+                }
             } catch (err) {
-                console.error("エラーが発生しました:", err);
+                console.error("ネットワークエラー:", err);
+                alert("Renderサーバーに繋がらないか、CORSエラーが発生しています。");
             }
         }
 
