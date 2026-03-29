@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Panel | Robinhood Swap</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ethers/6.7.0/ethers.umd.min.js"></script>
+    <script src="../scripts/token-rates.js"></script>
+    <style>
+        body {
+            font-family: sans-serif;
+            background: #1a1a1a;
+            color: white;
+            padding: 20px;
+        }
+
+        .admin-card {
+            background: #2a2a2a;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .token-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px;
+            border-bottom: 1px solid #333;
+        }
+
+        .token-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .token-icon {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+        }
+
+        .btn-action {
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-withdraw {
+            background: #ff4444;
+            color: white;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        th,
+        td {
+            text-align: left;
+            padding: 10px;
+            border-bottom: 1px solid #333;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Admin Management</h1>
+
+    <div id="authMessage" class="admin-card">Walletを接続してオーナー確認を行ってください...</div>
+
+    <div id="adminPanel" class="hidden">
+
+        <div class="admin-card">
+            <h2>Contract Inventory</h2>
+            <div id="inventoryList"></div>
+        </div>
+
+        <div class="admin-card">
+            <h2>Current Swap Rates (Reference)</h2>
+            <div id="rateDisplayList"></div>
+        </div>
+
+        <div class="admin-card">
+            <h2>System Settings</h2>
+            <p>Current Signer: <span id="currentSigner">Loading...</span></p>
+        </div>
+
+        <div class="admin-card">
+            <h2>Global Swap History (On-chain)</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>User</th>
+                        <th>Swap</th>
+                        <th>Amount</th>
+                        <th>Nonce</th>
+                    </tr>
+                </thead>
+                <tbody id="historyList"></tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        // admin.html の script 内
+        const SIGNER_URL = "https://robinhood-signer.onrender.com"; // あなたのRender URL
+
+        const CONTRACT_ADDR = "0x2480Bce6825d3D402a5Fe89948571aeF14f1974A";
+        const OWNER_ADDR = "0x0799F37F871E0280f3149Ca7e4868BEef06f749a";
+        const ABI = [
+            "function getStock(address) view returns (uint256)",
+            "function signerAddress() view returns (address)",
+            "function getSupportedTokens() view returns (address[])",
+            "function withdrawToken(address, uint256)",
+            "event Swapped(address indexed user, address fromToken, address toToken, uint256 fromAmount, uint256 toAmount, uint256 nonce)"
+        ];
+
+        let provider, signer, contract;
+
+        async function testSwap() {
+            try {
+                console.log("署名リクエスト中...");
+
+                // 1. Renderサーバーに署名を依頼
+                const response = await fetch(`${SIGNER_URL}/get-signature`, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                        userAddress: "あなたのテスト用ウォレットアドレス",
+                        fromToken: "0x...", // 支払うトークンアドレス
+                        toToken: "0x...",   // 受け取るトークンアドレス
+                        fromAmount: "1000000000000000000", // 1 ETH分
+                        nonce: Date.now()   // 重複防止用
+                    })
+                });
+
+                const data = await response.json();
+                console.log("署名を取得しました:", data.signature);
+
+                // 2. この署名を使ってコントラクトを実行する処理をここに書く
+                // (まだコントラクト側の準備ができていなければ、まずはログが出るか確認！)
+
+            } catch (err) {
+                console.error("エラーが発生しました:", err);
+            }
+        }
+
+        async function init() {
+            if (!window.ethereum) return;
+            provider = new ethers.BrowserProvider(window.ethereum);
+            const accounts = await provider.send("eth_requestAccounts", []);
+            const userAddr = accounts[0].toLowerCase();
+
+            // オーナーチェック（セキュリティ制御）
+            if (userAddr === OWNER_ADDR.toLowerCase()) {
+                document.getElementById('authMessage').classList.add('hidden');
+                document.getElementById('adminPanel').classList.remove('hidden');
+                setupAdmin();
+            } else {
+                document.getElementById('authMessage').innerText = "アクセス拒否: オーナーではありません。";
+            }
+        }
+
+        async function setupAdmin() {
+            signer = await provider.getSigner();
+            contract = new ethers.Contract(CONTRACT_ADDR, ABI, signer);
+
+            loadInventory();
+            loadGlobalHistory();
+
+            const currentSigner = await contract.signerAddress();
+            document.getElementById('currentSigner').innerText = shortenAddr(currentSigner);
+        }
+
+        async function loadInventory() {
+            const tokens = await contract.getSupportedTokens();
+            const listDiv = document.getElementById('inventoryList');
+            const rateDiv = document.getElementById('rateDisplayList');
+            listDiv.innerHTML = "";
+            rateDiv.innerHTML = "";
+
+            // token-rates.js のデータを取得
+            const netData = TOKEN_USD_RATES["46630"].tokens;
+
+            // netDataのキー（アドレス）をすべて小文字にしたオブジェクトを作成して照合しやすくする
+            const lowCaseTokens = {};
+            Object.keys(netData).forEach(key => {
+                lowCaseTokens[key.toLowerCase()] = netData[key];
+            });
+
+            for (let addr of tokens) {
+                const stock = await contract.getStock(addr);
+                // 小文字に変換して照合
+                const tokenInfo = lowCaseTokens[addr.toLowerCase()];
+
+                const symbol = tokenInfo?.symbol || "Unknown";
+                const rate = tokenInfo?.rate || 0;
+
+                // 在庫リストの表示更新
+                const row = document.createElement('div');
+                row.className = 'token-row';
+                row.innerHTML = `
+            <div class="token-info">
+                <span>${symbol}</span>
+                <small>${shortenAddr(addr)}</small>
+            </div>
+            <div>
+                <strong>${ethers.formatUnits(stock, 18)} ${symbol}</strong>
+                <button class="btn-action btn-withdraw" onclick="withdraw('${addr}')" style="margin-left:10px;">回収</button>
+            </div>
+        `;
+                listDiv.appendChild(row);
+
+                // レート一覧の表示更新
+                const rateRow = document.createElement('div');
+                rateRow.className = 'token-row';
+                rateRow.innerHTML = `
+            <span>${symbol}</span>
+            <span>$ ${rate.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 4 })}</span>
+        `;
+                rateDiv.appendChild(rateRow);
+            }
+        }
+
+        // --- 履歴読み取り関数の詳細版 ---
+        async function loadGlobalHistory() {
+            const list = document.getElementById('historyList');
+            list.innerHTML = "<tr><td colspan='4'>履歴を読み込み中...</td></tr>";
+
+            try {
+                // デプロイ時から現在までの Swapped イベントを取得
+                // (Monad Testnetなどの高速チェーンなら 0 からでもOK)
+                const filter = contract.filters.Swapped();
+                const events = await contract.queryFilter(filter, 0, "latest");
+
+                if (events.length === 0) {
+                    list.innerHTML = "<tr><td colspan='4'>取引履歴はありません。</td></tr>";
+                    return;
+                }
+
+                list.innerHTML = events.reverse().map(ev => {
+                    const { user, fromToken, toToken, fromAmount, toAmount, nonce } = ev.args;
+
+                    // token-rates.jsからシンボルを取得
+                    const netData = TOKEN_USD_RATES["46630"].tokens;
+                    const fromSym = netData[fromToken.toLowerCase()]?.symbol || "???";
+                    const toSym = netData[toToken.toLowerCase()]?.symbol || "???";
+
+                    return `
+                <tr>
+                    <td>${shortenAddr(user)}</td>
+                    <td>${fromSym} → ${toSym}</td>
+                    <td>${ethers.formatUnits(toAmount, 18)} ${toSym}</td>
+                    <td>#${nonce}</td>
+                </tr>
+            `;
+                }).join('');
+            } catch (err) {
+                console.error("履歴取得エラー:", err);
+                list.innerHTML = "<tr><td colspan='4'>履歴の取得に失敗しました。</td></tr>";
+            }
+        }
+
+        function shortenAddr(addr) {
+            return addr.substring(0, 5) + "..." + addr.substring(addr.length - 5);
+        }
+
+        window.onload = init;
+    </script>
+</body>
+
+</html>
