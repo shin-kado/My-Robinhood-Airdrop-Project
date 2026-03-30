@@ -120,6 +120,13 @@
         </button>
     </div>
 
+    <!-- admin.html の既存のテストボタンの下に追加 -->
+    <div style="text-align: center; margin-top: 10px;">
+        <button onclick="executeRealSwapTest()"
+            style="padding: 10px 20px; background: #E91E63; color: white; border: none; border-radius: 8px; cursor: pointer;">
+            本番スワップ動作テスト実行 (AMD → MRT)
+        </button>
+    </div>
 
     <script>
         // --- 署名サーバー設定 ---
@@ -141,17 +148,16 @@
         async function runSignerTest() {
             alert("Renderサーバーへ通信開始...");
             try {
-                const response = await fetch("https://robinhood-signer.onrender.com/get-signature", {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({
-                        userAddress: userAddr,
-                        fromToken: "0x71178BAc73cBeb415514eB542a8995b82669778d", // AMD
-                        toToken: "0x196eCa072F41571233E4F6D215F89A3446DD569b",   // MRT
-                        fromAmount: ethers.parseUnits("10", 18).toString(),
-                        nonce: Date.now()
-                    })
-                });
+                // 1. テストデータの準備
+                const testData = {
+                    userAddress: "0x0799F37F871E0280f3149Ca7e4868BEef06f749a", // あなたのアドレス
+                    fromToken: "0x71178BAc73cBeb415514eB542a8995b82669778d", // AMD
+                    toToken: "0x196eCa072F41571233E4F6D215F89A3446DD569b",   // MRT
+                    fromAmount: ethers.parseUnits("10", 18).toString(),
+                    nonce: Date.now()
+                };
+
+                // 2. RenderサーバーへFetch（'response' の重複定義を避けるため一度だけ宣言）
                 const response = await fetch(`${SIGNER_URL}/get-signature`, {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
@@ -172,6 +178,7 @@
                 alert("Renderサーバーに繋がらないか、CORSエラーが発生しています。");
             }
         }
+
 
         // --- 本物のスワップ実行テスト ---
         async function executeRealSwapTest() {
@@ -238,13 +245,16 @@
             }
         }
 
+        // --- 初期化処理 ---
         async function init() {
             if (!window.ethereum) return;
             provider = new ethers.BrowserProvider(window.ethereum);
             const accounts = await provider.send("eth_requestAccounts", []);
+
+            // 現在の接続アドレスを小文字化して取得[cite: 4]
             const userAddr = accounts[0].toLowerCase();
 
-            // オーナーチェック（セキュリティ制御）
+            // オーナーチェック：OWNER_ADDRも小文字化して比較することで不一致を防止
             if (userAddr === OWNER_ADDR.toLowerCase()) {
                 document.getElementById('authMessage').classList.add('hidden');
                 document.getElementById('adminPanel').classList.remove('hidden');
@@ -268,43 +278,63 @@
         async function loadInventory() {
             const tokens = await contract.getSupportedTokens();
             const listDiv = document.getElementById('inventoryList');
-            const rateDiv = document.getElementById('rateDisplayList');
+            const rateDiv = document.getElementById('rateDisplayList'); // レート表示エリアを取得[cite: 4]
             listDiv.innerHTML = "";
-            rateDiv.innerHTML = "";
+            rateDiv.innerHTML = ""; // 初期化[cite: 4]
 
-            // token-rates.js のデータを取得
             const netData = TOKEN_USD_RATES["46630"].tokens;
-
-            // netDataのキー（アドレス）をすべて小文字にしたオブジェクトを作成して照合しやすくする
-            const lowCaseTokens = {};
-            Object.keys(netData).forEach(key => {
-                lowCaseTokens[key.toLowerCase()] = netData[key];
-            });
+            const lookup = {};
+            Object.keys(netData).forEach(key => lookup[key.toLowerCase()] = netData[key]);
 
             for (let addr of tokens) {
                 const stock = await contract.getStock(addr);
-                // 小文字に変換して照合
-                const tokenInfo = lowCaseTokens[addr.toLowerCase()];
-
+                const tokenInfo = lookup[addr.toLowerCase()];
                 const symbol = tokenInfo?.symbol || "Unknown";
-                const rate = tokenInfo?.rate || 0;
+                const rate = tokenInfo?.rate || 0; // レートを取得[cite: 5]
 
-                // 在庫リストの表示更新
+                // --- 1. 在庫リストの更新（補充・回収ボタン付き） ---
                 const row = document.createElement('div');
                 row.className = 'token-row';
+                const stockFormatted = Number(ethers.formatUnits(stock, 18)).toLocaleString(undefined, {
+                    minimumFractionDigits: 1,
+                    maximumFractionDigits: 4
+                });
+
                 row.innerHTML = `
-            <div class="token-info">
-                <span>${symbol}</span>
-                <small>${shortenAddr(addr)}</small>
-            </div>
-            <div>
-                <strong>${ethers.formatUnits(stock, 18)} ${symbol}</strong>
-                <button class="btn-action btn-withdraw" onclick="withdraw('${addr}')" style="margin-left:10px;">回収</button>
-            </div>
-        `;
+    <div class="token-info" style="display: flex; align-items: center; flex: 1;">
+        <!-- シンボル：幅60px固定 -->
+        <span style="width: 60px; font-size: 1.25em; font-weight: bold; display: inline-block;">${symbol}</span>
+        <!-- アドレス：幅120px固定 -->
+        <small style="width: 120px; color: #aaa; margin-left: 10px; display: inline-block;">${shortenAddr(addr)}</small>
+    </div>
+    
+    <div style="display: flex; align-items: center; justify-content: flex-end;">
+        <!-- 保有量エリア：ここがポイント -->
+        <div style="display: flex; align-items: center; justify-content: flex-end; margin-right: 20px;">
+<!-- カンマ区切りにした数値を表示 -->
+            <strong style="width: 140px; text-align: right; font-size: 1.5em; font-family: 'Courier New', monospace;">
+                ${stockFormatted}
+            </strong>
+                        <!-- シンボル部分を左寄せ固定幅にする -->
+            <span style="width: 70px; margin-left: 8px; font-size: 1.25em; font-weight: bold; text-align: left;">
+                ${symbol}
+            </span>
+        </div>
+
+        <!-- ボタン -->
+        <button class="btn-action" onclick="deposit('${addr}', '${symbol}')" 
+            style="background: #4CAF50; color: white; cursor:pointer; border:none; padding:5px 10px; border-radius:4px; width: 50px;">
+            補充
+        </button>
+        <button class="btn-action btn-withdraw" onclick="withdraw('${addr}')" 
+            style="margin-left:5px; cursor:pointer; border:none; padding:5px 10px; border-radius:4px; width: 50px;">
+            回収
+        </button>
+    </div>
+`;
                 listDiv.appendChild(row);
 
-                // レート一覧の表示更新
+                // --- 2. レート一覧の表示を復旧 ---[cite: 4]
                 const rateRow = document.createElement('div');
                 rateRow.className = 'token-row';
                 rateRow.innerHTML = `
@@ -312,6 +342,34 @@
             <span>$ ${rate.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 4 })}</span>
         `;
                 rateDiv.appendChild(rateRow);
+            }
+        }
+
+        // --- 補充（Deposit）関数の追加 ---
+        async function deposit(tokenAddress, symbol) {
+            try {
+                const amountStr = prompt(`${symbol} をいくら補充（送金）しますか？`);
+                if (!amountStr || isNaN(amountStr)) return;
+
+                const amount = ethers.parseUnits(amountStr, 18);
+
+                // トークン側のコントラクトを操作するための設定
+                const tokenAbi = ["function transfer(address to, uint256 amount) returns (bool)"];
+                const tokenContract = new ethers.Contract(tokenAddress, tokenAbi, signer);
+
+                console.log(`${symbol} を ${CONTRACT_ADDR} へ送金中...`);
+
+                // あなたのウォレットから RobinhoodSwap コントラクトへ直接送金
+                const tx = await tokenContract.transfer(CONTRACT_ADDR, amount);
+
+                alert(`${symbol} の補充トランザクションを送信しました。反映を待ちます...`);
+                await tx.wait();
+
+                alert(`✅ ${symbol} の補充が完了しました！`);
+                loadInventory(); // 画面上の在庫表示を更新
+            } catch (err) {
+                console.error("補充エラー:", err);
+                alert("補充に失敗しました: " + err.message);
             }
         }
 
@@ -340,14 +398,12 @@
             }
         }
 
-        // --- 履歴読み取り関数の詳細版 ---
         async function loadGlobalHistory() {
             const list = document.getElementById('historyList');
+            if (!list) return;
             list.innerHTML = "<tr><td colspan='4'>履歴を読み込み中...</td></tr>";
 
             try {
-                // デプロイ時から現在までの Swapped イベントを取得
-                // (Monad Testnetなどの高速チェーンなら 0 からでもOK)
                 const filter = contract.filters.Swapped();
                 const events = await contract.queryFilter(filter, 0, "latest");
 
@@ -356,22 +412,38 @@
                     return;
                 }
 
+                // token-rates.js のデータを取得[cite: 5]
+                const tokenData = TOKEN_USD_RATES["46630"].tokens;
+
+                // 照合を確実にするため、tokenDataのキーをすべて小文字にした新しいオブジェクトを作成
+                const lookup = {};
+                Object.keys(tokenData).forEach(addr => {
+                    lookup[addr.toLowerCase()] = tokenData[addr];
+                });
+
                 list.innerHTML = events.reverse().map(ev => {
                     const { user, fromToken, toToken, fromAmount, toAmount, nonce } = ev.args;
 
-                    // token-rates.jsからシンボルを取得
-                    const netData = TOKEN_USD_RATES["46630"].tokens;
-                    const fromSym = netData[fromToken.toLowerCase()]?.symbol || "???";
-                    const toSym = netData[toToken.toLowerCase()]?.symbol || "???";
+                    // イベントのアドレスを小文字にして lookup から検索
+                    const fromInfo = lookup[fromToken.toLowerCase()];
+                    const toInfo = lookup[toToken.toLowerCase()];
+
+                    const fromSym = fromInfo ? fromInfo.symbol : "???";
+                    const toSym = toInfo ? toInfo.symbol : "???";
+
+                    // loadGlobalHistory 関数の map 処理内を修正
+                    const fromAmtFormatted = Number(ethers.formatUnits(fromAmount, 18)).toLocaleString(undefined, { minimumFractionDigits: 1 });
+                    const toAmtFormatted = Number(ethers.formatUnits(toAmount, 18)).toLocaleString(undefined, { minimumFractionDigits: 1 });
 
                     return `
-                <tr>
-                    <td>${shortenAddr(user)}</td>
-                    <td>${fromSym} → ${toSym}</td>
-                    <td>${ethers.formatUnits(toAmount, 18)} ${toSym}</td>
-                    <td>#${nonce}</td>
-                </tr>
-            `;
+    <tr>
+        <td>${shortenAddr(user)}</td>
+        <td>${fromSym} → ${toSym}</td>
+        <!-- カンマ区切りで表示 -->
+        <td>${fromAmtFormatted} ${fromSym} → ${toAmtFormatted} ${toSym}</td>
+        <td>#${nonce}</td>
+    </tr>
+`;
                 }).join('');
             } catch (err) {
                 console.error("履歴取得エラー:", err);
